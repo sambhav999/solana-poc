@@ -1,0 +1,241 @@
+/*
+ * Off-white financial product UI. Deep navy text, teal for earnings in motion,
+ * muted grey for the preserved source, gold for equities, monospace numbers.
+ * The value is the rule, so the design stays out of its way.
+ */
+:root {
+  --paper: #ecefed;
+  --panel: #ffffff;
+  --ink: #0d2034;
+  --soft: #647282;
+  --rule: #c8cfcb;
+  --preserved: #9199a4;
+  --flow: #168d84;
+  --flow-soft: #d0e9e5;
+  --equity: #a67125;
+  --equity-soft: #f5ecdc;
+  --bad: #9d3f39;
+  --bad-soft: #f7e9e7;
+  --warn: #8c671c;
+  --warn-soft: #f8f2df;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+button, input, select { font: inherit; }
+
+.wrap { max-width: 940px; margin: 0 auto; padding: 28px 20px 72px; }
+
+/* ------------------------------------------------------------- masthead -- */
+.mast { display: flex; justify-content: space-between; align-items: flex-start; gap: 18px; flex-wrap: wrap; }
+.brand { font-size: 26px; font-weight: 700; letter-spacing: -.03em; }
+.tag { color: var(--soft); font-size: 13px; margin-top: 4px; }
+.mast-right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+.pill {
+  font-family: var(--mono); font-size: 11px; padding: 6px 11px; border-radius: 99px;
+  background: var(--flow-soft); color: var(--flow); border: 1px solid #add6d1; white-space: nowrap;
+}
+.pill.warn { background: var(--warn-soft); color: var(--warn); border-color: #e4d5aa; }
+.pill.bad { background: var(--bad-soft); color: var(--bad); border-color: #e7c9c5; }
+.pill.grey { background: #eef1f0; color: var(--soft); border-color: var(--rule); }
+
+/* ----------------------------------------------------------------- card -- */
+.card { background: var(--panel); border: 1px solid var(--rule); border-radius: 14px; padding: 20px; margin-top: 18px; }
+.card.tight { padding: 16px; }
+.eyebrow { font-size: 12px; color: var(--soft); }
+.money { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.section-head { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; margin-top: 30px; flex-wrap: wrap; }
+.section-title { font-size: 13px; color: var(--soft); text-transform: uppercase; letter-spacing: .06em; }
+
+/* ----------------------------------------------------------- rule cards -- */
+.rule-card { background: var(--panel); border: 1px solid var(--rule); border-radius: 14px; padding: 18px; margin-top: 14px; }
+.rule-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; flex-wrap: wrap; }
+.rule-flow { font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.arrow { color: var(--flow); font-weight: 400; }
+.rule-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--rule); }
+.meta-k { font-size: 11px; color: var(--soft); }
+.meta-v { font-size: 13px; margin-top: 3px; }
+
+.status-badge { font-family: var(--mono); font-size: 11px; border-radius: 99px; padding: 5px 9px; border: 1px solid var(--rule); white-space: nowrap; }
+.status-READY { background: var(--flow-soft); color: var(--flow); border-color: #add6d1; }
+.status-WAITING { background: #eef1f0; color: var(--soft); }
+.status-BLOCKED { background: var(--bad-soft); color: var(--bad); border-color: #e7c9c5; }
+.status-NEEDS_REVIEW { background: var(--warn-soft); color: var(--warn); border-color: #e4d5aa; }
+.status-PAUSED { background: #eef1f0; color: var(--soft); }
+
+/* --------------------------------------------------------------- guards -- */
+.guards { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.guard { font-family: var(--mono); font-size: 10px; padding: 4px 7px; border-radius: 5px; border: 1px solid var(--rule); color: var(--soft); background: #f6f8f7; }
+.guard.pass { color: var(--flow); border-color: #add6d1; background: var(--flow-soft); }
+.guard.fail { color: var(--bad); border-color: #e7c9c5; background: var(--bad-soft); }
+
+/* ---------------------------------------------------------------- forms -- */
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.field { display: flex; flex-direction: column; }
+.field label { font-size: 12px; color: var(--soft); margin-bottom: 6px; }
+input[type=text], input[type=number], select {
+  width: 100%; border: 1px solid var(--rule); border-radius: 8px; padding: 9px 10px;
+  background: #fff; color: var(--ink);
+}
+input:disabled, select:disabled { background: #f4f6f5; color: var(--soft); cursor: not-allowed; }
+.hint { font-size: 11px; color: var(--soft); margin-top: 5px; }
+
+.rule-sentence { display: grid; grid-template-columns: 88px 1fr; gap: 10px 14px; align-items: center; }
+.rule-sentence .kw { font-family: var(--mono); font-size: 11px; color: var(--soft); letter-spacing: .08em; }
+
+/* -------------------------------------------------------------- buttons -- */
+.controls { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 18px; }
+.btn {
+  border: 1px solid var(--rule); background: #fff; color: var(--ink); border-radius: 8px;
+  padding: 9px 14px; font-weight: 600; font-size: 12px; cursor: pointer;
+}
+.btn:hover:not(:disabled) { border-color: var(--ink); }
+.btn.primary { background: var(--ink); color: #fff; border-color: var(--ink); }
+.btn.primary:hover:not(:disabled) { background: #16324f; }
+.btn.flow { background: var(--flow); color: #fff; border-color: var(--flow); }
+.btn.danger { color: var(--bad); }
+.btn.small { padding: 6px 10px; font-size: 11px; }
+.btn:disabled { opacity: .42; cursor: not-allowed; }
+
+/* -------------------------------------------------------------- notices -- */
+.notice { margin-top: 14px; font-size: 12px; padding: 11px 12px; border-radius: 8px; background: #f3f6f5; color: var(--soft); }
+.notice.ok { background: var(--flow-soft); color: #14675f; }
+.notice.warn { background: var(--warn-soft); color: var(--warn); }
+.notice.bad { background: var(--bad-soft); color: var(--bad); }
+
+/* -------------------------------------------------------------- receipt -- */
+.receipt { font-family: var(--mono); font-size: 12px; background: #fbfcfb; border: 1px solid var(--rule); border-radius: 10px; padding: 16px; margin-top: 14px; }
+.receipt-row { display: flex; justify-content: space-between; gap: 14px; padding: 4px 0; }
+.receipt-row .k { color: var(--soft); }
+.receipt-row .v { text-align: right; word-break: break-all; }
+.receipt-title { font-weight: 700; letter-spacing: .04em; margin-bottom: 10px; font-size: 11px; }
+.receipt hr { border: none; border-top: 1px solid var(--rule); margin: 10px 0; }
+.preserved-yes { color: var(--flow); }
+.equity { color: var(--equity); }
+
+/* --------------------------------------------------------------- replay -- */
+.replay-banner {
+  background: var(--warn-soft); border: 1px solid #e4d5aa; color: var(--warn);
+  border-radius: 8px; padding: 10px 12px; font-family: var(--mono); font-size: 11px;
+  letter-spacing: .05em; margin-bottom: 14px;
+}
+.event-row { display: grid; grid-template-columns: 96px 92px 1fr auto; gap: 12px; align-items: center; padding: 10px 0; border-top: 1px solid var(--rule); font-size: 12px; }
+.event-row:first-child { border-top: none; }
+
+.exposure-bar { height: 30px; position: relative; margin: 12px 0 6px; border-radius: 5px; overflow: hidden; background: #eef1f0; display: flex; }
+.exposure-bar .kept { background: var(--preserved); }
+.exposure-bar .routed { background: var(--flow); }
+.bar-legend { display: flex; gap: 16px; font-size: 11px; color: var(--soft); }
+.swatch { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 5px; vertical-align: middle; }
+
+.footer { font-size: 11px; line-height: 1.7; color: var(--soft); margin-top: 34px; border-top: 1px solid var(--rule); padding-top: 16px; }
+
+.tabs { display: flex; gap: 6px; margin-top: 22px; border-bottom: 1px solid var(--rule); }
+.tab { padding: 9px 14px; font-size: 13px; cursor: pointer; border: none; background: none; color: var(--soft); border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.tab.active { color: var(--ink); border-bottom-color: var(--ink); font-weight: 600; }
+
+.empty { text-align: center; padding: 40px 20px; color: var(--soft); }
+.spinner { display: inline-block; width: 12px; height: 12px; border: 2px solid var(--rule); border-top-color: var(--flow); border-radius: 50%; animation: spin .7s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@media (max-width: 680px) {
+  .grid2 { grid-template-columns: 1fr; }
+  .rule-sentence { grid-template-columns: 1fr; gap: 4px 0; }
+  .rule-sentence .kw { margin-top: 10px; }
+  .event-row { grid-template-columns: 1fr; gap: 4px; }
+  .receipt-row { flex-direction: column; gap: 2px; }
+  .receipt-row .v { text-align: left; }
+}
+@media (prefers-reduced-motion: reduce) { .spinner { animation: none; } }
+
+/* ---------------------------------------------------- principal / yield -- */
+/*
+ * The one picture that carries the product: the principal floor is a fixed grey
+ * mass with a hard line on top, and yield accumulates ABOVE that line. The line
+ * never moves. When the yield column fills, it is routed out and the column
+ * empties while the portfolio below grows.
+ */
+.flow { display: grid; grid-template-columns: 150px 1fr; gap: 22px; align-items: end; margin-top: 6px; }
+.flow-col { position: relative; height: 190px; display: flex; flex-direction: column; justify-content: flex-end; }
+
+.flow-yield {
+  background: var(--flow-soft); border: 1px solid #add6d1; border-bottom: none;
+  border-radius: 6px 6px 0 0; min-height: 2px;
+  transition: height .45s cubic-bezier(.4, 0, .2, 1);
+  display: flex; align-items: flex-start; justify-content: center; overflow: hidden;
+}
+.flow-yield.ready { background: var(--flow); border-color: var(--flow); }
+.flow-yield-label { font-family: var(--mono); font-size: 10px; color: var(--flow); padding-top: 4px; white-space: nowrap; }
+.flow-yield.ready .flow-yield-label { color: #fff; }
+
+.flow-line { height: 3px; background: var(--ink); position: relative; z-index: 2; }
+.flow-principal {
+  background: repeating-linear-gradient(135deg, #e7eaee, #e7eaee 6px, #e1e5ea 6px, #e1e5ea 12px);
+  border: 1px solid var(--rule); border-top: none; border-radius: 0 0 6px 6px;
+  height: 96px; display: flex; align-items: center; justify-content: center;
+}
+.flow-principal-label { font-family: var(--mono); font-size: 10px; color: var(--preserved); text-align: center; padding: 0 6px; }
+
+.flow-facts { display: grid; gap: 12px; }
+.flow-fact { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; border-bottom: 1px dotted var(--rule); padding-bottom: 7px; }
+.flow-fact:last-child { border-bottom: none; }
+.flow-fact .k { font-size: 11px; color: var(--soft); }
+.flow-fact .v { font-family: var(--mono); font-size: 14px; }
+.flow-fact .v.flow { color: var(--flow); }
+.flow-fact .v.locked { color: var(--preserved); }
+.flow-fact .v.equity { color: var(--equity); }
+
+.threshold-track { height: 5px; background: #eef1f0; border-radius: 99px; overflow: hidden; margin-top: 3px; }
+.threshold-fill { height: 100%; background: var(--flow); border-radius: 99px; transition: width .45s ease; }
+
+/* ------------------------------------------------------------- portfolio -- */
+.holding { display: grid; grid-template-columns: 1fr auto auto; gap: 14px; align-items: center; padding: 12px 0; border-top: 1px solid var(--rule); }
+.holding:first-child { border-top: none; }
+.holding-sym { font-weight: 700; font-size: 13px; }
+.holding-sub { font-size: 11px; color: var(--soft); margin-top: 2px; }
+.holding-qty { font-family: var(--mono); font-size: 13px; color: var(--equity); text-align: right; }
+.holding-raw { font-family: var(--mono); font-size: 10px; color: var(--soft); text-align: right; margin-top: 2px; }
+
+.proof-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-top: 16px; }
+.proof-box { border: 1px solid var(--rule); border-radius: 10px; padding: 13px; }
+.proof-box .k { font-size: 11px; color: var(--soft); }
+.proof-box .v { font-family: var(--mono); font-size: 17px; margin-top: 5px; }
+.proof-box.good { border-color: #add6d1; background: var(--flow-soft); }
+.proof-box.good .v { color: #14675f; }
+
+@media (max-width: 680px) {
+  .flow { grid-template-columns: 110px 1fr; gap: 14px; }
+  .holding { grid-template-columns: 1fr auto; }
+}
+
+/* -------------------------------------------------- settlement verdict -- */
+/*
+ * Delivery and proof are different axes. A transaction can land and still be
+ * unproven, so the verdict is shown separately from the status and is never
+ * implied by a green tick.
+ */
+.verdict { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 10px; padding: 4px 9px; border-radius: 99px; border: 1px solid var(--rule); letter-spacing: .04em; }
+.verdict-VERIFIED_ON_CHAIN { background: var(--flow-soft); color: #14675f; border-color: #add6d1; }
+.verdict-UNVERIFIED { background: var(--warn-soft); color: var(--warn); border-color: #e4d5aa; }
+.verdict-FAILED { background: var(--bad-soft); color: var(--bad); border-color: #e7c9c5; }
+
+.proof-list { display: grid; gap: 5px; margin-top: 10px; }
+.proof-item { display: flex; gap: 8px; align-items: flex-start; font-family: var(--mono); font-size: 10px; color: var(--soft); }
+.proof-item .mark { width: 11px; flex-shrink: 0; }
+.proof-item.yes .mark { color: var(--flow); }
+.proof-item.no .mark { color: var(--bad); }
+
+.drift { border: 1px solid #e4d5aa; background: var(--warn-soft); border-radius: 10px; padding: 14px; margin-top: 14px; }
+.drift-title { font-family: var(--mono); font-size: 11px; color: var(--warn); letter-spacing: .05em; margin-bottom: 7px; }
+.drift-numbers { display: flex; gap: 18px; flex-wrap: wrap; font-family: var(--mono); font-size: 11px; margin-top: 9px; }

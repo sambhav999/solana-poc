@@ -1,0 +1,39 @@
+{
+  "name": "overflow-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Overflow API - programmable earnings layer for onchain assets",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "node --watch src/index.js",
+    "start": "node src/index.js",
+    "test": "node --test test/*.test.js",
+    "poll": "node -e \"import('./src/poller/poll.js').then(m=>m.pollOnce()).then(r=>console.log(JSON.stringify(r,null,2)))\"",
+    "verify:xstocks": "node scripts/verify-xstocks.mjs",
+    "verify:kamino": "node scripts/verify-kamino.mjs",
+    "preflight": "node scripts/preflight.mjs",
+    "preflight:prod": "node scripts/preflight.mjs --prod",
+    "check": "npm test && npm run preflight"
+  },
+  "dependencies": {
+    "@kamino-finance/farms-sdk": "^3.2.24",
+    "@solana-program/compute-budget": "^0.8.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0"
+  },
+  "optionalDependencies": {
+    "@kamino-finance/klend-sdk": "7.3.22",
+    "@kamino-finance/farms-sdk": "3.2.24",
+    "@solana-program/compute-budget": "^0.8.0",
+    "@solana/kit": "^2.3.0",
+    "decimal.js": "^10.6.0"
+  },
+  "overrides": {
+    "@kamino-finance/farms-sdk": "3.2.24",
+    "@solana/kit": "^2.3.0"
+  }
+}

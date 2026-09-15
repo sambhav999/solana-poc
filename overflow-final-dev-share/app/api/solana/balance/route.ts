@@ -1,0 +1,2 @@
+import { NextRequest, NextResponse } from 'next/server';import { rawTokenBalance } from '@/lib/solana';
+export async function GET(req:NextRequest){try{const wallet=req.nextUrl.searchParams.get('wallet')!;const mint=req.nextUrl.searchParams.get('mint')!;if(!wallet||!mint)throw new Error('wallet and mint required');const x=await rawTokenBalance(wallet,mint);return NextResponse.json({...x,amount:x.amount.toString()});}catch(e:any){return NextResponse.json({error:e.message},{status:400});}}
