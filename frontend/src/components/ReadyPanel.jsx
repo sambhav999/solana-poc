@@ -3,6 +3,7 @@ import { api } from '../lib/api.js';
 import { signTransactionBase64 } from '../lib/wallet.js';
 import { formatRaw, formatUsd, pctFromDecimalString } from '../lib/format.js';
 import ExposureBar from './ExposureBar.jsx';
+import PremiumGauge from './PremiumGauge.jsx';
 
 /**
  * Review and execute. Nothing is signed until the user has seen exactly what
@@ -13,17 +14,24 @@ export default function ReadyPanel({ rule, evaluation, connection, onExecuted })
   const [phase, setPhase] = useState('idle'); // idle | preparing | review | signing | submitting | done
   const [error, setError] = useState(null);
   const [withdrawSignature, setWithdrawSignature] = useState(null);
+  const [blocked, setBlocked] = useState(null); // Capital Firewall evidence
 
   const isDividend = rule.sourceType === 'XSTOCK_DIVIDEND';
 
   async function handlePrepare() {
-    setPhase('preparing'); setError(null);
+    setPhase('preparing'); setError(null); setBlocked(null);
     try {
       const result = await api.prepare(rule.id);
       setPrepared(result);
       setPhase('review');
     } catch (err) {
-      setError(err.body?.detail || err.message);
+      // A firewall block is the product working, not a failure: show the evidence.
+      if (err.body?.reason === 'FIREWALL_BLOCKED') {
+        setBlocked({ ...err.body.firewall, detail: err.body.detail });
+        onExecuted?.({ blocked: true });
+      } else {
+        setError(err.body?.detail || err.message);
+      }
       setPhase('idle');
     }
   }
@@ -128,6 +136,23 @@ export default function ReadyPanel({ rule, evaluation, connection, onExecuted })
         <div className="notice bad">Simulation failed; nothing was sent to your wallet.</div>
       )}
       {error && <div className="notice bad">{error}</div>}
+
+      {blocked && (
+        <div className="blocked-hero">
+          <div className="blocked-title">EXECUTION BLOCKED — CAPITAL FIREWALL</div>
+          <div style={{ fontSize: 13, marginTop: 6 }}>{blocked.reason}</div>
+          <PremiumGauge premiumBps={blocked.premiumBps} maxPremiumBps={blocked.maxPremiumBps}
+                        minPremiumBps={blocked.minPremiumBps} decision="BLOCK" />
+          <div className="hint" style={{ marginTop: 8 }}>
+            {blocked.tokenPriceUsd && <>Would have paid ${blocked.tokenPriceUsd} ({blocked.tokenSource}). </>}
+            {blocked.referencePriceUsd && <>Fair value ${blocked.referencePriceUsd} ({blocked.referenceSource}). </>}
+          </div>
+          <div className="notice ok" style={{ marginTop: 10 }}>
+            Your earnings are untouched. {blocked.detail?.split('. ').slice(-1)[0]} The decision is stored with its
+            evidence and counts toward Earnings Retained.
+          </div>
+        </div>
+      )}
 
       {phase === 'done' ? (
         <div className="notice ok">Executed. The receipt below is the proof.</div>

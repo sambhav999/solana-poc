@@ -239,3 +239,78 @@ input:disabled, select:disabled { background: #f4f6f5; color: var(--soft); curso
 .drift { border: 1px solid #e4d5aa; background: var(--warn-soft); border-radius: 10px; padding: 14px; margin-top: 14px; }
 .drift-title { font-family: var(--mono); font-size: 11px; color: var(--warn); letter-spacing: .05em; margin-bottom: 7px; }
 .drift-numbers { display: flex; gap: 18px; flex-wrap: wrap; font-family: var(--mono); font-size: 11px; margin-top: 9px; }
+
+/* ----------------------------------------------- income portfolio (V4.1) -- */
+.income-hero { display: grid; grid-template-columns: 1.4fr 1fr; gap: 14px; }
+.income-card { border: 1px solid var(--rule); border-radius: 12px; padding: 16px; background: var(--panel); }
+.income-card.built { border-color: #d9c49a; background: linear-gradient(180deg, #fffdf8, var(--panel)); }
+.income-card.retained { border-color: #add6d1; background: linear-gradient(180deg, #f5fbfa, var(--panel)); }
+.income-label { font-size: 11px; color: var(--soft); text-transform: uppercase; letter-spacing: .07em; }
+.income-value { font-family: var(--mono); font-size: 30px; font-weight: 600; margin-top: 6px; letter-spacing: -.02em; }
+.income-card.built .income-value { color: var(--equity); }
+.income-card.retained .income-value { color: var(--flow); }
+.income-sub { font-size: 11px; color: var(--soft); margin-top: 4px; }
+
+.split { display: flex; height: 8px; border-radius: 99px; overflow: hidden; background: #eef1f0; margin-top: 14px; }
+.split .pub { background: var(--equity); }
+.split .priv { background: #7a5bb0; }
+.split-legend { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; font-size: 11px; color: var(--soft); margin-top: 8px; }
+.split-legend .dot { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 5px; vertical-align: middle; }
+
+.chip { display: inline-block; font-family: var(--mono); font-size: 10px; padding: 3px 7px; border-radius: 5px; border: 1px solid var(--rule); color: var(--soft); }
+.chip.private { color: #5b3f8f; border-color: #cfc1e6; background: #f5f1fb; }
+.chip.public { color: var(--equity); border-color: #e4d2b0; background: var(--equity-soft); }
+
+/* -------------------------------------------------------- firewall log -- */
+.decision { display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center; padding: 11px 0; border-top: 1px solid var(--rule); }
+.decision:first-child { border-top: none; }
+.decision-badge { font-family: var(--mono); font-size: 10px; padding: 4px 8px; border-radius: 5px; font-weight: 600; white-space: nowrap; }
+.decision-badge.PASSED { background: var(--flow-soft); color: #14675f; }
+.decision-badge.BLOCKED { background: var(--bad-soft); color: var(--bad); }
+.decision-main { min-width: 0; }
+.decision-title { font-size: 13px; font-weight: 600; }
+.decision-reason { font-size: 11px; color: var(--soft); margin-top: 2px; overflow-wrap: anywhere; }
+.decision-amt { font-family: var(--mono); font-size: 12px; text-align: right; }
+
+.premium-track { position: relative; height: 22px; margin: 12px 0 4px; background: #eef1f0; border-radius: 6px; }
+.premium-band { position: absolute; top: 0; bottom: 0; background: var(--flow-soft); border-left: 2px solid var(--flow); border-right: 2px solid var(--flow); }
+.premium-marker { position: absolute; top: -3px; bottom: -3px; width: 3px; border-radius: 2px; background: var(--ink); }
+.premium-marker.blocked { background: var(--bad); }
+.premium-axis { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10px; color: var(--soft); }
+
+.blocked-hero { border: 1px solid #e7c9c5; background: var(--bad-soft); border-radius: 10px; padding: 14px; margin-top: 14px; }
+.blocked-title { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--bad); letter-spacing: .06em; }
+
+@media (max-width: 680px) {
+  .income-hero { grid-template-columns: 1fr; }
+  .income-value { font-size: 24px; }
+  .decision { grid-template-columns: 1fr; gap: 5px; }
+  .decision-amt { text-align: left; }
+}
+
+/* Five tabs do not fit a phone. The strip scrolls within itself so the PAGE never
+   scrolls sideways; a tab peeking past the edge signals there is more. */
+.tabs { overflow-x: auto; overflow-y: hidden; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.tabs::-webkit-scrollbar { display: none; }
+.tab { white-space: nowrap; flex-shrink: 0; }
+@media (max-width: 680px) {
+  .tab { padding: 9px 11px; font-size: 12px; }
+}
+
+/* Values in the principal/yield panel never wrap or shrink; the label gives way. */
+.flow-fact .k { min-width: 0; }
+.flow-fact .v { white-space: nowrap; flex-shrink: 0; }
+
+/* Sentence rows align to their first control, so a tall row (FIREWALL) keeps its
+   keyword beside its own dropdown instead of drifting into the row above. */
+.rule-sentence { align-items: start; }
+.rule-sentence .kw { padding-top: 11px; }
+
+@media (max-width: 680px) {
+  /* The tank beside the facts leaves ~150px for "Principal floor $10,000.00":
+     stack instead, tank above, facts full width. */
+  .flow { grid-template-columns: 1fr; }
+  .flow-col { height: 120px; max-width: 150px; }
+  .flow-principal { height: 64px; }
+  .rule-sentence .kw { padding-top: 0; }
+}

@@ -16,6 +16,7 @@ const FEATURE_CONNECT = 'standard:connect';
 const FEATURE_DISCONNECT = 'standard:disconnect';
 const FEATURE_SIGN_TX = 'solana:signTransaction';
 const FEATURE_SIGN_AND_SEND = 'solana:signAndSendTransaction';
+const FEATURE_SIGN_MESSAGE = 'solana:signMessage';
 
 export function listSolanaWallets() {
   const { get } = getWallets();
@@ -57,6 +58,23 @@ export async function signTransactionBase64({ wallet, account, transactionBase64
   });
   if (!output?.signedTransaction) throw new Error('Wallet returned no signed transaction.');
   return bytesToBase64(output.signedTransaction);
+}
+
+export function supportsSignMessage(wallet) {
+  return Boolean(wallet?.features?.[FEATURE_SIGN_MESSAGE]);
+}
+
+/**
+ * Sign an off-chain message, used for sign-in. The message says in plain words
+ * that it authorises no transaction and moves no funds; it is shown to the user
+ * by their wallet before they approve it.
+ */
+export async function signMessageBase64({ wallet, account, message }) {
+  const feature = wallet.features[FEATURE_SIGN_MESSAGE];
+  if (!feature) throw new Error(`${wallet.name} cannot sign messages, so it cannot sign in.`);
+  const [output] = await feature.signMessage({ account, message: new TextEncoder().encode(message) });
+  if (!output?.signature) throw new Error('Wallet returned no signature.');
+  return bytesToBase64(output.signature);
 }
 
 export function supportsSignAndSend(wallet) {

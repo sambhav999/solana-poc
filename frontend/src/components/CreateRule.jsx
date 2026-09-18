@@ -8,7 +8,11 @@ import { api } from '../lib/api.js';
 export default function CreateRule({ connection, destinations, defaultKaminoVault = '', onCreated, onCancel }) {
   const [sourceType, setSourceType] = useState('XSTOCK_DIVIDEND');
   const [sourceSymbol, setSourceSymbol] = useState('MCDx');
-  const [destinationSymbol, setDestinationSymbol] = useState('SPYx');
+  // Provider-qualified ("PRESTOCKS:OPENAI"): symbols are not unique across providers.
+  const [destinationKey, setDestinationKey] = useState('XSTOCKS:SPYx');
+  const [guardMode, setGuardMode] = useState('NONE');
+  const [maxPremiumBps, setMaxPremiumBps] = useState('100');
+  const [minPremiumBps, setMinPremiumBps] = useState('-500');
   const [minExecutionUsd, setMinExecutionUsd] = useState('5');
   const [maxSlippageBps, setMaxSlippageBps] = useState('50');
   const [allowOvernight, setAllowOvernight] = useState(false);
@@ -44,17 +48,19 @@ export default function CreateRule({ connection, destinations, defaultKaminoVaul
     e.preventDefault();
     setBusy(true); setError(null);
     try {
-      const destination = destinations.find((d) => d.symbol === destinationSymbol);
+      const [destinationProvider, destinationSymbol] = destinationKey.split(':');
       const source = check?.asset;
       await api.createRule({
-        wallet: connection.address,
         sourceType,
         sourceId: isDividend ? sourceSymbol : (kaminoVault || undefined),
         sourceSymbol: isDividend ? sourceSymbol : 'USDC',
         sourceMint: isDividend ? source?.mint : 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v',
         sourceDecimals: isDividend ? 8 : 6,
+        destinationProvider,
         destinationSymbol,
-        destinationMint: destination?.mint,
+        marketGuardMode: guardMode,
+        maxPremiumBps: guardMode === 'NONE' ? null : Number(maxPremiumBps),
+        minPremiumBps: guardMode === 'NONE' || minPremiumBps === '' ? null : Number(minPremiumBps),
         minExecutionUsdAtomic: toAtomic(minExecutionUsd, 6),
         maxSlippageBps: Number(maxSlippageBps),
         allowOvernight,
@@ -72,7 +78,19 @@ export default function CreateRule({ connection, destinations, defaultKaminoVaul
 
   // Only a confirmed "no route" blocks. Unverified is a warning.
   const sourceBlocked = isDividend && check && !check.loading && check.ok === false;
-  const canSubmit = !busy && !sourceBlocked && destinationSymbol && (isDividend || (principalFloorUsd && kaminoVault));
+  const selected = destinations.find((d) => `${d.provider}:${d.symbol}` === destinationKey);
+  const isPrivate = selected?.category === 'PRIVATE_MARKET';
+  // Only offer firewall modes that can actually evaluate this destination.
+  const guardOptions = [
+    { value: 'NONE', label: 'Off — execute at any price within slippage' },
+    ...(selected?.markPriceUsd ? [{ value: 'TOKEN_PREMIUM', label: `Token vs ${selected.provider} mark` }] : []),
+    ...(selected?.category === 'PUBLIC_STOCK' ? [{ value: 'PYTH_PARITY', label: 'Token vs listed stock (Pyth Pro)' }] : []),
+  ];
+  const guardValid = guardOptions.some((o) => o.value === guardMode);
+  const bandValid = guardMode === 'NONE' || (Number.isInteger(Number(maxPremiumBps)) && maxPremiumBps !== ''
+    && (minPremiumBps === '' || Number(minPremiumBps) <= Number(maxPremiumBps)));
+  const canSubmit = !busy && !sourceBlocked && destinationKey && guardValid && bandValid
+    && (isDividend || (principalFloorUsd && kaminoVault));
 
   return (
     <form className="card" onSubmit={submit}>
@@ -115,13 +133,51 @@ export default function CreateRule({ connection, destinations, defaultKaminoVaul
         </div>
 
         <span className="kw">SEND TO</span>
-        <select value={destinationSymbol} onChange={(e) => setDestinationSymbol(e.target.value)}>
-          {destinations.map((d) => (
-            <option key={d.symbol} value={d.symbol} disabled={!d.tradable}>
-              {d.symbol} — {d.name}{!d.tradable ? ' (no route)' : ''}
-            </option>
-          ))}
+        <select value={destinationKey} onChange={(e) => {
+          const next = destinations.find((d) => `${d.provider}:${d.symbol}` === e.target.value);
+          setDestinationKey(e.target.value);
+          // Default private markets to the firewall; they are where premiums run widest.
+          setGuardMode(next?.category === 'PRIVATE_MARKET' && next?.markPriceUsd ? 'TOKEN_PREMIUM' : 'NONE');
+        }}>
+          {[['PUBLIC_STOCK', 'Public stocks — xStocks'], ['PRIVATE_MARKET', 'Private markets — PreStocks & Tessera'], ['STABLE', 'Stable']].map(([cat, label]) => {
+            const group = destinations.filter((d) => d.category === cat);
+            if (!group.length) return null;
+            return (
+              <optgroup key={cat} label={label}>
+                {group.map((d) => (
+                  <option key={`${d.provider}:${d.symbol}`} value={`${d.provider}:${d.symbol}`} disabled={d.tradable === false}>
+                    {d.symbol} — {d.name}{d.category === 'PRIVATE_MARKET' ? ` (${d.provider})` : ''}{d.tradable === false ? ' (no route)' : ''}
+                  </option>
+                ))}
+              </optgroup>
+            );
+          })}
         </select>
+
+        <span className="kw">FIREWALL</span>
+        <div>
+          <select value={guardValid ? guardMode : 'NONE'} onChange={(e) => setGuardMode(e.target.value)}>
+            {guardOptions.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
+          </select>
+          {guardMode !== 'NONE' && (
+            <div className="grid2" style={{ marginTop: 10 }}>
+              <div className="field">
+                <label>Block if it costs more than (bps over fair value)</label>
+                <input type="number" step="10" value={maxPremiumBps} onChange={(e) => setMaxPremiumBps(e.target.value)} />
+              </div>
+              <div className="field">
+                <label>Block if it costs less than (bps, blank = no floor)</label>
+                <input type="number" step="10" value={minPremiumBps} onChange={(e) => setMinPremiumBps(e.target.value)} />
+              </div>
+            </div>
+          )}
+          <div className="hint">
+            {guardMode === 'NONE'
+              ? (isPrivate ? 'Private-market tokens often trade well above their mark. A firewall is strongly recommended.' : 'Earnings route at the executable price, subject to slippage.')
+              : 'Judged against the price you would actually pay — the live Jupiter quote. A block leaves your earnings untouched. The floor catches a stale mark or a broken market: a price far below fair value is a warning, not a bargain.'}
+          </div>
+          {!bandValid && <div className="notice bad">The floor must be at or below the cap.</div>}
+        </div>
 
         <span className="kw">EXECUTE</span>
         <div className="grid2">

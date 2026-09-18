@@ -6,11 +6,22 @@ import ReadyPanel from './ReadyPanel.jsx';
 import KaminoPanel from './KaminoPanel.jsx';
 import PrincipalFlow from './PrincipalFlow.jsx';
 import DriftNotice from './DriftNotice.jsx';
+import PreviewPanel from './PreviewPanel.jsx';
 import Receipt from './Receipt.jsx';
 
-export default function RuleCard({ rule, connection, onChanged, totalInvestedAtomic = '0' }) {
+export default function RuleCard({ rule, connection, onChanged, onDeleted, totalInvestedAtomic = '0' }) {
   const [busy, setBusy] = useState(false);
   const [lastReceipt, setLastReceipt] = useState(null);
+  const [preview, setPreview] = useState(null);
+  const [previewing, setPreviewing] = useState(false);
+  const [previewError, setPreviewError] = useState(null);
+
+  async function runPreview() {
+    setPreviewing(true); setPreviewError(null);
+    try { setPreview(await api.preview(rule.id)); }
+    catch (err) { setPreviewError(err.message); }
+    finally { setPreviewing(false); }
+  }
   const evaluation = rule.evaluation || { status: 'BLOCKED', reason: 'not evaluated', guards: {} };
   const status = rule.status === 'PAUSED' ? 'PAUSED' : evaluation.status;
 
@@ -24,7 +35,13 @@ export default function RuleCard({ rule, connection, onChanged, totalInvestedAto
 
   async function remove() {
     setBusy(true);
-    try { await api.deleteRule(rule.id); await onChanged(); } finally { setBusy(false); }
+    try {
+      await api.deleteRule(rule.id);
+      // Remove it the moment the server confirms, rather than leaving a dead card
+      // on screen while every other rule is re-evaluated against the RPC.
+      onDeleted?.(rule.id);
+      onChanged();
+    } finally { setBusy(false); }
   }
 
   const isDividend = rule.sourceType === 'XSTOCK_DIVIDEND';
@@ -37,6 +54,9 @@ export default function RuleCard({ rule, connection, onChanged, totalInvestedAto
             <span>{rule.sourceSymbol ?? rule.sourceId}</span>
             <span className="arrow">— {isDividend ? 'Dividend' : 'Interest'} →</span>
             <span className="equity">{rule.destinationSymbol}</span>
+            <span className={`chip ${rule.destinationCategory === 'PRIVATE_MARKET' ? 'private' : 'public'}`}>
+              {rule.destinationCategory === 'PRIVATE_MARKET' ? `PRIVATE · ${rule.destinationProvider}` : 'PUBLIC'}
+            </span>
           </div>
           <div className="eyebrow" style={{ marginTop: 4 }}>
             {isDividend
@@ -50,6 +70,9 @@ export default function RuleCard({ rule, connection, onChanged, totalInvestedAto
       <div className="rule-meta">
         <Meta k="Minimum execution" v={formatUsd(rule.minExecutionUsdAtomic)} />
         <Meta k="Max slippage" v={`${rule.maxSlippageBps} bps`} />
+        <Meta k="Capital Firewall" v={rule.marketGuardMode === 'NONE' || !rule.marketGuardMode
+          ? 'off'
+          : `${rule.marketGuardMode === 'PYTH_PARITY' ? 'vs listed stock' : 'vs mark'} · ${rule.minPremiumBps ?? '—'} to +${rule.maxPremiumBps} bps`} />
         {isDividend ? (
           <Meta k="Watching since" v={formatDateTime(rule.createdAt)} />
         ) : (
@@ -93,7 +116,13 @@ export default function RuleCard({ rule, connection, onChanged, totalInvestedAto
 
       {lastReceipt && <Receipt receipt={lastReceipt} />}
 
+      {previewError && <div className="notice bad">{previewError}</div>}
+      <PreviewPanel preview={preview} rule={rule} onClose={() => setPreview(null)} />
+
       <div className="controls">
+        <button className="btn small" onClick={runPreview} disabled={previewing}>
+          {previewing ? 'Previewing…' : 'Preview'}
+        </button>
         <button className="btn small" onClick={toggle} disabled={busy}>
           {rule.status === 'ACTIVE' ? 'Pause' : 'Resume'}
         </button>

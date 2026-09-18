@@ -4,15 +4,60 @@
  */
 const BASE = import.meta.env.VITE_API_BASE || 'http://localhost:8787/api';
 
+/*
+ * Session token from wallet sign-in. Kept in sessionStorage so a reload keeps
+ * you signed in, but closing the tab ends it. Keyed by wallet so switching
+ * wallets can never reuse another wallet's session.
+ */
+let session = null; // { wallet, token, expiresAt }
+const storageKey = (wallet) => `overflow.session.${wallet}`;
+const onAuthLost = new Set();
+
+export function setSession(s) {
+  session = s;
+  try {
+    if (s) sessionStorage.setItem(storageKey(s.wallet), JSON.stringify(s));
+  } catch { /* storage unavailable: session lives in memory only */ }
+}
+
+export function restoreSession(wallet) {
+  try {
+    const raw = sessionStorage.getItem(storageKey(wallet));
+    if (!raw) return null;
+    const s = JSON.parse(raw);
+    if (!s?.token || new Date(s.expiresAt).getTime() <= Date.now()) return null;
+    session = s;
+    return s;
+  } catch { return null; }
+}
+
+export function clearSession(wallet) {
+  try { if (wallet) sessionStorage.removeItem(storageKey(wallet)); } catch { /* ignore */ }
+  session = null;
+}
+
+export function currentSession() { return session; }
+export function onSessionLost(fn) { onAuthLost.add(fn); return () => onAuthLost.delete(fn); }
+
 async function request(path, options = {}) {
   const res = await fetch(`${BASE}${path}`, {
-    headers: { 'content-type': 'application/json', ...(options.headers || {}) },
+    headers: {
+      'content-type': 'application/json',
+      ...(session?.token ? { authorization: `Bearer ${session.token}` } : {}),
+      ...(options.headers || {}),
+    },
     ...options,
     body: options.body ? JSON.stringify(options.body) : undefined,
   });
   const text = await res.text();
   let body;
   try { body = text ? JSON.parse(text) : {}; } catch { body = { error: text.slice(0, 300) }; }
+  // An expired or rejected session: drop it and let the app ask to sign in again.
+  if (res.status === 401 && session && !path.startsWith('/auth/')) {
+    const lost = session.wallet;
+    clearSession(lost);
+    onAuthLost.forEach((fn) => fn(lost));
+  }
   if (!res.ok) {
     const err = new Error(body.error || body.detail || `Request failed (${res.status})`);
     err.status = res.status;
@@ -28,7 +73,12 @@ export const api = {
   asset: (symbol) => request(`/assets/${encodeURIComponent(symbol)}`),
   sourceRoutable: (symbol) => request(`/assets/${encodeURIComponent(symbol)}/routable`),
 
-  listRules: (wallet) => request(`/rules?wallet=${encodeURIComponent(wallet)}`),
+  // Wallet sign-in.
+  authNonce: (wallet) => request('/auth/nonce', { method: 'POST', body: { wallet } }),
+  authVerify: (wallet, nonce, signature) => request('/auth/verify', { method: 'POST', body: { wallet, nonce, signature } }),
+
+  // Scoped to the signed-in wallet by the server; no wallet is ever sent.
+  listRules: () => request('/rules'),
   createRule: (rule) => request('/rules', { method: 'POST', body: rule }),
   getRule: (id) => request(`/rules/${id}`),
   updateRule: (id, patch) => request(`/rules/${id}`, { method: 'PATCH', body: patch }),
@@ -47,7 +97,10 @@ export const api = {
   pendingFunds: (id) => request(`/rules/${id}/pending-funds`),
   reconfirmBaseline: (id) => request(`/rules/${id}/reconfirm-baseline`, { method: 'POST', body: {} }),
 
-  receipts: (wallet) => request(`/receipts?wallet=${encodeURIComponent(wallet)}`),
+  receipts: () => request('/receipts'),
+  decisions: () => request('/decisions'),
+  portfolio: () => request('/portfolio'),
+  preview: (id) => request(`/rules/${id}/preview`, { method: 'POST', body: {} }),
 
   replayEvents: (symbol) => request(`/replay/${encodeURIComponent(symbol)}/events`),
   replay: (symbol, body) => request(`/replay/${encodeURIComponent(symbol)}`, { method: 'POST', body }),

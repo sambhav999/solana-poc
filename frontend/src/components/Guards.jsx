@@ -8,6 +8,7 @@ const LABELS = {
   quoteAvailable: 'route',
   slippageSafe: 'slippage',
   positionRead: 'position read',
+  baselineIntact: 'position unchanged outside Overflow',
 };
 
 /** Every guard is shown, passing or failing. Hiding the failures hides the product. */
