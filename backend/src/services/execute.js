@@ -18,9 +18,29 @@ import { getSolBalanceLamports, getTokenBalance, USDC_MINT, transactionMessageHa
 import { createIntent, getIntent, consumeIntent } from '../db/intents.js';
 import { verifyDividendExecution, verifyInterestExecution, VERIFICATION } from './verify.js';
 import { refreshBaselines } from './drift.js';
+import { runFirewall } from './firewall.js';
 import { evaluateRule } from './evaluate.js';
 import { prepareHarvestWithdrawal, pendingSwapFunds } from './kaminoFlows.js';
 import { markSwept } from '../db/stranded.js';
+
+/** A firewall block: a normal, expected outcome -- not an error. */
+function firewallBlocked(fw, evaluation, consequence) {
+  return {
+    ok: false,
+    reason: 'FIREWALL_BLOCKED',
+    blocked: true,
+    detail: `${fw.reason} ${consequence}`,
+    firewall: {
+      decision: fw.decision, breach: fw.breach, reason: fw.reason,
+      premiumBps: fw.premiumBps ?? null, maxPremiumBps: fw.maxPremiumBps ?? null,
+      minPremiumBps: fw.minPremiumBps ?? null, tokenPriceUsd: fw.tokenPriceUsd ?? null,
+      referencePriceUsd: fw.referencePriceUsd ?? null, tokenSource: fw.tokenSource ?? null,
+      referenceSource: fw.referenceSource ?? null, decisionId: fw.decisionId ?? null,
+      earningsUsdAtomic: fw.earningsUsdAtomic ?? null,
+    },
+    evaluation,
+  };
+}
 
 /** Enough SOL to sign and to open any missing token account. */
 const MIN_SOL_LAMPORTS = 3_000_000n; // 0.003 SOL
@@ -65,6 +85,22 @@ export async function prepareExecution(rule) {
     const pendingAtomic = BigInt(pending.totalAtomic);
 
     if (pendingAtomic <= 0n) {
+      /*
+       * Capital Firewall FIRST. If it blocks, nothing is withdrawn: the earnings
+       * stay in the vault, untouched. Checking after the withdrawal would leave
+       * them stranded in the wallet as loose USDC.
+       */
+      const fw = await runFirewall({
+        rule,
+        amountAtomic: evaluation.harvestableAtomic,
+        inputMint: USDC_MINT,
+        intentKey: evaluation.executionKey,
+      });
+      if (fw.decision === 'BLOCK') {
+        return firewallBlocked(fw, evaluation, 'Earnings were not withdrawn from Kamino; they remain in the vault.');
+      }
+      evaluation.firewall = fw;
+
       const withdrawal = await prepareHarvestWithdrawal({
         rule,
         harvestableAtomicValue: evaluation.harvestableAtomic,
@@ -120,6 +156,21 @@ export async function prepareExecution(rule) {
   } catch (err) {
     return { ok: false, reason: 'NO_ROUTE', detail: err.message, evaluation };
   }
+
+  // Capital Firewall against the EXACT quote the user is about to sign.
+  const fw = await runFirewall({
+    rule,
+    amountAtomic: evaluation.intent.inputRawAtomic,
+    inputMint: evaluation.intent.inputMint,
+    intentKey: evaluation.executionKey,
+    quote: order,
+  });
+  if (fw.decision === 'BLOCK') {
+    return firewallBlocked(fw, evaluation, rule.sourceType === 'KAMINO_USDC'
+      ? 'The withdrawn USDC stays in your wallet, recorded for the next attempt.'
+      : 'No source tokens were sold; the dividend remains unrouted.');
+  }
+  evaluation.firewall = fw;
 
   const guard = applyQuoteGuards({ evaluation, quote: order, rule });
   if (!guard.ok) {
@@ -340,6 +391,10 @@ export async function submitExecution({ rule, signedTransactionBase64, requestId
     preserved: verification.preserved,
     proofs: verification.proofs,
     intentId: intent?.id ?? null,
+    destinationCategory: rule.destinationCategory ?? 'PUBLIC_STOCK',
+    destinationSymbol: rule.destinationSymbol,
+    earningsUsdAtomic: context?.firewall?.earningsUsdAtomic
+      ?? (rule.sourceType === 'KAMINO_USDC' ? (intent?.authorisedRaw ?? null) : null),
   });
 
   // Only a settled, non-contradicted execution closes out the event.

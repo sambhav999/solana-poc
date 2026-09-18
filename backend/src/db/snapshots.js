@@ -10,11 +10,28 @@ export function upsertSnapshot(s) {
   const id = randomUUID();
   db.prepare(`INSERT INTO snapshots
     (id, rule_id, wallet, symbol, mint, corporate_action_id, reason, raw_balance_atomic,
-     multiplier_before, multiplier_after, activation_datetime, snapshot_slot, processed, created_at)
-    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,0,?)`).run(
+     multiplier_before, multiplier_after, activation_datetime, snapshot_slot, processed, created_at,
+     event_source, gross_cashflow_usd, net_cashflow_usd, withholding_tax_rate)
+    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,0,?,?,?,?,?)`).run(
     id, s.ruleId, s.wallet, s.symbol, s.mint, s.corporateActionId, s.reason,
     String(s.rawBalanceAtomic), String(s.multiplierBefore), String(s.multiplierAfter),
     s.activationDateTime, s.snapshotSlot != null ? String(s.snapshotSlot) : null, nowIso(),
+    s.eventSource ?? null, s.grossCashflowUsd ?? null, s.netCashflowUsd ?? null, s.withholdingTaxRate ?? null,
+  );
+  return getSnapshot(id);
+}
+
+/**
+ * Upgrade a pending snapshot once the event is published: swap the
+ * time-derived key for the stable event id and the float-rounded multipliers for
+ * the exact strings. The raw balance -- the entitlement basis -- is untouched.
+ */
+export function reconcileSnapshot(id, r) {
+  getDb().prepare(`UPDATE snapshots SET corporate_action_id = ?, multiplier_before = ?, multiplier_after = ?,
+      event_source = ?, gross_cashflow_usd = ?, net_cashflow_usd = ?, withholding_tax_rate = ?
+    WHERE id = ? AND processed = 0`).run(
+    r.corporateActionId, String(r.multiplierBefore), String(r.multiplierAfter),
+    r.eventSource ?? null, r.grossCashflowUsd ?? null, r.netCashflowUsd ?? null, r.withholdingTaxRate ?? null, id,
   );
   return getSnapshot(id);
 }
@@ -56,5 +73,9 @@ function hydrate(row) {
     snapshotSlot: row.snapshot_slot,
     processed: Boolean(row.processed),
     createdAt: row.created_at,
+    eventSource: row.event_source ?? null,
+    grossCashflowUsd: row.gross_cashflow_usd ?? null,
+    netCashflowUsd: row.net_cashflow_usd ?? null,
+    withholdingTaxRate: row.withholding_tax_rate ?? null,
   };
 }

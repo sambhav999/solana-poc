@@ -12,8 +12,9 @@ export function createReceipt(r) {
   db.prepare(`INSERT INTO receipts
     (id, rule_id, wallet, kind, mode, status, execution_key, signature, slot,
      inputs_json, outputs_json, quote_json, error, created_at,
-     verification, verification_note, preserved, proofs_json, intent_id)
-    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`).run(
+     verification, verification_note, preserved, proofs_json, intent_id,
+     destination_category, destination_symbol, earnings_usd_atomic)
+    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`).run(
     id, r.ruleId, r.wallet, r.kind, r.mode, r.status, r.executionKey,
     r.signature ?? null, r.slot != null ? String(r.slot) : null,
     JSON.stringify(r.inputs ?? {}), JSON.stringify(r.outputs ?? {}),
@@ -21,6 +22,8 @@ export function createReceipt(r) {
     r.verification ?? null, r.verificationNote ?? null,
     r.preserved === undefined ? null : (r.preserved ? 1 : 0),
     r.proofs ? JSON.stringify(r.proofs) : null, r.intentId ?? null,
+    r.destinationCategory ?? null, r.destinationSymbol ?? null,
+    r.earningsUsdAtomic != null ? String(r.earningsUsdAtomic) : null,
   );
   return getReceipt(id);
 }
@@ -69,6 +72,9 @@ function hydrate(row) {
     preserved: row.preserved === null ? null : Boolean(row.preserved),
     proofs: row.proofs_json ? safeParse(row.proofs_json) : null,
     intentId: row.intent_id,
+    destinationCategory: row.destination_category,
+    destinationSymbol: row.destination_symbol,
+    earningsUsdAtomic: row.earnings_usd_atomic,
     explorerUrl: row.signature ? `https://solscan.io/tx/${row.signature}` : null,
   };
 }

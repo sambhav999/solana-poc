@@ -14,6 +14,8 @@ import { upsertSnapshot, getOpenSnapshotForRule } from '../db/snapshots.js';
 import { fetchMultiplier, fetchMultiplierHistory } from '../adapters/xstocks/client.js';
 import { classifyCorporateAction } from '../adapters/xstocks/corporateActions.js';
 import { getTokenBalance, getSlot } from '../adapters/solana/rpc.js';
+import { fetchCorporateActions, bindToHistory } from '../adapters/xstocks/corporateActionsFeed.js';
+import { reconcileSnapshot } from '../db/snapshots.js';
 
 export async function pollOnce() {
   const rules = listActiveDividendRules();
@@ -61,27 +63,39 @@ export async function pollOnce() {
       }
 
       // Case 2: nothing pending. If an activation happened since the last poll,
-      // history now carries the authoritative before/after pair; reconcile the
-      // open snapshot against it so we act on published values.
+      // bind the open snapshot to the PUBLISHED event. The corporate-actions feed
+      // is preferred: a stable event id, exact multiplier strings, and the
+      // cashflow and withholding tax. Binding is exact -- no nearest match.
       const open = getOpenSnapshotForRule(rule.id);
       if (open && open.corporateActionId.startsWith('pending:')) {
         const history = await fetchMultiplierHistory(symbol);
-        const match = history.find((h) => h.activationDateTime === open.activationDateTime);
+        const actions = await fetchCorporateActions(symbol).catch(() => []);
+        const bound = actions.map((e) => bindToHistory(e, history)).find(
+          (b) => b && Date.parse(b.activationDateTime) === Date.parse(open.activationDateTime),
+        );
+        if (bound) {
+          reconcileSnapshot(open.id, {
+            corporateActionId: bound.corporateActionId,
+            multiplierBefore: bound.multiplierBefore,
+            multiplierAfter: bound.multiplierAfter,
+            eventSource: 'CORPORATE_ACTIONS',
+            grossCashflowUsd: bound.grossCashflowUsd,
+            netCashflowUsd: bound.netCashflowUsd,
+            withholdingTaxRate: bound.withholdingTaxRate,
+          });
+          results.push({ ruleId: rule.id, symbol, action: 'SNAPSHOT_BOUND', corporateActionId: bound.corporateActionId, source: 'CORPORATE_ACTIONS' });
+          continue;
+        }
+        // Fallback: multiplier history alone, still requiring an exact time match.
+        const match = history.find((h) => Date.parse(h.activationDateTime) === Date.parse(open.activationDateTime) && h.reason === 'Dividend');
         if (match) {
-          upsertSnapshot({
-            ruleId: rule.id,
-            wallet: rule.wallet,
-            symbol,
-            mint: rule.sourceMint,
+          reconcileSnapshot(open.id, {
             corporateActionId: match.corporateActionId,
-            reason: match.reason,
-            rawBalanceAtomic: open.rawBalanceAtomic,
             multiplierBefore: match.multiplierBefore,
             multiplierAfter: match.multiplierAfter,
-            activationDateTime: match.activationDateTime,
-            snapshotSlot: open.snapshotSlot,
+            eventSource: 'MULTIPLIER_HISTORY',
           });
-          results.push({ ruleId: rule.id, symbol, action: 'SNAPSHOT_RECONCILED', corporateActionId: match.corporateActionId });
+          results.push({ ruleId: rule.id, symbol, action: 'SNAPSHOT_BOUND', corporateActionId: match.corporateActionId, source: 'MULTIPLIER_HISTORY' });
           continue;
         }
       }

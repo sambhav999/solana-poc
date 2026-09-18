@@ -13,7 +13,7 @@
  * one of these values.
  */
 import { DatabaseSync } from 'node:sqlite';
-import { mkdirSync } from 'node:fs';
+import { mkdirSync, chmodSync, existsSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 
 let db;
@@ -27,6 +27,7 @@ export function getDb() {
   db.exec('PRAGMA foreign_keys = ON;');
   migrate(db);
   addColumns(db);
+  lockdown(db, file);
   return db;
 }
 
@@ -136,10 +137,59 @@ function migrate(d) {
     );
 
     CREATE INDEX IF NOT EXISTS idx_intents_rule ON execution_intents(rule_id, status);
+
+    -- Wallet sign-in. A nonce is single-use and expires.
+    CREATE TABLE IF NOT EXISTS auth_nonces (
+      nonce TEXT PRIMARY KEY,
+      wallet TEXT NOT NULL,
+      message TEXT NOT NULL,
+      expires_at TEXT NOT NULL,
+      used_at TEXT,
+      created_at TEXT NOT NULL
+    );
+    CREATE INDEX IF NOT EXISTS idx_nonces_wallet ON auth_nonces(wallet, expires_at);
+
+    -- Capital Firewall decisions. One per execution intent, so re-evaluating the
+    -- same attempt cannot double-count "earnings retained".
+    CREATE TABLE IF NOT EXISTS policy_decisions (
+      id TEXT PRIMARY KEY,
+      wallet TEXT NOT NULL,
+      rule_id TEXT NOT NULL REFERENCES rules(id) ON DELETE CASCADE,
+      intent_key TEXT NOT NULL UNIQUE,
+      destination_symbol TEXT NOT NULL,
+      destination_provider TEXT NOT NULL
+        CHECK (destination_provider IN ('XSTOCKS','PRESTOCKS','TESSERA','USDC')),
+      destination_category TEXT NOT NULL
+        CHECK (destination_category IN ('PUBLIC_STOCK','PRIVATE_MARKET','STABLE')),
+      outcome TEXT NOT NULL CHECK (outcome IN ('PASSED','BLOCKED')),
+      earnings_usd_atomic TEXT NOT NULL CHECK (CAST(earnings_usd_atomic AS INTEGER) >= 0),
+      evidence_json TEXT NOT NULL,
+      created_at TEXT NOT NULL,
+      updated_at TEXT NOT NULL
+    );
+    CREATE INDEX IF NOT EXISTS idx_decisions_wallet ON policy_decisions(wallet, updated_at);
     CREATE INDEX IF NOT EXISTS idx_rules_wallet ON rules(wallet);
     CREATE INDEX IF NOT EXISTS idx_snapshots_rule ON snapshots(rule_id, processed);
     CREATE INDEX IF NOT EXISTS idx_receipts_rule ON receipts(rule_id, created_at DESC);
   `);
+}
+
+/**
+ * Lockdown. SQLite has no row-level security, so isolation comes from three
+ * places instead:
+ *   - the file is readable only by the server's OS user (0600), as are its
+ *     WAL/SHM siblings, which hold recent writes in plaintext;
+ *   - hardening pragmas: deleted rows are overwritten, and SQL functions from an
+ *     untrusted schema cannot run;
+ *   - every API query is scoped to the SESSION wallet, never a request parameter.
+ */
+function lockdown(d, file) {
+  d.exec('PRAGMA secure_delete = ON;');
+  try { d.exec('PRAGMA trusted_schema = OFF;'); } catch { /* older SQLite */ }
+  if (file === ':memory:') return;
+  for (const f of [file, `${file}-wal`, `${file}-shm`]) {
+    try { if (existsSync(f)) chmodSync(f, 0o600); } catch { /* best effort on non-POSIX */ }
+  }
 }
 
 /**
@@ -163,6 +213,22 @@ function addColumns(d) {
     ['rules', 'vault_shares_baseline TEXT'],
     ['rules', 'baseline_updated_at TEXT'],
     ['rules', 'pause_reason TEXT'],
+    // Capital Firewall + private markets (V4.1 migration 005).
+    ["rules", "destination_provider TEXT NOT NULL DEFAULT 'XSTOCKS'"],
+    ["rules", "destination_category TEXT NOT NULL DEFAULT 'PUBLIC_STOCK'"],
+    ["rules", "market_guard_mode TEXT NOT NULL DEFAULT 'NONE'"],
+    ['rules', 'max_premium_bps INTEGER'],
+    // Lower bound. V4.1's guard is one-sided, so a token at a 21% DISCOUNT to its
+    // mark passed; a stale mark or broken token looks exactly like that.
+    ['rules', 'min_premium_bps INTEGER'],
+    // Corporate-actions endpoint: stable event id, cashflow and withholding tax.
+    ['snapshots', 'event_source TEXT'],
+    ['snapshots', 'gross_cashflow_usd TEXT'],
+    ['snapshots', 'net_cashflow_usd TEXT'],
+    ['snapshots', 'withholding_tax_rate TEXT'],
+    ['receipts', 'destination_category TEXT'],
+    ['receipts', 'destination_symbol TEXT'],
+    ['receipts', 'earnings_usd_atomic TEXT'],
   ];
   for (const [table, definition] of columns) {
     try { d.exec(`ALTER TABLE ${table} ADD COLUMN ${definition};`); } catch { /* already present */ }

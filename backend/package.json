@@ -16,7 +16,8 @@
     "verify:kamino": "node scripts/verify-kamino.mjs",
     "preflight": "node scripts/preflight.mjs",
     "preflight:prod": "node scripts/preflight.mjs --prod",
-    "check": "npm test && npm run preflight"
+    "check": "npm run static:audit && npm test && npm run preflight",
+    "static:audit": "node scripts/static-audit.mjs"
   },
   "dependencies": {
     "@kamino-finance/farms-sdk": "^3.2.24",

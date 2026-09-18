@@ -12,9 +12,32 @@
 import { fetchMultiplierHistory } from '../adapters/xstocks/client.js';
 import { classifyCorporateAction } from '../adapters/xstocks/corporateActions.js';
 import { extractDividend, assertSourcePreserved, dividendPlausibilityCheck } from '../core/dividend.js';
+import { fetchCorporateActions, bindToHistory } from '../adapters/xstocks/corporateActionsFeed.js';
+
+/**
+ * Attach the published corporate action to each history entry, where one binds
+ * exactly. That brings the stable event id, the EXACT multiplier strings (history
+ * carries float-rounded ones), and the gross/net cashflow and withholding tax.
+ */
+async function enrichedHistory(symbol) {
+  const [history, actions] = await Promise.all([
+    fetchMultiplierHistory(symbol),
+    fetchCorporateActions(symbol).catch(() => []),
+  ]);
+  return history.map((h) => {
+    const bound = actions.map((e) => bindToHistory(e, [h])).find(Boolean) ?? null;
+    return bound
+      ? { ...h, multiplierBefore: bound.multiplierBefore, multiplierAfter: bound.multiplierAfter,
+          eventId: bound.corporateActionId, grossCashflowUsd: bound.grossCashflowUsd,
+          netCashflowUsd: bound.netCashflowUsd, withholdingTaxRate: bound.withholdingTaxRate,
+          source: 'CORPORATE_ACTIONS', precisionUpgraded: String(h.multiplierBefore) !== bound.multiplierBefore
+            || String(h.multiplierAfter) !== bound.multiplierAfter }
+      : { ...h, source: 'MULTIPLIER_HISTORY' };
+  });
+}
 
 export async function listReplayEvents(symbol) {
-  const history = await fetchMultiplierHistory(symbol);
+  const history = await enrichedHistory(symbol);
   return history.map((e) => {
     const c = classifyCorporateAction(e);
     return {
@@ -31,7 +54,7 @@ export async function listReplayEvents(symbol) {
  * is labelled as such in the response.
  */
 export async function replayEvent({ symbol, corporateActionId, rawBalanceAtomic, tokenDecimals = 8 }) {
-  const history = await fetchMultiplierHistory(symbol);
+  const history = await enrichedHistory(symbol);
   const event = history.find((e) => e.corporateActionId === corporateActionId);
   if (!event) return { ok: false, reason: 'EVENT_NOT_FOUND' };
 

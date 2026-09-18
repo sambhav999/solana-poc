@@ -6,14 +6,15 @@ const COLUMNS = `id, wallet, source_type, source_id, source_mint, source_symbol,
   min_execution_usd_atomic, max_slippage_bps, max_price_impact_bps, allow_overnight, status,
   principal_floor_atomic, principal_floor_source, safety_buffer_atomic, kamino_vault,
   kamino_share_mint, created_at, updated_at,
-  source_raw_baseline, vault_shares_baseline, baseline_updated_at, pause_reason`;
+  source_raw_baseline, vault_shares_baseline, baseline_updated_at, pause_reason,
+  destination_provider, destination_category, market_guard_mode, max_premium_bps, min_premium_bps`;
 
 export function createRule(input) {
   const db = getDb();
   const id = randomUUID();
   const ts = nowIso();
   db.prepare(`INSERT INTO rules (${COLUMNS}) VALUES (
-    ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?
+    ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?
   )`).run(
     id, input.wallet, input.sourceType, input.sourceId, input.sourceMint ?? null,
     input.sourceSymbol ?? null, input.sourceDecimals ?? null, input.earningsType,
@@ -26,6 +27,9 @@ export function createRule(input) {
     input.kaminoVault ?? null, input.kaminoShareMint ?? null, ts, ts,
     input.sourceRawBaseline ?? null, input.vaultSharesBaseline ?? null,
     input.baselineUpdatedAt ?? null, null,
+    input.destinationProvider ?? 'XSTOCKS', input.destinationCategory ?? 'PUBLIC_STOCK',
+    input.marketGuardMode ?? 'NONE',
+    input.maxPremiumBps ?? null, input.minPremiumBps ?? null,
   );
   return getRule(id);
 }
@@ -65,6 +69,9 @@ export function updateRule(id, patch) {
     vaultSharesBaseline: 'vault_shares_baseline',
     baselineUpdatedAt: 'baseline_updated_at',
     pauseReason: 'pause_reason',
+    marketGuardMode: 'market_guard_mode',
+    maxPremiumBps: 'max_premium_bps',
+    minPremiumBps: 'min_premium_bps',
   };
   const sets = [];
   const values = [];
@@ -115,5 +122,10 @@ function hydrate(row) {
     vaultSharesBaseline: row.vault_shares_baseline,
     baselineUpdatedAt: row.baseline_updated_at,
     pauseReason: row.pause_reason,
+    destinationProvider: row.destination_provider ?? 'XSTOCKS',
+    destinationCategory: row.destination_category ?? 'PUBLIC_STOCK',
+    marketGuardMode: row.market_guard_mode ?? 'NONE',
+    maxPremiumBps: row.max_premium_bps,
+    minPremiumBps: row.min_premium_bps,
   };
 }
