@@ -1,13 +1,17 @@
 import { formatUsd, formatDateTime } from '../lib/format.js';
 import PremiumGauge from './PremiumGauge.jsx';
+import { Mark } from './icons.jsx';
 
 /** Every Capital Firewall decision, with the evidence it was made on. */
 export default function FirewallDecisions({ decisions }) {
   if (!decisions?.length) {
     return (
-      <div className="card empty">
-        No firewall decisions yet. One is recorded, with its evidence, each time a rule with a
-        market-price policy reaches execution.
+      <div className="card empty-state">
+        <Mark kind="shield" size={64} />
+        <div className="empty-copy">
+          <div className="empty-title">No firewall decisions yet</div>
+          <div className="empty-sub">One is recorded, with its evidence, each time a rule with a market-price policy reaches execution.</div>
+        </div>
       </div>
     );
   }

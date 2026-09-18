@@ -8,6 +8,7 @@ import PrincipalFlow from './PrincipalFlow.jsx';
 import DriftNotice from './DriftNotice.jsx';
 import PreviewPanel from './PreviewPanel.jsx';
 import Receipt from './Receipt.jsx';
+import { IconVault, IconWallet } from './icons.jsx';
 
 export default function RuleCard({ rule, connection, onChanged, onDeleted, totalInvestedAtomic = '0' }) {
   const [busy, setBusy] = useState(false);
@@ -51,8 +52,10 @@ export default function RuleCard({ rule, connection, onChanged, onDeleted, total
       <div className="rule-head">
         <div>
           <div className="rule-flow">
+            <span className="rule-icon"><IconVault width={13} height={13} /></span>
             <span>{rule.sourceSymbol ?? rule.sourceId}</span>
-            <span className="arrow">— {isDividend ? 'Dividend' : 'Interest'} →</span>
+            <span className="arrow">{isDividend ? 'Dividend' : 'Interest'} to</span>
+            <span className="rule-icon equity"><IconWallet width={13} height={13} /></span>
             <span className="equity">{rule.destinationSymbol}</span>
             <span className={`chip ${rule.destinationCategory === 'PRIVATE_MARKET' ? 'private' : 'public'}`}>
               {rule.destinationCategory === 'PRIVATE_MARKET' ? `PRIVATE · ${rule.destinationProvider}` : 'PUBLIC'}
@@ -72,7 +75,7 @@ export default function RuleCard({ rule, connection, onChanged, onDeleted, total
         <Meta k="Max slippage" v={`${rule.maxSlippageBps} bps`} />
         <Meta k="Capital Firewall" v={rule.marketGuardMode === 'NONE' || !rule.marketGuardMode
           ? 'off'
-          : `${rule.marketGuardMode === 'PYTH_PARITY' ? 'vs listed stock' : 'vs mark'} · ${rule.minPremiumBps ?? '—'} to +${rule.maxPremiumBps} bps`} />
+          : `${rule.marketGuardMode === 'PYTH_PARITY' ? 'vs listed stock' : 'vs mark'} · ${rule.minPremiumBps ?? '-'} to +${rule.maxPremiumBps} bps`} />
         {isDividend ? (
           <Meta k="Watching since" v={formatDateTime(rule.createdAt)} />
         ) : (

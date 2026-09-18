@@ -1,0 +1,52 @@
+- generic [ref=e2]:
+  - link "Skip to content" [ref=e3] [cursor=pointer]:
+    - /url: "#main"
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e12]:
+        - generic [ref=e13]: Overflow
+        - generic [ref=e14]: Keep the source. Program the earnings.
+      - generic [ref=e16]:
+        - text: Phantom not detected
+        - link "Install" [ref=e20] [cursor=pointer]:
+          - /url: https://phantom.app/download
+  - generic [ref=e21]:
+    - 'img "On-chain Solana scene: a locked source token stays whole while a purple-to-teal earnings stream routes to a destination token" [ref=e22]'
+    - generic [ref=e24]:
+      - generic [ref=e25]:
+        - generic [ref=e26]: Connecting…
+        - heading [level=1] [ref=e28]:
+          - text: Keep the source.
+          - emphasis [ref=e29]: Program the earnings.
+        - paragraph [ref=e30]: Keep xStocks equity or Kamino USDC. Route only the dividend, or yield above the principal floor.
+      - generic [ref=e32]:
+        - generic [ref=e33]: How a rule moves value
+        - generic [ref=e34]:
+          - img "Source position connects through the Capital Firewall to your chosen destination; only newly generated earnings travel that path." [ref=e35]
+          - generic [ref=e53]:
+            - generic [ref=e54]:
+              - generic [ref=e55]: Source
+              - generic [ref=e56]: xStocks · Kamino
+            - generic [ref=e57]:
+              - generic [ref=e58]: Capital Firewall
+              - generic [ref=e59]: price-policy gate
+            - generic [ref=e60]:
+              - generic [ref=e61]: Destination
+              - generic [ref=e62]: your choice
+        - generic [ref=e63]: Dividend and interest rules both follow this path.
+  - generic [ref=e64]:
+    - generic [ref=e65]: "Backend unreachable: Failed to fetch"
+    - navigation "Primary" [ref=e66]:
+      - button "Earnings rules" [ref=e67] [cursor=pointer]
+      - button "Earnings built" [active] [ref=e72] [cursor=pointer]
+      - button "Capital Firewall" [ref=e75] [cursor=pointer]
+      - button "Receipts" [ref=e79] [cursor=pointer]
+      - button "Replay" [ref=e83] [cursor=pointer]
+    - generic [ref=e103]:
+      - img "Locked source token beside destination tokens built from on-chain earnings" [ref=e105]
+      - generic [ref=e106]: Sign in to see what your earnings built
+      - generic [ref=e107]: Connect and sign in with your wallet to view verified holdings.
+    - contentinfo [ref=e94]:
+      - generic [ref=e95]: Overflow
+      - strong [ref=e102]: Overflow preserves a source position and routes only the value it newly generates.
+      - text: For an xStocks dividend that means isolating exactly the raw Token-2022 quantity the multiplier change created; for Kamino it means spending only value above a stored principal floor.“Preserved” is an accounting and allocation rule, not a capital guarantee. USDC, Kamino, smart contracts, liquidity and tokenized-equity issuers all carry risk, and these xStocks mints carry Token-2022 transfer-hook, permanent-delegate and pausable extensions. Tokenized equities are not available in every jurisdiction; eligibility is your responsibility and is separate from technical routing. V1 is non-custodial and every execution is user-signed. Overflow never holds a key and never trades unattended. Not investment advice.

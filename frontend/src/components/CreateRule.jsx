@@ -82,7 +82,7 @@ export default function CreateRule({ connection, destinations, defaultKaminoVaul
   const isPrivate = selected?.category === 'PRIVATE_MARKET';
   // Only offer firewall modes that can actually evaluate this destination.
   const guardOptions = [
-    { value: 'NONE', label: 'Off — execute at any price within slippage' },
+    { value: 'NONE', label: 'Off - execute at any price within slippage' },
     ...(selected?.markPriceUsd ? [{ value: 'TOKEN_PREMIUM', label: `Token vs ${selected.provider} mark` }] : []),
     ...(selected?.category === 'PUBLIC_STOCK' ? [{ value: 'PYTH_PARITY', label: 'Token vs listed stock (Pyth Pro)' }] : []),
   ];
@@ -139,14 +139,14 @@ export default function CreateRule({ connection, destinations, defaultKaminoVaul
           // Default private markets to the firewall; they are where premiums run widest.
           setGuardMode(next?.category === 'PRIVATE_MARKET' && next?.markPriceUsd ? 'TOKEN_PREMIUM' : 'NONE');
         }}>
-          {[['PUBLIC_STOCK', 'Public stocks — xStocks'], ['PRIVATE_MARKET', 'Private markets — PreStocks & Tessera'], ['STABLE', 'Stable']].map(([cat, label]) => {
+          {[['PUBLIC_STOCK', 'Public stocks - xStocks'], ['PRIVATE_MARKET', 'Private markets - PreStocks & Tessera'], ['STABLE', 'Stable']].map(([cat, label]) => {
             const group = destinations.filter((d) => d.category === cat);
             if (!group.length) return null;
             return (
               <optgroup key={cat} label={label}>
                 {group.map((d) => (
                   <option key={`${d.provider}:${d.symbol}`} value={`${d.provider}:${d.symbol}`} disabled={d.tradable === false}>
-                    {d.symbol} — {d.name}{d.category === 'PRIVATE_MARKET' ? ` (${d.provider})` : ''}{d.tradable === false ? ' (no route)' : ''}
+                    {d.symbol} - {d.name}{d.category === 'PRIVATE_MARKET' ? ` (${d.provider})` : ''}{d.tradable === false ? ' (no route)' : ''}
                   </option>
                 ))}
               </optgroup>
@@ -174,7 +174,7 @@ export default function CreateRule({ connection, destinations, defaultKaminoVaul
           <div className="hint">
             {guardMode === 'NONE'
               ? (isPrivate ? 'Private-market tokens often trade well above their mark. A firewall is strongly recommended.' : 'Earnings route at the executable price, subject to slippage.')
-              : 'Judged against the price you would actually pay — the live Jupiter quote. A block leaves your earnings untouched. The floor catches a stale mark or a broken market: a price far below fair value is a warning, not a bargain.'}
+              : 'Judged against the price you would actually pay - the live Jupiter quote. A block leaves your earnings untouched. The floor catches a stale mark or a broken market: a price far below fair value is a warning, not a bargain.'}
           </div>
           {!bandValid && <div className="notice bad">The floor must be at or below the cap.</div>}
         </div>

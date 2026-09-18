@@ -1,0 +1,69 @@
+- generic [ref=f6e1]:
+  - generic [ref=f6e2]:
+    - link "Skip to content" [ref=f6e3] [cursor=pointer]:
+      - /url: "#main"
+    - banner [ref=f6e4]:
+      - generic [ref=f6e5]:
+        - generic [ref=f6e6]:
+          - img "Kult Games" [ref=f6e8]
+          - generic [ref=f6e9]:
+            - generic [ref=f6e10]: Overflow
+            - generic [ref=f6e85]: Kult Games
+        - link "Install Phantom" [ref=f6e13] [cursor=pointer]:
+          - /url: https://phantom.app/download
+    - generic [ref=f6e14]:
+      - generic [ref=f6e15]:
+        - generic [ref=f6e16]: Solana
+        - heading [level=1] [ref=f6e18]:
+          - text: Keep the source.
+          - emphasis [ref=f6e19]: Program the earnings.
+        - paragraph [ref=f6e20]: Keep xStocks equity or Kamino USDC. Route only the dividend, or yield above the floor.
+      - generic [ref=f6e21]:
+        - img "Source stays locked. Earnings run through the Capital Firewall to the destination." [ref=f6e22]:
+          - generic [ref=f6e23]:
+            - generic [ref=f6e24]: Source
+            - generic [ref=f6e25]: stays locked
+          - generic [ref=f6e27]:
+            - generic [ref=f6e28]: Firewall
+            - generic [ref=f6e29]: price gate
+          - generic [ref=f6e35]:
+            - generic [ref=f6e36]: Destination
+            - generic [ref=f6e37]: earnings only
+        - generic [ref=f6e38]:
+          - generic [ref=f6e39]:
+            - generic [ref=f6e40]: Illustrative
+            - generic [ref=f6e42]: Yield above the floor
+            - generic [ref=f6e43]:
+              - generic [ref=f6e44]: Floor
+              - generic [ref=f6e45]: Yield
+              - generic [ref=f6e46]: Harvest
+            - generic [ref=f6e47]: "8.8"
+          - img "Yield above the floor" [ref=f6e48]
+    - generic [ref=f6e52]:
+      - status [ref=f6e53]: "Backend unreachable: Failed to fetch"
+      - generic [ref=f6e54]:
+        - generic [ref=f6e55]:
+          - heading "How a rule works" [level=2] [ref=f6e56]
+          - generic [ref=f6e57]:
+            - button "What stays" [active] [ref=f6e58] [cursor=pointer]
+            - button "The gate" [ref=f6e61] [cursor=pointer]
+            - button "What moves" [ref=f6e64] [cursor=pointer]
+        - generic [ref=f6e68]:
+          - generic [ref=f6e69]: Your earnings rules
+          - paragraph [ref=f6e70]: Each rule watches one source and names one destination. Nothing moves until you review and sign.
+        - generic [ref=f6e72]:
+          - generic [ref=f6e73]: Connect Phantom to begin
+          - generic [ref=f6e74]: Connecting only shares an address. A later signature proves you control it, and still moves no funds.
+      - contentinfo [ref=f6e75]:
+        - generic [ref=f6e79]:
+          - generic [ref=f6e80]: Overflow
+          - generic [ref=f6e81]: Kult Games
+        - generic [ref=f6e82]:
+          - paragraph [ref=f6e83]: Overflow preserves a source position and routes only the value it newly generates. For an xStocks dividend that means isolating exactly the raw Token-2022 quantity the multiplier change created; for Kamino it means spending only value above a stored principal floor.
+          - paragraph [ref=f6e84]: “Preserved” is an accounting and allocation rule, not a capital guarantee. USDC, Kamino, smart contracts, liquidity and tokenized-equity issuers all carry risk, and these xStocks mints carry Token-2022 transfer-hook, permanent-delegate and pausable extensions. Tokenized equities are not available in every jurisdiction; eligibility is your responsibility and is separate from technical routing. V1 is non-custodial and every execution is user-signed. Overflow never holds a key and never trades unattended. Not investment advice.
+  - dialog "What stays":
+    - button "Close" [ref=f6e86] [cursor=pointer]
+    - generic [ref=f6e89]:
+      - heading "What stays" [level=2] [ref=f6e90]
+      - paragraph [ref=f6e91]: The source position stays in your wallet. Overflow never takes custody of the equity or the USDC principal. Only newly generated value is eligible to move.
+      - button "Got it" [ref=f6e92] [cursor=pointer]

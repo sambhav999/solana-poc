@@ -1,0 +1,60 @@
+- generic [ref=e2]:
+  - link "Skip to content" [ref=e3] [cursor=pointer]:
+    - /url: "#main"
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - img "Kult Games" [ref=e8]
+        - generic [ref=e9]:
+          - generic [ref=e10]: Overflow
+          - generic [ref=e11]: Kult Games
+      - navigation "Primary" [ref=e12]:
+        - button "Earnings rules" [ref=e13] [cursor=pointer]
+        - button "Earnings built" [ref=e19] [cursor=pointer]
+        - button "Capital Firewall" [ref=e23] [cursor=pointer]
+        - button "Receipts" [ref=e28] [cursor=pointer]
+        - button "Replay" [active] [ref=e33] [cursor=pointer]
+      - link "Install Phantom" [ref=e40] [cursor=pointer]:
+        - /url: https://phantom.app/download
+  - generic [ref=e78]:
+    - status [ref=e79]: "Backend unreachable: Failed to fetch"
+    - generic [ref=e197]:
+      - generic [ref=e198]:
+        - heading "How replay stays honest" [level=2] [ref=e199]
+        - generic [ref=e200]:
+          - article [ref=e201]:
+            - heading "Real history" [level=3] [ref=e202]
+          - article [ref=e203]:
+            - heading "Hypothetical" [level=3] [ref=e204]
+          - article [ref=e205]:
+            - heading "Nothing signed" [level=3] [ref=e206]
+      - generic [ref=e208]:
+        - generic [ref=e209]:
+          - generic [ref=e210]: Illustrative
+          - generic [ref=e212]: Multiplier history
+          - generic [ref=e213]:
+            - generic [ref=e214]: Base
+            - generic [ref=e215]: Multiplier
+          - generic [ref=e216]: "1.051"
+        - img "Multiplier history" [ref=e217]
+      - generic [ref=e222]:
+        - generic [ref=e223]: Replay a real corporate action
+        - paragraph [ref=e224]: Run the extraction formula on historical dividends and splits. Replay never signs and never claims a swap occurred.
+      - generic [ref=e225]:
+        - generic [ref=e226]: Replay mode. Historical corporate action. No transaction is executed.
+        - generic [ref=e227]:
+          - generic [ref=e228]:
+            - generic [ref=e229]: xStock symbol
+            - textbox "MRKx, KLACx, NFLXx…" [ref=e231]: MRKx
+            - generic [ref=e232]: Try MRKx for dividends, or KLACx / NFLXx for a 10:1 split.
+          - generic [ref=e233]:
+            - generic [ref=e234]: Hypothetical holding (display units)
+            - spinbutton [ref=e235]: "10"
+            - generic [ref=e236]: Stated as hypothetical. No wallet held this position.
+        - generic [ref=e237]: Failed to fetch
+    - contentinfo [ref=e98]:
+      - generic [ref=e99]:
+        - generic [ref=e101]: Overflow
+        - generic [ref=e102]: Kult Games
+      - strong [ref=e103]: Overflow preserves a source position and routes only the value it newly generates.
+      - text: For an xStocks dividend that means isolating exactly the raw Token-2022 quantity the multiplier change created; for Kamino it means spending only value above a stored principal floor.“Preserved” is an accounting and allocation rule, not a capital guarantee. USDC, Kamino, smart contracts, liquidity and tokenized-equity issuers all carry risk, and these xStocks mints carry Token-2022 transfer-hook, permanent-delegate and pausable extensions. Tokenized equities are not available in every jurisdiction; eligibility is your responsibility and is separate from technical routing. V1 is non-custodial and every execution is user-signed. Overflow never holds a key and never trades unattended. Not investment advice.

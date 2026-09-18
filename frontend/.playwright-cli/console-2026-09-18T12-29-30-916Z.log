@@ -1,0 +1,4 @@
+[    2694ms] [LOG] [ClarityDebug] init start {projectId: vsgfwtgs3n} @ https://kult.games/_next/static/chunks/app/page-2e224823f0d4ab72.js:0
+[    2695ms] [LOG] [ClarityDebug] init called {hasWindowClarity: function, scriptInjected: true} @ https://kult.games/_next/static/chunks/app/page-2e224823f0d4ab72.js:0
+[    2695ms] [LOG] [ClarityDebug] tag set {key: route, value: /, hasWindowClarity: function} @ https://kult.games/_next/static/chunks/app/page-2e224823f0d4ab72.js:0
+[    2695ms] [LOG] [ClarityDebug] event dispatch {eventName: page_view:home, hasWindowClarity: function, scriptInjected: true} @ https://kult.games/_next/static/chunks/app/page-2e224823f0d4ab72.js:0

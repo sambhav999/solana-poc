@@ -1,0 +1,48 @@
+- generic [ref=e2]:
+  - link "Skip to content" [ref=e3] [cursor=pointer]:
+    - /url: "#main"
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - img "Kult Games" [ref=e8]
+        - generic [ref=e9]:
+          - generic [ref=e10]: Overflow
+          - generic [ref=e11]: Kult Games
+      - generic [ref=e13]:
+        - text: Phantom not detected
+        - link "Install" [ref=e17] [cursor=pointer]:
+          - /url: https://phantom.app/download
+  - generic [ref=e24]:
+    - generic [ref=e25]: "Backend unreachable: Failed to fetch"
+    - navigation "Primary" [ref=e26]:
+      - button "Earnings rules" [ref=e27] [cursor=pointer]
+      - button "Earnings built" [active] [ref=e32] [cursor=pointer]
+      - button "Capital Firewall" [ref=e35] [cursor=pointer]
+      - button "Receipts" [ref=e39] [cursor=pointer]
+      - button "Replay" [ref=e43] [cursor=pointer]
+    - generic [ref=e78]:
+      - paragraph [ref=e79]: How earnings become holdings
+      - heading "Built, retained, verified." [level=2] [ref=e80]
+      - generic [ref=e81]:
+        - article [ref=e82]:
+          - generic [ref=e83]: "01"
+          - heading "Built" [level=3] [ref=e84]
+          - paragraph [ref=e85]: Confirmed receipts that landed in public stocks or private markets. Quotes and pending swaps never count.
+        - article [ref=e86]:
+          - generic [ref=e87]: "02"
+          - heading "Retained" [level=3] [ref=e88]
+          - paragraph [ref=e89]: Earnings the firewall kept because the quote sat outside your premium band. A stored judgement, not a guess.
+        - article [ref=e90]:
+          - generic [ref=e91]: "03"
+          - heading "Verified" [level=3] [ref=e92]
+          - paragraph [ref=e93]: Only on-chain proof lifts the figure. Unverified executions sit to the side until the receipt confirms.
+    - generic [ref=e94]:
+      - img "Destination tokens built from on-chain earnings" [ref=e96]
+      - generic [ref=e97]: Sign in to see what your earnings built
+      - generic [ref=e98]: Connect and sign in with Phantom to view holdings that receipts have already proven.
+    - contentinfo [ref=e72]:
+      - generic [ref=e73]:
+        - generic [ref=e75]: Overflow
+        - generic [ref=e76]: Kult Games
+      - strong [ref=e77]: Overflow preserves a source position and routes only the value it newly generates.
+      - text: For an xStocks dividend that means isolating exactly the raw Token-2022 quantity the multiplier change created; for Kamino it means spending only value above a stored principal floor.“Preserved” is an accounting and allocation rule, not a capital guarantee. USDC, Kamino, smart contracts, liquidity and tokenized-equity issuers all carry risk, and these xStocks mints carry Token-2022 transfer-hook, permanent-delegate and pausable extensions. Tokenized equities are not available in every jurisdiction; eligibility is your responsibility and is separate from technical routing. V1 is non-custodial and every execution is user-signed. Overflow never holds a key and never trades unattended. Not investment advice.

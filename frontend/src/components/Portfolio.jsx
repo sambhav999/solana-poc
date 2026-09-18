@@ -49,7 +49,7 @@ export default function Portfolio({ connection, destinations, totalInvestedAtomi
 
       {!loading && !held.length && (
         <div className="hint" style={{ marginTop: 0 }}>
-          No equity holdings yet. They appear here once a harvest confirms — bought with yield only.
+          No equity holdings yet. They appear here once a harvest confirms - bought with yield only.
         </div>
       )}
 

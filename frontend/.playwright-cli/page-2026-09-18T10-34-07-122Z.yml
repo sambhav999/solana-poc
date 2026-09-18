@@ -1,0 +1,56 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e11]:
+        - generic [ref=e12]: Overflow
+        - generic [ref=e13]: Keep the source. Program the earnings.
+      - generic [ref=e15]:
+        - text: Phantom not detected
+        - link "Install" [ref=e19] [cursor=pointer]:
+          - /url: https://phantom.app/download
+  - generic [ref=e20]:
+    - generic [ref=e21]:
+      - generic [ref=e22]:
+        - generic [ref=e23]: Connecting…
+        - heading "Keep the source. Program the earnings." [level=1] [ref=e25]: Keep the source.Program the earnings.
+        - paragraph [ref=e26]: Overflow preserves your xStocks equity or Kamino USDC position and routes only the value it newly generates — a dividend, or yield above a stored principal floor — to a destination you choose in advance.
+        - generic [ref=e27]:
+          - generic [ref=e28]:
+            - generic [ref=e29]: Non-custodial
+            - generic [ref=e30]: You sign every transaction
+          - generic [ref=e31]:
+            - generic [ref=e32]: Source preserved
+            - generic [ref=e33]: Provably, not by promise
+          - generic [ref=e34]:
+            - generic [ref=e35]: Solana
+            - generic [ref=e36]: Phantom wallet
+      - generic [ref=e37]:
+        - generic [ref=e38]: How a rule moves value
+        - generic [ref=e39]:
+          - img "Source position connects through the Capital Firewall to your chosen destination; only newly generated earnings travel that path." [ref=e40]
+          - generic [ref=e58]:
+            - generic [ref=e59]:
+              - generic [ref=e60]: Source
+              - generic [ref=e61]: xStocks · Kamino
+            - generic [ref=e62]:
+              - generic [ref=e63]: Capital Firewall
+              - generic [ref=e64]: price-policy gate
+            - generic [ref=e65]:
+              - generic [ref=e66]: Destination
+              - generic [ref=e67]: your choice
+        - generic [ref=e68]: Dividend and interest rules both follow this path.
+    - generic [ref=e69]: "Backend unreachable: Failed to fetch"
+    - navigation [ref=e70]:
+      - button "Earnings rules" [ref=e71] [cursor=pointer]
+      - button "Earnings built" [ref=e76] [cursor=pointer]
+      - button "Capital Firewall" [ref=e79] [cursor=pointer]
+      - button "Receipts" [ref=e83] [cursor=pointer]
+      - button "Replay" [ref=e87] [cursor=pointer]
+    - generic [ref=e91]: Your earnings rules
+    - generic [ref=e93]:
+      - generic [ref=e98]: Connect your Solana wallet
+      - generic [ref=e99]: Phantom is required to create and run earnings rules. Nothing is signed until you review an execution.
+    - contentinfo [ref=e100]:
+      - generic [ref=e101]: Overflow
+      - strong [ref=e108]: Overflow preserves a source position and routes only the value it newly generates.
+      - text: For an xStocks dividend that means isolating exactly the raw Token-2022 quantity the multiplier change created; for Kamino it means spending only value above a stored principal floor.“Preserved” is an accounting and allocation rule, not a capital guarantee. USDC, Kamino, smart contracts, liquidity and tokenized-equity issuers all carry risk, and these xStocks mints carry Token-2022 transfer-hook, permanent-delegate and pausable extensions. Tokenized equities are not available in every jurisdiction; eligibility is your responsibility and is separate from technical routing. V1 is non-custodial and every execution is user-signed — Overflow never holds a key and never trades unattended. Not investment advice.

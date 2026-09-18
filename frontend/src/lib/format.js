@@ -8,7 +8,7 @@
 
 /** Raw atomic units -> human decimal string, without going through Number. */
 export function formatRaw(rawAtomic, decimals, displayDecimals = decimals) {
-  if (rawAtomic === null || rawAtomic === undefined) return '—';
+  if (rawAtomic === null || rawAtomic === undefined) return '-';
   const negative = String(rawAtomic).startsWith('-');
   const digits = String(rawAtomic).replace('-', '').padStart(decimals + 1, '0');
   const whole = digits.slice(0, digits.length - decimals) || '0';
@@ -20,7 +20,7 @@ export function formatRaw(rawAtomic, decimals, displayDecimals = decimals) {
 
 /** USDC atomic (6dp) -> "$1,234.56" */
 export function formatUsd(atomic, displayDecimals = 2) {
-  if (atomic === null || atomic === undefined) return '—';
+  if (atomic === null || atomic === undefined) return '-';
   return `$${formatRaw(atomic, 6, displayDecimals)}`;
 }
 
@@ -35,14 +35,14 @@ export function shortAddress(address, size = 4) {
 }
 
 export function formatDateTime(iso) {
-  if (!iso) return '—';
+  if (!iso) return '-';
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return String(iso);
   return d.toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' });
 }
 
 export function formatRelative(iso) {
-  if (!iso) return '—';
+  if (!iso) return '-';
   const ms = new Date(iso).getTime() - Date.now();
   const abs = Math.abs(ms);
   const mins = Math.round(abs / 60000);
@@ -54,7 +54,7 @@ export function formatRelative(iso) {
 }
 
 export function pctFromDecimalString(s, places = 4) {
-  if (s === null || s === undefined) return '—';
+  if (s === null || s === undefined) return '-';
   const n = Number(s);
   if (!Number.isFinite(n)) return String(s);
   return `${n.toFixed(places)}%`;

@@ -1,0 +1,49 @@
+- generic [ref=f1e2]:
+  - link "Skip to content" [ref=f1e3] [cursor=pointer]:
+    - /url: "#main"
+  - banner [ref=f1e4]:
+    - generic [ref=f1e5]:
+      - generic [ref=f1e6]:
+        - img "Kult Games" [ref=f1e8]
+        - generic [ref=f1e9]:
+          - generic [ref=f1e10]: Overflow
+          - generic [ref=f1e11]: Kult Games
+      - navigation "Primary" [ref=f1e12]:
+        - button "Earnings rules" [ref=f1e13] [cursor=pointer]
+        - button "Earnings built" [active] [ref=f1e19] [cursor=pointer]
+        - button "Capital Firewall" [ref=f1e23] [cursor=pointer]
+        - button "Receipts" [ref=f1e28] [cursor=pointer]
+        - button "Replay" [ref=f1e33] [cursor=pointer]
+      - link "Install Phantom" [ref=f1e40] [cursor=pointer]:
+        - /url: https://phantom.app/download
+  - generic [ref=f1e78]:
+    - status [ref=f1e79]: "Backend unreachable: Failed to fetch"
+    - generic [ref=f1e176]:
+      - generic [ref=f1e177]:
+        - generic [ref=f1e178]:
+          - heading "How earnings become holdings" [level=2] [ref=f1e179]
+          - generic [ref=f1e180]:
+            - article [ref=f1e181]:
+              - heading "Built" [level=3] [ref=f1e183]
+            - article [ref=f1e184]:
+              - heading "Retained" [level=3] [ref=f1e186]
+            - article [ref=f1e187]:
+              - heading "Verified" [level=3] [ref=f1e189]
+        - generic [ref=f1e191]:
+          - generic [ref=f1e192]:
+            - generic [ref=f1e193]: Illustrative
+            - generic [ref=f1e195]: Built vs retained
+            - generic [ref=f1e196]:
+              - generic [ref=f1e197]: Built
+              - generic [ref=f1e198]: Retained
+            - generic [ref=f1e199]: "10.2"
+          - img "Built vs retained" [ref=f1e200]
+      - generic [ref=f1e206]:
+        - generic [ref=f1e207]: Sign in to see what your earnings built
+        - generic [ref=f1e208]: Connect and sign in with Phantom to view holdings that receipts have already proven.
+    - contentinfo [ref=f1e101]:
+      - generic [ref=f1e102]:
+        - generic [ref=f1e104]: Overflow
+        - generic [ref=f1e105]: Kult Games
+      - strong [ref=f1e106]: Overflow preserves a source position and routes only the value it newly generates.
+      - text: For an xStocks dividend that means isolating exactly the raw Token-2022 quantity the multiplier change created; for Kamino it means spending only value above a stored principal floor.“Preserved” is an accounting and allocation rule, not a capital guarantee. USDC, Kamino, smart contracts, liquidity and tokenized-equity issuers all carry risk, and these xStocks mints carry Token-2022 transfer-hook, permanent-delegate and pausable extensions. Tokenized equities are not available in every jurisdiction; eligibility is your responsibility and is separate from technical routing. V1 is non-custodial and every execution is user-signed. Overflow never holds a key and never trades unattended. Not investment advice.

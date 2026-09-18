@@ -5,7 +5,7 @@ import { api } from '../lib/api.js';
  * External-change notice.
  *
  * Overflow's accounting assumes it is the only thing moving the position. When
- * the balance changes elsewhere — a Kamino deposit, a wallet transfer — the
+ * the balance changes elsewhere - a Kamino deposit, a wallet transfer - the
  * stored baseline no longer describes reality, so the rule pauses rather than
  * computing against a position it no longer understands.
  *
@@ -27,7 +27,7 @@ export default function DriftNotice({ rule, evaluation, onChanged }) {
 
   return (
     <div className="drift">
-      <div className="drift-title">POSITION CHANGED OUTSIDE OVERFLOW — PAUSED</div>
+      <div className="drift-title">POSITION CHANGED OUTSIDE OVERFLOW - PAUSED</div>
       <div style={{ fontSize: 12 }}>{evaluation.reason}</div>
 
       {evaluation.drift && (

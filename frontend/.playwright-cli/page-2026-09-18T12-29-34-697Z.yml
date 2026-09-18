@@ -1,0 +1,485 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e3]:
+      - img "img" [ref=e5]
+      - list [ref=e7]:
+        - listitem [ref=e8]:
+          - link [ref=e9] [cursor=pointer]:
+            - /url: https://t.me/KultGamesOfficial
+            - img "img" [ref=e10]
+        - listitem [ref=e11]:
+          - link [ref=e12] [cursor=pointer]:
+            - /url: https://discord.gg/Cge7rrCyUB
+            - img "img" [ref=e13]
+        - listitem [ref=e14]:
+          - link [ref=e15] [cursor=pointer]:
+            - /url: https://www.instagram.com/kult_games_/?igsh=dzAxNnJ3eWQ4NmUz&utm_source=qr
+            - img "img" [ref=e16]
+        - listitem [ref=e17]:
+          - link [ref=e18] [cursor=pointer]:
+            - /url: https://twitter.com/_KultGames
+            - img "img" [ref=e19]
+        - listitem [ref=e20]:
+          - link [ref=e21] [cursor=pointer]:
+            - /url: https://medium.com/@kult_games
+            - img "img" [ref=e22]
+  - generic [ref=e23]:
+    - generic [ref=e28]:
+      - heading "THE GATEWAY TO INTELLIGENT GAMING" [level=1] [ref=e29]:
+        - generic [ref=e30]: THE
+        - generic [ref=e32]: GATEWAY
+        - generic [ref=e34]: TO
+        - generic [ref=e36]: INTELLIGENT
+        - generic [ref=e38]: GAMING
+      - paragraph [ref=e40]: Play connected games, build persistent identities, and create AI agents that learn, compete, and evolve alongside you.
+      - generic [ref=e41]:
+        - generic [ref=e44]:
+          - textbox "Enter Your email here...." [ref=e46] [cursor=pointer]
+          - button "Join Waitlist" [ref=e47] [cursor=pointer]
+        - button "Watch Demo" [ref=e48] [cursor=pointer]
+    - generic [ref=e53]:
+      - heading "Kult Offers" [level=2] [ref=e54]
+      - generic [ref=e55]:
+        - img "Kult Offers" [ref=e56]
+        - img "Kult" [ref=e58]
+        - button "Discover Kult" [ref=e61] [cursor=pointer]
+    - generic [ref=e66]:
+      - img "Doge Escape" [ref=e67]
+      - generic [ref=e69]:
+        - img "Kult Games" [ref=e70]
+        - generic [ref=e71]: ×
+        - generic:
+          - generic:
+            - img "DogeOS"
+          - generic: DogeOS
+      - link [ref=e74] [cursor=pointer]:
+        - /url: https://Dogescape.xyz
+        - button "Early Access" [ref=e76]
+    - generic [ref=e78]:
+      - img "img" [ref=e79]
+      - generic [ref=e80]:
+        - heading "Explore Intelligent Experiences" [level=2] [ref=e82]
+        - region [ref=e83]:
+          - generic [ref=e85]:
+            - group [ref=e86]:
+              - generic [ref=e87]:
+                - link [ref=e89] [cursor=pointer]:
+                  - /url: https://zerogpool.xyz/
+                  - img "Zero G Pool" [ref=e90]
+                - generic [ref=e91]:
+                  - generic [ref=e93]:
+                    - generic [ref=e94]:
+                      - paragraph [ref=e95]: Zero G Pool
+                      - paragraph [ref=e96]: Your favorite 8-ball, now with a cosmic twist.
+                      - img "platform"
+                    - link [ref=e98] [cursor=pointer]:
+                      - /url: https://zerogpool.xyz/
+                      - button "Play Game" [ref=e99]
+                  - generic [ref=e103]:
+                    - paragraph [ref=e104]: Platform
+                    - generic [ref=e105]:
+                      - button "Web" [ref=e106] [cursor=pointer]
+                      - button "Mobile" [ref=e112] [cursor=pointer]
+            - group [ref=e117]:
+              - generic [ref=e118]:
+                - link [ref=e120] [cursor=pointer]:
+                  - /url: https://guesstheai.xyz/
+                  - img "Guess The AI" [ref=e121]
+                - generic [ref=e122]:
+                  - generic [ref=e124]:
+                    - generic [ref=e125]:
+                      - paragraph [ref=e126]: Guess The AI
+                      - paragraph [ref=e127]: Challenge your mind, Beat the AI
+                      - img "platform"
+                    - link [ref=e129] [cursor=pointer]:
+                      - /url: https://guesstheai.xyz/
+                      - button "Play Game" [ref=e130]
+                  - generic [ref=e134]:
+                    - paragraph [ref=e135]: Platform
+                    - generic [ref=e136]:
+                      - button "Web" [ref=e137] [cursor=pointer]
+                      - button "Mobile" [ref=e143] [cursor=pointer]
+            - group [ref=e148]:
+              - generic [ref=e149]:
+                - link [ref=e151] [cursor=pointer]:
+                  - /url: https://0g.warzonewarriors.xyz/
+                  - img "Warzone Warriors" [ref=e152]
+                - generic [ref=e153]:
+                  - generic [ref=e155]:
+                    - generic [ref=e156]:
+                      - paragraph [ref=e157]: Warzone Warriors
+                      - paragraph [ref=e158]: Persistent progression and intelligent gameplay.
+                      - img "platform"
+                    - link [ref=e160] [cursor=pointer]:
+                      - /url: https://0g.warzonewarriors.xyz/
+                      - button "Play Game" [ref=e161]
+                  - generic [ref=e165]:
+                    - paragraph [ref=e166]: Platform
+                    - generic [ref=e167]:
+                      - button "Web" [ref=e168] [cursor=pointer]
+                      - button "Mobile" [ref=e174] [cursor=pointer]
+            - group [ref=e179]:
+              - generic [ref=e180]:
+                - link [ref=e182] [cursor=pointer]:
+                  - /url: https://highwayhustle.xyz/
+                  - img "Highway Hustle" [ref=e183]
+                - generic [ref=e184]:
+                  - generic [ref=e186]:
+                    - generic [ref=e187]:
+                      - paragraph [ref=e188]: Highway Hustle
+                      - paragraph [ref=e189]: Race through chaos, dodge traffic, and own the streets
+                      - img "platform"
+                    - link [ref=e191] [cursor=pointer]:
+                      - /url: https://highwayhustle.xyz/
+                      - button "Play Game" [ref=e192]
+                  - generic [ref=e196]:
+                    - paragraph [ref=e197]: Platform
+                    - generic [ref=e198]:
+                      - button "Web" [ref=e199] [cursor=pointer]
+                      - button "Mobile" [ref=e205] [cursor=pointer]
+            - group [ref=e210]:
+              - generic [ref=e211]:
+                - link [ref=e213] [cursor=pointer]:
+                  - /url: https://Zerodashgame.xyz/
+                  - img "Zero Dash" [ref=e214]
+                - generic [ref=e215]:
+                  - generic [ref=e217]:
+                    - generic [ref=e218]:
+                      - paragraph [ref=e219]: Zero Dash
+                      - paragraph [ref=e220]: Fast-paced challenges powered by AI experiences
+                      - img "platform"
+                    - link [ref=e222] [cursor=pointer]:
+                      - /url: https://Zerodashgame.xyz/
+                      - button "Play Game" [ref=e223]
+                  - generic [ref=e227]:
+                    - paragraph [ref=e228]: Platform
+                    - generic [ref=e229]:
+                      - button "Web" [ref=e230] [cursor=pointer]
+                      - button "Mobile" [ref=e236] [cursor=pointer]
+          - button "Previous slide" [ref=e241] [cursor=pointer]
+          - button "Next slide" [ref=e245] [cursor=pointer]
+    - generic [ref=e249]:
+      - img "img" [ref=e250]
+      - generic [ref=e251]:
+        - generic [ref=e253]:
+          - heading "Building the Future of Intelligent Gaming" [level=2] [ref=e254]
+          - generic [ref=e255]: Games are becoming intelligent. Agents are becoming autonomous. Experiences are becoming connected. KULT brings them together.
+        - region [ref=e257]:
+          - generic [ref=e259]:
+            - group [ref=e260]:
+              - generic [ref=e262]:
+                - link "DogeOS Launching Soon..." [ref=e263] [cursor=pointer]:
+                  - /url: https://Dogescape.xyz
+                  - generic [ref=e264]:
+                    - img "DogeOS" [ref=e265]
+                    - generic [ref=e266]: Launching Soon...
+                - generic [ref=e267]:
+                  - paragraph [ref=e268]: DogeOS
+                  - paragraph [ref=e269]: Run, Escape, Don't Look Back
+            - group [ref=e279]:
+              - generic [ref=e281]:
+                - link "Robo War Launching Soon..." [ref=e282] [cursor=pointer]:
+                  - /url: https://robowarsgame.xyz/
+                  - generic [ref=e283]:
+                    - img "Robo War" [ref=e284]
+                    - generic [ref=e285]: Launching Soon...
+                - generic [ref=e286]:
+                  - paragraph [ref=e287]: Robo War
+                  - paragraph [ref=e288]: Action, AAA, RPG
+            - group [ref=e298]:
+              - generic [ref=e300]:
+                - link "The Last Shot Launching Soon..." [ref=e301] [cursor=pointer]:
+                  - /url: https://x.com/_kultgames/status/1973666321738113233?s=46
+                  - generic [ref=e302]:
+                    - img "The Last Shot" [ref=e303]
+                    - generic [ref=e304]: Launching Soon...
+                - generic [ref=e305]:
+                  - paragraph [ref=e306]: The Last Shot
+                  - paragraph [ref=e307]: Action, AAA, RPG
+            - group [ref=e317]:
+              - generic [ref=e319]:
+                - link "Formula Speed Thrills Launching Soon..." [ref=e320] [cursor=pointer]:
+                  - /url: https://x.com/_kultgames/status/1973666321738113233?s=46
+                  - generic [ref=e321]:
+                    - img "Formula Speed Thrills" [ref=e322]
+                    - generic [ref=e323]: Launching Soon...
+                - generic [ref=e324]:
+                  - paragraph [ref=e325]: Formula Speed Thrills
+                  - paragraph [ref=e326]: Racing, Formula 1
+    - generic [ref=e337]:
+      - generic [ref=e338]:
+        - generic [ref=e339]:
+          - heading "Roadmap" [level=2] [ref=e340]
+          - paragraph [ref=e341]: Our journey toward intelligent gaming — quarter by quarter.
+        - generic [ref=e342]:
+          - button "Previous" [ref=e343] [cursor=pointer]
+          - button "Next" [disabled] [ref=e346]
+      - region [ref=e349]:
+        - generic [ref=e352]:
+          - group [ref=e353]:
+            - generic [ref=e357]:
+              - generic [ref=e359]:
+                - generic [ref=e360]: Q1
+                - generic [ref=e361]: "2024"
+              - generic [ref=e362]:
+                - list [ref=e363]:
+                  - listitem [ref=e364]:
+                    - generic [ref=e366]: Launch intelligent games and persistent identities.
+                  - listitem [ref=e367]:
+                    - generic [ref=e369]: Release the first set of blockchain-integrated games.
+                  - listitem [ref=e370]:
+                    - generic [ref=e372]: Minting unique in-game NFTs
+                  - listitem [ref=e373]:
+                    - generic [ref=e375]: On-chain NFT Utilities and NFT trading Gaming Marketplace
+                  - listitem [ref=e376]:
+                    - generic [ref=e378]: Alpha stage Partnerships with multiple blockchains
+                - generic [ref=e379]:
+                  - generic [ref=e380]: Milestone
+                  - generic [ref=e381]: 5 goals
+          - group [ref=e382]:
+            - generic [ref=e386]:
+              - generic [ref=e388]:
+                - generic [ref=e389]: Q2
+                - generic [ref=e390]: "2024"
+              - generic [ref=e391]:
+                - list [ref=e392]:
+                  - listitem [ref=e393]:
+                    - generic [ref=e395]: Launch autonomous AI agents and AI Arena.
+                  - listitem [ref=e396]:
+                    - generic [ref=e398]: Permissionless trading for in-game assets and NFTs.
+                  - listitem [ref=e399]:
+                    - generic [ref=e401]: Launch additional game titles with full-scale NFT integration.
+                  - listitem [ref=e402]:
+                    - generic [ref=e404]: Enhancements to the gaming UI/UX based on user feedback.
+                  - listitem [ref=e405]:
+                    - generic [ref=e407]: Special NFT drops for early adopters.
+                - generic [ref=e408]:
+                  - generic [ref=e409]: Milestone
+                  - generic [ref=e410]: 5 goals
+          - group [ref=e411]:
+            - generic [ref=e415]:
+              - generic [ref=e417]:
+                - generic [ref=e418]: Q3
+                - generic [ref=e419]: "2024"
+              - generic [ref=e420]:
+                - list [ref=e421]:
+                  - listitem [ref=e422]:
+                    - generic [ref=e424]: Expand Prediction AI and connected experiences.
+                  - listitem [ref=e425]:
+                    - generic [ref=e427]: Achieve full interoperability in the Kult Ecosystem.
+                  - listitem [ref=e428]:
+                    - generic [ref=e430]: Security and Infrastructure Upgrade.
+                  - listitem [ref=e431]:
+                    - generic [ref=e433]: Major AAA game release
+                  - listitem [ref=e434]:
+                    - generic [ref=e436]: Host a virtual launch event with prizes and exclusive NFT releases.
+                - generic [ref=e437]:
+                  - generic [ref=e438]: Milestone
+                  - generic [ref=e439]: 5 goals
+          - group [ref=e440]:
+            - generic [ref=e444]:
+              - generic [ref=e446]:
+                - generic [ref=e447]: Q1
+                - generic [ref=e448]: "2025"
+              - generic [ref=e449]:
+                - list [ref=e450]:
+                  - listitem [ref=e451]:
+                    - generic [ref=e453]: A living ecosystem of intelligent agents competing across infinite experiences.
+                  - listitem [ref=e454]:
+                    - generic [ref=e456]: Increase server capacities to handle a growing player base.
+                  - listitem [ref=e457]:
+                    - generic [ref=e459]: Mobile platform integration.
+                  - listitem [ref=e460]:
+                    - generic [ref=e462]: Strategic partnerships and expansion.
+                  - listitem [ref=e463]:
+                    - generic [ref=e465]: Partnerships with gaming studios.
+                - generic [ref=e466]:
+                  - generic [ref=e467]: Milestone
+                  - generic [ref=e468]: 5 goals
+          - group [ref=e469]:
+            - generic [ref=e473]:
+              - generic [ref=e475]:
+                - generic [ref=e476]: Q2
+                - generic [ref=e477]: "2025"
+              - generic [ref=e478]:
+                - list [ref=e479]:
+                  - listitem [ref=e480]:
+                    - generic [ref=e482]: Launch AI Arena — agents that battle, learn, and build rivalries.
+                  - listitem [ref=e483]:
+                    - generic [ref=e485]: Expand mobile ecosystem with new intelligent game titles.
+                  - listitem [ref=e486]:
+                    - generic [ref=e488]: Agent staking and on-chain reputation systems.
+                  - listitem [ref=e489]:
+                    - generic [ref=e491]: "Prediction AI: real-time agent debates and forecasts."
+                  - listitem [ref=e492]:
+                    - generic [ref=e494]: Grow KULT intelligent gaming community to 1M+ players.
+                - generic [ref=e495]:
+                  - generic [ref=e496]: Milestone
+                  - generic [ref=e497]: 5 goals
+          - group [ref=e498]:
+            - generic [ref=e502]:
+              - generic [ref=e504]:
+                - generic [ref=e505]: Q1
+                - generic [ref=e506]: "2026"
+              - generic [ref=e507]:
+                - list [ref=e508]:
+                  - listitem [ref=e509]:
+                    - generic [ref=e511]: Autonomous agent network spanning multiple game universes.
+                  - listitem [ref=e512]:
+                    - generic [ref=e514]: AI arena economy with prediction markets and leaderboards.
+                  - listitem [ref=e515]:
+                    - generic [ref=e517]: KULT as the operating system for intelligent gaming.
+                  - listitem [ref=e518]:
+                    - generic [ref=e520]: Cross-game persistent agent identities and reputation.
+                  - listitem [ref=e521]:
+                    - generic [ref=e523]: KULT token launch and decentralized governance.
+                - generic [ref=e524]:
+                  - generic [ref=e525]: Milestone
+                  - generic [ref=e526]: 5 goals
+      - generic [ref=e527]:
+        - button "Go to Q1 2024" [ref=e528] [cursor=pointer]
+        - button "Go to Q2 2024" [ref=e529] [cursor=pointer]
+        - button "Go to Q3 2024" [ref=e530] [cursor=pointer]
+        - button "Go to Q1 2025" [ref=e531] [cursor=pointer]
+        - button "Go to Q2 2025" [ref=e532] [cursor=pointer]
+        - button "Go to Q1 2026" [ref=e533] [cursor=pointer]
+    - generic [ref=e534]:
+      - heading "Our Team" [level=2] [ref=e536]
+      - generic [ref=e537]:
+        - generic [ref=e542]:
+          - img "img" [ref=e544]
+          - heading "KARN CHAKERVERTY" [level=5] [ref=e546]
+          - paragraph [ref=e548]: CEO
+        - generic [ref=e553]:
+          - img "img" [ref=e555]
+          - heading "Sidhant Mahato" [level=5] [ref=e557]
+          - paragraph [ref=e559]: Project Lead
+        - generic [ref=e564]:
+          - img "img" [ref=e566]
+          - heading "Avi Saini" [level=5] [ref=e568]
+          - paragraph [ref=e570]: Blockchain Expert
+        - generic [ref=e575]:
+          - img "img" [ref=e577]
+          - heading "Martin Trinh" [level=5] [ref=e579]
+          - paragraph [ref=e581]: Community Lead
+        - generic [ref=e586]:
+          - img "img" [ref=e588]
+          - heading "Raunak Jha" [level=5] [ref=e590]
+          - paragraph [ref=e592]: Brand Advocate
+        - generic [ref=e597]:
+          - img "img" [ref=e599]
+          - heading "Sambhav" [level=5] [ref=e601]
+          - paragraph [ref=e603]: Full Stack Developer
+    - generic [ref=e605]:
+      - heading "Join our community" [level=2] [ref=e607]
+      - generic [ref=e608]:
+        - generic [ref=e609]:
+          - generic [ref=e612]:
+            - generic [ref=e613]:
+              - heading "Discord Community" [level=5] [ref=e614]
+              - paragraph [ref=e615]: Join our discord today to engage with our vibrant community of gamers
+              - link [ref=e617] [cursor=pointer]:
+                - /url: https://discord.gg/Cge7rrCyUB
+                - button "Join Now" [ref=e618]
+            - img "DiscordImg" [ref=e621]
+          - generic [ref=e622]:
+            - link [ref=e627] [cursor=pointer]:
+              - /url: https://t.me/KultGamesOfficial
+              - generic [ref=e628]:
+                - img "img" [ref=e629]
+                - paragraph [ref=e630]: Telegram
+            - link [ref=e632] [cursor=pointer]:
+              - /url: https://www.instagram.com/kult_games_/?igsh=dzAxNnJ3eWQ4NmUz&utm_source=qr
+              - generic [ref=e633]:
+                - img "img" [ref=e634]
+                - paragraph [ref=e635]: Instagram
+            - link [ref=e637] [cursor=pointer]:
+              - /url: https://twitter.com/_KultGames
+              - generic [ref=e638]:
+                - img "img" [ref=e639]
+                - paragraph [ref=e640]: Announcement
+        - generic [ref=e644]:
+          - generic [ref=e645]:
+            - generic [ref=e646]:
+              - heading "Follow us on X(Twitter)" [level=5] [ref=e647]
+              - paragraph [ref=e648]: Follow us on X(Twitter) to get latest updates and announcements
+            - link [ref=e650] [cursor=pointer]:
+              - /url: https://twitter.com/_KultGames
+              - button "Follow Now" [ref=e651]
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - img "img"
+    - generic [ref=e655]:
+      - heading "Partners & Backers" [level=2] [ref=e657]
+      - generic [ref=e658]:
+        - generic [ref=e659] [cursor=pointer]:
+          - img "partner"
+        - generic [ref=e660] [cursor=pointer]:
+          - img "partner"
+        - generic [ref=e661] [cursor=pointer]:
+          - img "partner"
+        - generic [ref=e662] [cursor=pointer]:
+          - img "partner"
+        - generic [ref=e663] [cursor=pointer]:
+          - img "partner"
+        - generic [ref=e664] [cursor=pointer]:
+          - img "partner"
+        - generic [ref=e665] [cursor=pointer]:
+          - img "partner"
+        - generic [ref=e666] [cursor=pointer]:
+          - img "partner"
+        - generic [ref=e667] [cursor=pointer]:
+          - img "partner"
+        - generic [ref=e668] [cursor=pointer]:
+          - img "partner"
+        - generic [ref=e670] [cursor=pointer]:
+          - img "DogeOS" [ref=e673]
+          - generic [ref=e674]: DogeOS
+        - generic [ref=e675] [cursor=pointer]:
+          - img "partner"
+        - generic [ref=e676] [cursor=pointer]:
+          - img "partner"
+    - generic [ref=e679]:
+      - img "img" [ref=e680]
+      - generic [ref=e681]:
+        - heading "Join the early access" [level=3] [ref=e682]
+        - paragraph [ref=e683]: Join the waitlist to access all our games early with exciting rewards and benefits
+        - generic [ref=e685]:
+          - textbox "Enter Your email here...." [ref=e687] [cursor=pointer]
+          - button "Join Waitlist" [ref=e688] [cursor=pointer]
+  - contentinfo [ref=e689]:
+    - generic [ref=e692]:
+      - generic [ref=e693]:
+        - generic [ref=e694]:
+          - generic [ref=e695]:
+            - img "Kult Games" [ref=e697]
+            - heading "KULT GAMES" [level=6] [ref=e698]
+          - generic [ref=e699]:
+            - paragraph [ref=e700]: The Gateway to Intelligent Gaming
+            - list [ref=e701]:
+              - listitem [ref=e702]: Connected Gaming Ecosystem
+              - listitem [ref=e704]: Persistent Player Identities
+              - listitem [ref=e706]: Intelligent AI Experiences
+              - listitem [ref=e708]: Infinite Possibilities
+        - generic [ref=e710]:
+          - paragraph [ref=e711]: Join the community
+          - generic [ref=e712]:
+            - link "Telegram" [ref=e714] [cursor=pointer]:
+              - /url: https://t.me/KultGamesOfficial
+              - img "Telegram" [ref=e715]
+            - link "Discord" [ref=e717] [cursor=pointer]:
+              - /url: https://discord.gg/Cge7rrCyUB
+              - img "Discord" [ref=e718]
+            - link "Instagram" [ref=e720] [cursor=pointer]:
+              - /url: https://www.instagram.com/kult_games_/?igsh=dzAxNnJ3eWQ4NmUz&utm_source=qr
+              - img "Instagram" [ref=e721]
+            - link "X" [ref=e723] [cursor=pointer]:
+              - /url: https://twitter.com/_KultGames
+              - img "X" [ref=e724]
+            - link "Medium" [ref=e726] [cursor=pointer]:
+              - /url: https://medium.com/@kult_games
+              - img "Medium" [ref=e727]
+      - paragraph [ref=e729]: COPYRIGHT ©2024 KULTGAMES LLC. · ALL RIGHTS RESERVED
+  - alert [ref=e730]

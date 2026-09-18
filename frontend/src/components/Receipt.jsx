@@ -14,7 +14,7 @@ export default function Receipt({ receipt }) {
   return (
     <div className="receipt">
       <div className="receipt-title">
-        {isDividend ? 'DIVIDEND RULE' : 'INTEREST RULE'} — {status}
+        {isDividend ? 'DIVIDEND RULE' : 'INTEREST RULE'} - {status}
         {mode === 'REPLAY' && ' · REPLAY'}
       </div>
       <Verdict
@@ -25,19 +25,19 @@ export default function Receipt({ receipt }) {
 
       {isDividend ? (
         <>
-          <Row k="Source" v={`${inputs.symbol ?? '—'}`} />
-          <Row k="Corporate action" v={inputs.corporateActionId ?? '—'} />
-          <Row k="Event type" v={inputs.reason ?? '—'} />
+          <Row k="Source" v={`${inputs.symbol ?? '-'}`} />
+          <Row k="Corporate action" v={inputs.corporateActionId ?? '-'} />
+          <Row k="Event type" v={inputs.reason ?? '-'} />
           <hr />
-          <Row k="Pre-event exposure" v={`${inputs.preEventExposureDisplay ?? '—'} ${inputs.symbol ?? ''}`} />
+          <Row k="Pre-event exposure" v={`${inputs.preEventExposureDisplay ?? '-'} ${inputs.symbol ?? ''}`} />
           <Row k="Multiplier" v={`${inputs.multiplierBefore ?? '?'} → ${inputs.multiplierAfter ?? '?'}`} />
-          <Row k="Dividend-created exposure" v={`${inputs.dividendExposureDisplay ?? '—'} ${inputs.symbol ?? ''}`} />
-          <Row k="Raw units routed" v={inputs.dividendRawAtomic ?? '—'} />
+          <Row k="Dividend-created exposure" v={`${inputs.dividendExposureDisplay ?? '-'} ${inputs.symbol ?? ''}`} />
+          <Row k="Raw units routed" v={inputs.dividendRawAtomic ?? '-'} />
           <hr />
-          <Row k="Routed to" v={inputs.destinationSymbol ?? '—'} className="equity" />
-          <Row k="Received" v={outputs.outputAmountResult ? formatRaw(outputs.outputAmountResult, inputs.destinationDecimals ?? 8, 8) : '—'} className="equity" />
+          <Row k="Routed to" v={inputs.destinationSymbol ?? '-'} className="equity" />
+          <Row k="Received" v={outputs.outputAmountResult ? formatRaw(outputs.outputAmountResult, inputs.destinationDecimals ?? 8, 8) : '-'} className="equity" />
           <Row k="Remaining source exposure"
-               v={`${outputs.exposureAfter ?? inputs.remainingExposureDisplay ?? '—'} ${inputs.symbol ?? ''} ${receipt.preserved === true ? '✓' : ''}`}
+               v={`${outputs.exposureAfter ?? inputs.remainingExposureDisplay ?? '-'} ${inputs.symbol ?? ''} ${receipt.preserved === true ? '✓' : ''}`}
                className={receipt.preserved === true ? 'preserved-yes' : ''} />
         </>
       ) : (
@@ -47,8 +47,8 @@ export default function Receipt({ receipt }) {
           <Row k="Safety buffer" v={formatUsd(inputs.safetyBufferAtomic)} />
           <Row k="Earnings harvested" v={formatUsd(inputs.harvestableAtomic)} className="preserved-yes" />
           <hr />
-          <Row k="Destination" v={inputs.destinationSymbol ?? '—'} className="equity" />
-          <Row k="Received" v={outputs.outputAmountResult ? formatRaw(outputs.outputAmountResult, inputs.destinationDecimals ?? 8, 8) : '—'} className="equity" />
+          <Row k="Destination" v={inputs.destinationSymbol ?? '-'} className="equity" />
+          <Row k="Received" v={outputs.outputAmountResult ? formatRaw(outputs.outputAmountResult, inputs.destinationDecimals ?? 8, 8) : '-'} className="equity" />
           <Row k="Principal used to buy" v={`${formatUsd('0')} ${!failed ? '✓' : ''}`} className={!failed ? 'preserved-yes' : ''} />
         </>
       )}
@@ -57,7 +57,7 @@ export default function Receipt({ receipt }) {
       {receipt.signature ? (
         <Row k="Solana tx" v={<a href={explorerUrl(receipt.signature)} target="_blank" rel="noreferrer">{shortAddress(receipt.signature, 8)}</a>} />
       ) : (
-        <Row k="Solana tx" v="— none —" />
+        <Row k="Solana tx" v="- none -" />
       )}
       <Row k="Timestamp" v={formatDateTime(receipt.createdAt)} />
       {receipt.error && <div className="notice bad" style={{ marginTop: 10 }}>{receipt.error}</div>}

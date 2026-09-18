@@ -1,0 +1,51 @@
+- generic [ref=e2]:
+  - link "Skip to content" [ref=e3] [cursor=pointer]:
+    - /url: "#main"
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - img "Kult Games" [ref=e8]
+        - generic [ref=e9]:
+          - generic [ref=e10]: Overflow
+          - generic [ref=e11]: Kult Games
+      - generic [ref=e13]:
+        - text: Phantom not detected
+        - link "Install" [ref=e17] [cursor=pointer]:
+          - /url: https://phantom.app/download
+  - generic [ref=e24]:
+    - generic [ref=e25]: "Backend unreachable: Failed to fetch"
+    - navigation "Primary" [ref=e26]:
+      - button "Earnings rules" [ref=e27] [cursor=pointer]
+      - button "Earnings built" [ref=e32] [cursor=pointer]
+      - button "Capital Firewall" [ref=e35] [cursor=pointer]
+      - button "Receipts" [active] [ref=e39] [cursor=pointer]
+      - button "Replay" [ref=e43] [cursor=pointer]
+    - generic [ref=e124]:
+      - paragraph [ref=e125]: How an execution is proven
+      - heading "Sign, confirm, prove." [level=2] [ref=e126]
+      - generic [ref=e127]:
+        - article [ref=e128]:
+          - generic [ref=e129]: "01"
+          - heading "You sign" [level=3] [ref=e130]
+          - paragraph [ref=e131]: Phantom approves the exact harvest. Overflow never holds a key and never trades unattended.
+        - article [ref=e132]:
+          - generic [ref=e133]: "02"
+          - heading "Solana confirms" [level=3] [ref=e134]
+          - paragraph [ref=e135]: The transfer finalizes on-chain. Status stays pending until confirmation, then the receipt is written.
+        - article [ref=e136]:
+          - generic [ref=e137]: "03"
+          - heading "Source survived" [level=3] [ref=e138]
+          - paragraph [ref=e139]: The receipt proves remaining exposure still meets the floor, and names the destination that was credited.
+    - generic [ref=e141]:
+      - generic [ref=e142]: Execution receipts
+      - paragraph [ref=e143]: "A receipt is the audit trail: source survived, destination credited, signature yours."
+    - generic [ref=e144]:
+      - img "Confirmed Solana execution receipt" [ref=e146]
+      - generic [ref=e147]: No executions yet
+      - generic [ref=e148]: A receipt appears here once a transaction confirms on Solana.
+    - contentinfo [ref=e72]:
+      - generic [ref=e73]:
+        - generic [ref=e75]: Overflow
+        - generic [ref=e76]: Kult Games
+      - strong [ref=e77]: Overflow preserves a source position and routes only the value it newly generates.
+      - text: For an xStocks dividend that means isolating exactly the raw Token-2022 quantity the multiplier change created; for Kamino it means spending only value above a stored principal floor.“Preserved” is an accounting and allocation rule, not a capital guarantee. USDC, Kamino, smart contracts, liquidity and tokenized-equity issuers all carry risk, and these xStocks mints carry Token-2022 transfer-hook, permanent-delegate and pausable extensions. Tokenized equities are not available in every jurisdiction; eligibility is your responsibility and is separate from technical routing. V1 is non-custodial and every execution is user-signed. Overflow never holds a key and never trades unattended. Not investment advice.

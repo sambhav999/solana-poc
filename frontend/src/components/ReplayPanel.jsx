@@ -45,7 +45,7 @@ export default function ReplayPanel() {
 
   return (
     <div className="card">
-      <div className="replay-banner">REPLAY MODE — HISTORICAL CORPORATE ACTION · NO TRANSACTION IS EXECUTED</div>
+      <div className="replay-banner">Replay mode. Historical corporate action. No transaction is executed.</div>
 
       <div className="grid2">
         <div className="field">

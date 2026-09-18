@@ -51,12 +51,12 @@ export default function PrincipalFlow({ rule, evaluation, totalInvestedAtomic = 
 
         <div className="flow-facts">
           <div className="flow-fact">
-            <span className="k">Principal floor — never moves</span>
+            <span className="k">Principal floor - never moves</span>
             <span className="v locked">{formatUsd(floor)}</span>
           </div>
           <div className="flow-fact">
             <span className="k">Kamino position value</span>
-            <span className="v">{redeemable > 0n ? formatUsd(redeemable) : '—'}</span>
+            <span className="v">{redeemable > 0n ? formatUsd(redeemable) : '-'}</span>
           </div>
           <div className="flow-fact">
             <span className="k">Yield above the line</span>
@@ -74,7 +74,7 @@ export default function PrincipalFlow({ rule, evaluation, totalInvestedAtomic = 
           <div>
             <div className="flow-fact" style={{ borderBottom: 'none', paddingBottom: 2 }}>
               <span className="k">
-                {ready ? 'Threshold reached — ready to invest' : `Next investment at ${formatUsd(threshold)}`}
+                {ready ? 'Threshold reached - ready to invest' : `Next investment at ${formatUsd(threshold)}`}
               </span>
               <span className="v flow" style={{ fontSize: 12 }}>{pct.toFixed(0)}%</span>
             </div>

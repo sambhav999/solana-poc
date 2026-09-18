@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Overflow">
+  <rect width="32" height="32" rx="10" fill="#5416e9"/>
+  <path fill="#fff" d="M9.2 7.4h6.4c3.55 0 5.7 1.95 5.7 5.05 0 2.12-1.08 3.7-3.02 4.48L22.8 24.6h-4.35l-3.05-6.55H13.1V24.6H9.2V7.4zm3.9 3.15v4.95h2.2c1.72 0 2.62-.88 2.62-2.48 0-1.58-.9-2.47-2.62-2.47H13.1z"/>
+</svg>

@@ -18,10 +18,17 @@ const FEATURE_SIGN_TX = 'solana:signTransaction';
 const FEATURE_SIGN_AND_SEND = 'solana:signAndSendTransaction';
 const FEATURE_SIGN_MESSAGE = 'solana:signMessage';
 
+// Solana-only for now: Phantom is the only wallet this app connects to.
+const SUPPORTED_WALLETS = ['Phantom'];
+
 export function listSolanaWallets() {
   const { get } = getWallets();
   return get().filter(
-    (w) => w.chains?.includes(SOLANA_MAINNET) && w.features?.[FEATURE_CONNECT] && w.features?.[FEATURE_SIGN_TX],
+    (w) =>
+      SUPPORTED_WALLETS.includes(w.name) &&
+      w.chains?.includes(SOLANA_MAINNET) &&
+      w.features?.[FEATURE_CONNECT] &&
+      w.features?.[FEATURE_SIGN_TX],
   );
 }
 

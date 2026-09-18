@@ -1,0 +1,68 @@
+- generic [ref=f4e2]:
+  - link "Skip to content" [ref=f4e3] [cursor=pointer]:
+    - /url: "#main"
+  - banner [ref=f4e4]:
+    - generic [ref=f4e5]:
+      - generic [ref=f4e6]:
+        - img "Kult Games" [ref=f4e8]
+        - generic [ref=f4e9]:
+          - generic [ref=f4e10]: Overflow
+          - generic [ref=f4e11]: Kult Games
+      - link "Install Phantom" [ref=f4e14] [cursor=pointer]:
+        - /url: https://phantom.app/download
+  - generic [ref=f4e15]:
+    - generic [ref=f4e16]:
+      - generic [ref=f4e17]: Solana
+      - heading [level=1] [ref=f4e19]:
+        - text: Keep the source.
+        - emphasis [ref=f4e20]: Program the earnings.
+      - paragraph [ref=f4e21]: Keep xStocks equity or Kamino USDC. Route only the dividend, or yield above the floor.
+    - generic [ref=f4e22]:
+      - img "Source stays locked. Earnings run through the Capital Firewall to the destination." [ref=f4e23]:
+        - generic [ref=f4e24]:
+          - generic [ref=f4e25]: Source
+          - generic [ref=f4e26]: stays locked
+        - generic [ref=f4e28]:
+          - generic [ref=f4e29]: Firewall
+          - generic [ref=f4e30]: price gate
+        - generic [ref=f4e36]:
+          - generic [ref=f4e37]: Destination
+          - generic [ref=f4e38]: earnings only
+      - generic [ref=f4e39]:
+        - generic [ref=f4e40]:
+          - generic [ref=f4e41]: Illustrative
+          - generic [ref=f4e43]: Yield above the floor
+          - generic [ref=f4e44]:
+            - generic [ref=f4e45]: Floor
+            - generic [ref=f4e46]: Yield
+            - generic [ref=f4e47]: Harvest
+          - generic [ref=f4e48]: "8.3"
+        - img "Yield above the floor" [ref=f4e49]
+  - generic [ref=f4e53]:
+    - status [ref=f4e54]: "Backend unreachable: Failed to fetch"
+    - generic [ref=f4e55]:
+      - generic [ref=f4e56]:
+        - heading "How a rule works" [level=2] [ref=f4e57]
+        - generic [ref=f4e58]:
+          - button "What stays" [ref=f4e59] [cursor=pointer]
+          - button "The gate" [ref=f4e62] [cursor=pointer]
+          - button "What moves" [ref=f4e65] [cursor=pointer]
+      - generic [ref=f4e69]:
+        - generic [ref=f4e70]: Your earnings rules
+        - paragraph [ref=f4e71]: Each rule watches one source and names one destination. Nothing moves until you review and sign.
+      - generic [ref=f4e73]:
+        - generic [ref=f4e74]: Connect Phantom to begin
+        - generic [ref=f4e75]: Connecting only shares an address. A later signature proves you control it, and still moves no funds.
+    - contentinfo [ref=f4e76]:
+      - generic [ref=f4e77]:
+        - generic [ref=f4e78]:
+          - generic [ref=f4e80]: Overflow
+          - generic [ref=f4e81]: Kult Games
+        - navigation "Footer" [ref=f4e82]:
+          - button "Earnings rules" [ref=f4e83] [cursor=pointer]
+          - button "Earnings built" [ref=f4e89] [cursor=pointer]
+          - button "Capital Firewall" [ref=f4e93] [cursor=pointer]
+          - button "Receipts" [ref=f4e98] [cursor=pointer]
+          - button "Replay" [ref=f4e103] [cursor=pointer]
+      - paragraph [ref=f4e108]: Overflow preserves a source position and routes only the value it newly generates. For an xStocks dividend that means isolating exactly the raw Token-2022 quantity the multiplier change created; for Kamino it means spending only value above a stored principal floor.
+      - paragraph [ref=f4e109]: “Preserved” is an accounting and allocation rule, not a capital guarantee. USDC, Kamino, smart contracts, liquidity and tokenized-equity issuers all carry risk, and these xStocks mints carry Token-2022 transfer-hook, permanent-delegate and pausable extensions. Tokenized equities are not available in every jurisdiction; eligibility is your responsibility and is separate from technical routing. V1 is non-custodial and every execution is user-signed. Overflow never holds a key and never trades unattended. Not investment advice.

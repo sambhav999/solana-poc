@@ -1,0 +1,59 @@
+- generic [ref=e2]:
+  - link "Skip to content" [ref=e3] [cursor=pointer]:
+    - /url: "#main"
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - img "Kult Games" [ref=e8]
+        - generic [ref=e9]:
+          - generic [ref=e10]: Overflow
+          - generic [ref=e11]: Kult Games
+      - generic [ref=e13]:
+        - text: Phantom not detected
+        - link "Install" [ref=e17] [cursor=pointer]:
+          - /url: https://phantom.app/download
+  - generic [ref=e24]:
+    - generic [ref=e25]: "Backend unreachable: Failed to fetch"
+    - navigation "Primary" [ref=e26]:
+      - button "Earnings rules" [ref=e27] [cursor=pointer]
+      - button "Earnings built" [ref=e32] [cursor=pointer]
+      - button "Capital Firewall" [ref=e35] [cursor=pointer]
+      - button "Receipts" [ref=e39] [cursor=pointer]
+      - button "Replay" [active] [ref=e43] [cursor=pointer]
+    - generic [ref=e149]:
+      - paragraph [ref=e150]: How replay stays honest
+      - heading "History, hypothetical, unsigned." [level=2] [ref=e151]
+      - generic [ref=e152]:
+        - article [ref=e153]:
+          - generic [ref=e154]: "01"
+          - heading "Real history" [level=3] [ref=e155]
+          - paragraph [ref=e156]: Corporate actions and multipliers are historical. Replay does not invent events to make the maths look kind.
+        - article [ref=e157]:
+          - generic [ref=e158]: "02"
+          - heading "Hypothetical balance" [level=3] [ref=e159]
+          - paragraph [ref=e160]: You state a holding. No live wallet is read, and no position is implied on-chain.
+        - article [ref=e161]:
+          - generic [ref=e162]: "03"
+          - heading "Nothing is signed" [level=3] [ref=e163]
+          - paragraph [ref=e164]: The formula runs locally. Splits are refused. A naive “multiplier went up” path is shown only as a warning.
+    - generic [ref=e166]:
+      - generic [ref=e167]: Replay a real corporate action
+      - paragraph [ref=e168]: Run the extraction formula on historical dividends and splits. Replay never signs and never claims a swap occurred.
+    - generic [ref=e169]:
+      - generic [ref=e170]: Replay mode. Historical corporate action. No transaction is executed.
+      - generic [ref=e171]:
+        - generic [ref=e172]:
+          - generic [ref=e173]: xStock symbol
+          - textbox "MRKx, KLACx, NFLXx…" [ref=e175]: MRKx
+          - generic [ref=e176]: Try MRKx for dividends, or KLACx / NFLXx for a 10:1 split.
+        - generic [ref=e177]:
+          - generic [ref=e178]: Hypothetical holding (display units)
+          - spinbutton [ref=e179]: "10"
+          - generic [ref=e180]: Stated as hypothetical. No wallet held this position.
+      - generic [ref=e181]: Failed to fetch
+    - contentinfo [ref=e72]:
+      - generic [ref=e73]:
+        - generic [ref=e75]: Overflow
+        - generic [ref=e76]: Kult Games
+      - strong [ref=e77]: Overflow preserves a source position and routes only the value it newly generates.
+      - text: For an xStocks dividend that means isolating exactly the raw Token-2022 quantity the multiplier change created; for Kamino it means spending only value above a stored principal floor.“Preserved” is an accounting and allocation rule, not a capital guarantee. USDC, Kamino, smart contracts, liquidity and tokenized-equity issuers all carry risk, and these xStocks mints carry Token-2022 transfer-hook, permanent-delegate and pausable extensions. Tokenized equities are not available in every jurisdiction; eligibility is your responsibility and is separate from technical routing. V1 is non-custodial and every execution is user-signed. Overflow never holds a key and never trades unattended. Not investment advice.

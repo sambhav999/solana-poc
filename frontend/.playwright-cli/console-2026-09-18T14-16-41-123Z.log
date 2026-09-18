@@ -1,0 +1,84 @@
+[    2836ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://localhost:5174/node_modules/.vite/deps/chunk-KVMAXHTM.js?v=6167bee1:21608
+[    3451ms] [ERROR] Access to fetch at 'http://localhost:8787/api/health' from origin 'http://localhost:5174' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: The 'Access-Control-Allow-Origin' header has a value 'http://localhost:5173' that is not equal to the supplied origin. Have the server send the header with a valid value. @ http://localhost:5174/:0
+[    3451ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8787/api/health:0
+[    3457ms] [ERROR] Access to fetch at 'http://localhost:8787/api/assets/destinations' from origin 'http://localhost:5174' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: The 'Access-Control-Allow-Origin' header has a value 'http://localhost:5173' that is not equal to the supplied origin. Have the server send the header with a valid value. @ http://localhost:5174/:0
+[    3457ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8787/api/assets/destinations:0
+[    3615ms] [ERROR] Access to fetch at 'http://localhost:8787/api/health' from origin 'http://localhost:5174' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: The 'Access-Control-Allow-Origin' header has a value 'http://localhost:5173' that is not equal to the supplied origin. Have the server send the header with a valid value. @ http://localhost:5174/:0
+[    3615ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8787/api/health:0
+[    3633ms] [ERROR] Access to fetch at 'http://localhost:8787/api/assets/destinations' from origin 'http://localhost:5174' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: The 'Access-Control-Allow-Origin' header has a value 'http://localhost:5173' that is not equal to the supplied origin. Have the server send the header with a valid value. @ http://localhost:5174/:0
+[    3633ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8787/api/assets/destinations:0
+[  348694ms] [ERROR] Access to fetch at 'http://localhost:8787/api/health' from origin 'http://localhost:5174' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: The 'Access-Control-Allow-Origin' header has a value 'http://localhost:5173' that is not equal to the supplied origin. Have the server send the header with a valid value. @ http://localhost:5174/:0
+[  348694ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8787/api/health:0
+[  348695ms] [ERROR] Access to fetch at 'http://localhost:8787/api/assets/destinations' from origin 'http://localhost:5174' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: The 'Access-Control-Allow-Origin' header has a value 'http://localhost:5173' that is not equal to the supplied origin. Have the server send the header with a valid value. @ http://localhost:5174/:0
+[  348695ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8787/api/assets/destinations:0
+[  355650ms] [ERROR] Access to fetch at 'http://localhost:8787/api/health' from origin 'http://localhost:5174' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: The 'Access-Control-Allow-Origin' header has a value 'http://localhost:5173' that is not equal to the supplied origin. Have the server send the header with a valid value. @ http://localhost:5174/:0
+[  355650ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8787/api/health:0
+[  355650ms] [ERROR] Access to fetch at 'http://localhost:8787/api/assets/destinations' from origin 'http://localhost:5174' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: The 'Access-Control-Allow-Origin' header has a value 'http://localhost:5173' that is not equal to the supplied origin. Have the server send the header with a valid value. @ http://localhost:5174/:0
+[  355650ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8787/api/assets/destinations:0
+[  355650ms] [ERROR] Access to fetch at 'http://localhost:8787/api/health' from origin 'http://localhost:5174' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: The 'Access-Control-Allow-Origin' header has a value 'http://localhost:5173' that is not equal to the supplied origin. Have the server send the header with a valid value. @ http://localhost:5174/:0
+[  355650ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8787/api/health:0
+[  355650ms] [ERROR] Access to fetch at 'http://localhost:8787/api/assets/destinations' from origin 'http://localhost:5174' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: The 'Access-Control-Allow-Origin' header has a value 'http://localhost:5173' that is not equal to the supplied origin. Have the server send the header with a valid value. @ http://localhost:5174/:0
+[  355650ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8787/api/assets/destinations:0
+[  372673ms] [ERROR] Access to fetch at 'http://localhost:8787/api/health' from origin 'http://localhost:5174' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: The 'Access-Control-Allow-Origin' header has a value 'http://localhost:5173' that is not equal to the supplied origin. Have the server send the header with a valid value. @ http://localhost:5174/:0
+[  372673ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8787/api/health:0
+[  372674ms] [ERROR] Access to fetch at 'http://localhost:8787/api/assets/destinations' from origin 'http://localhost:5174' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: The 'Access-Control-Allow-Origin' header has a value 'http://localhost:5173' that is not equal to the supplied origin. Have the server send the header with a valid value. @ http://localhost:5174/:0
+[  372674ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8787/api/assets/destinations:0
+[  372674ms] [ERROR] Access to fetch at 'http://localhost:8787/api/health' from origin 'http://localhost:5174' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: The 'Access-Control-Allow-Origin' header has a value 'http://localhost:5173' that is not equal to the supplied origin. Have the server send the header with a valid value. @ http://localhost:5174/:0
+[  372674ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8787/api/health:0
+[  372674ms] [ERROR] Access to fetch at 'http://localhost:8787/api/assets/destinations' from origin 'http://localhost:5174' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: The 'Access-Control-Allow-Origin' header has a value 'http://localhost:5173' that is not equal to the supplied origin. Have the server send the header with a valid value. @ http://localhost:5174/:0
+[  372674ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8787/api/assets/destinations:0
+[  384342ms] [ERROR] Access to fetch at 'http://localhost:8787/api/health' from origin 'http://localhost:5174' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: The 'Access-Control-Allow-Origin' header has a value 'http://localhost:5173' that is not equal to the supplied origin. Have the server send the header with a valid value. @ http://localhost:5174/:0
+[  384342ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8787/api/health:0
+[  384342ms] [ERROR] Access to fetch at 'http://localhost:8787/api/assets/destinations' from origin 'http://localhost:5174' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: The 'Access-Control-Allow-Origin' header has a value 'http://localhost:5173' that is not equal to the supplied origin. Have the server send the header with a valid value. @ http://localhost:5174/:0
+[  384342ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8787/api/assets/destinations:0
+[  385560ms] ReferenceError: NavList is not defined
+    at App (http://localhost:5174/src/App.jsx?t=1789741386611:776:13)
+    at renderWithHooks (http://localhost:5174/node_modules/.vite/deps/chunk-KVMAXHTM.js?v=6167bee1:11596:26)
+    at updateFunctionComponent (http://localhost:5174/node_modules/.vite/deps/chunk-KVMAXHTM.js?v=6167bee1:14630:28)
+    at beginWork (http://localhost:5174/node_modules/.vite/deps/chunk-KVMAXHTM.js?v=6167bee1:15972:22)
+    at HTMLUnknownElement.callCallback2 (http://localhost:5174/node_modules/.vite/deps/chunk-KVMAXHTM.js?v=6167bee1:3680:22)
+    at Object.invokeGuardedCallbackDev (http://localhost:5174/node_modules/.vite/deps/chunk-KVMAXHTM.js?v=6167bee1:3705:24)
+    at invokeGuardedCallback (http://localhost:5174/node_modules/.vite/deps/chunk-KVMAXHTM.js?v=6167bee1:3739:39)
+    at beginWork$1 (http://localhost:5174/node_modules/.vite/deps/chunk-KVMAXHTM.js?v=6167bee1:19818:15)
+    at performUnitOfWork (http://localhost:5174/node_modules/.vite/deps/chunk-KVMAXHTM.js?v=6167bee1:19251:20)
+    at workLoopSync (http://localhost:5174/node_modules/.vite/deps/chunk-KVMAXHTM.js?v=6167bee1:19190:13)
+[  385560ms] ReferenceError: NavList is not defined
+    at App (http://localhost:5174/src/App.jsx?t=1789741386611:776:13)
+    at renderWithHooks (http://localhost:5174/node_modules/.vite/deps/chunk-KVMAXHTM.js?v=6167bee1:11596:26)
+    at updateFunctionComponent (http://localhost:5174/node_modules/.vite/deps/chunk-KVMAXHTM.js?v=6167bee1:14630:28)
+    at beginWork (http://localhost:5174/node_modules/.vite/deps/chunk-KVMAXHTM.js?v=6167bee1:15972:22)
+    at HTMLUnknownElement.callCallback2 (http://localhost:5174/node_modules/.vite/deps/chunk-KVMAXHTM.js?v=6167bee1:3680:22)
+    at Object.invokeGuardedCallbackDev (http://localhost:5174/node_modules/.vite/deps/chunk-KVMAXHTM.js?v=6167bee1:3705:24)
+    at invokeGuardedCallback (http://localhost:5174/node_modules/.vite/deps/chunk-KVMAXHTM.js?v=6167bee1:3739:39)
+    at beginWork$1 (http://localhost:5174/node_modules/.vite/deps/chunk-KVMAXHTM.js?v=6167bee1:19818:15)
+    at performUnitOfWork (http://localhost:5174/node_modules/.vite/deps/chunk-KVMAXHTM.js?v=6167bee1:19251:20)
+    at workLoopSync (http://localhost:5174/node_modules/.vite/deps/chunk-KVMAXHTM.js?v=6167bee1:19190:13)
+[  385557ms] [ERROR] The above error occurred in the <App> component:
+
+    at App (http://localhost:5174/src/App.jsx?t=1789741386611:137:39)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries. @ http://localhost:5174/node_modules/.vite/deps/chunk-KVMAXHTM.js?v=6167bee1:14079
+[  385560ms] ReferenceError: NavList is not defined
+    at App (http://localhost:5174/src/App.jsx?t=1789741386611:776:13)
+    at renderWithHooks (http://localhost:5174/node_modules/.vite/deps/chunk-KVMAXHTM.js?v=6167bee1:11596:26)
+    at updateFunctionComponent (http://localhost:5174/node_modules/.vite/deps/chunk-KVMAXHTM.js?v=6167bee1:14630:28)
+    at beginWork (http://localhost:5174/node_modules/.vite/deps/chunk-KVMAXHTM.js?v=6167bee1:15972:22)
+    at beginWork$1 (http://localhost:5174/node_modules/.vite/deps/chunk-KVMAXHTM.js?v=6167bee1:19806:22)
+    at performUnitOfWork (http://localhost:5174/node_modules/.vite/deps/chunk-KVMAXHTM.js?v=6167bee1:19251:20)
+    at workLoopSync (http://localhost:5174/node_modules/.vite/deps/chunk-KVMAXHTM.js?v=6167bee1:19190:13)
+    at renderRootSync (http://localhost:5174/node_modules/.vite/deps/chunk-KVMAXHTM.js?v=6167bee1:19169:15)
+    at recoverFromConcurrentError (http://localhost:5174/node_modules/.vite/deps/chunk-KVMAXHTM.js?v=6167bee1:18786:28)
+    at performSyncWorkOnRoot (http://localhost:5174/node_modules/.vite/deps/chunk-KVMAXHTM.js?v=6167bee1:18932:28)
+[  390664ms] [ERROR] Access to fetch at 'http://localhost:8787/api/health' from origin 'http://localhost:5174' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: The 'Access-Control-Allow-Origin' header has a value 'http://localhost:5173' that is not equal to the supplied origin. Have the server send the header with a valid value. @ http://localhost:5174/:0
+[  390664ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8787/api/health:0
+[  390664ms] [ERROR] Access to fetch at 'http://localhost:8787/api/assets/destinations' from origin 'http://localhost:5174' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: The 'Access-Control-Allow-Origin' header has a value 'http://localhost:5173' that is not equal to the supplied origin. Have the server send the header with a valid value. @ http://localhost:5174/:0
+[  390664ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8787/api/assets/destinations:0
+[  390664ms] [ERROR] Access to fetch at 'http://localhost:8787/api/health' from origin 'http://localhost:5174' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: The 'Access-Control-Allow-Origin' header has a value 'http://localhost:5173' that is not equal to the supplied origin. Have the server send the header with a valid value. @ http://localhost:5174/:0
+[  390664ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8787/api/health:0
+[  390664ms] [ERROR] Access to fetch at 'http://localhost:8787/api/assets/destinations' from origin 'http://localhost:5174' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: The 'Access-Control-Allow-Origin' header has a value 'http://localhost:5173' that is not equal to the supplied origin. Have the server send the header with a valid value. @ http://localhost:5174/:0
+[  390664ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8787/api/assets/destinations:0
+[  391166ms] [ERROR] Access to fetch at 'http://localhost:8787/api/health' from origin 'http://localhost:5174' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: The 'Access-Control-Allow-Origin' header has a value 'http://localhost:5173' that is not equal to the supplied origin. Have the server send the header with a valid value. @ http://localhost:5174/:0
+[  391166ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8787/api/health:0
+[  391166ms] [ERROR] Access to fetch at 'http://localhost:8787/api/assets/destinations' from origin 'http://localhost:5174' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: The 'Access-Control-Allow-Origin' header has a value 'http://localhost:5173' that is not equal to the supplied origin. Have the server send the header with a valid value. @ http://localhost:5174/:0
+[  391166ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8787/api/assets/destinations:0

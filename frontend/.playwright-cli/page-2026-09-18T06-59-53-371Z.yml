@@ -1,0 +1,17 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]: Overflow
+      - generic [ref=e7]: Keep the source. Program the earnings.
+    - generic [ref=e8]: No Solana wallet detected
+  - navigation [ref=e10]:
+    - button "Earnings rules" [ref=e11] [cursor=pointer]
+    - button "Earnings built" [ref=e12] [cursor=pointer]
+    - button "Capital Firewall" [ref=e13] [cursor=pointer]
+    - button "Receipts" [ref=e14] [cursor=pointer]
+    - button "Replay" [ref=e15] [cursor=pointer]
+  - generic [ref=e16]: Your earnings rules
+  - generic [ref=e18]: Connect a Solana wallet to create and run earnings rules.
+  - contentinfo [ref=e19]:
+    - strong [ref=e20]: Overflow preserves a source position and routes only the value it newly generates.
+    - text: For an xStocks dividend that means isolating exactly the raw Token-2022 quantity the multiplier change created; for Kamino it means spending only value above a stored principal floor.“Preserved” is an accounting and allocation rule, not a capital guarantee. USDC, Kamino, smart contracts, liquidity and tokenized-equity issuers all carry risk, and these xStocks mints carry Token-2022 transfer-hook, permanent-delegate and pausable extensions. Tokenized equities are not available in every jurisdiction; eligibility is your responsibility and is separate from technical routing. V1 is non-custodial and every execution is user-signed — Overflow never holds a key and never trades unattended. Not investment advice.

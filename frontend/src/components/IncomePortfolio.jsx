@@ -1,4 +1,5 @@
 import { formatUsd } from '../lib/format.js';
+import { Mark } from './icons.jsx';
 
 /**
  * "Your Earnings Built This" and "Earnings Retained".
@@ -24,6 +25,7 @@ export default function IncomePortfolio({ portfolio }) {
 
       <div className="income-hero">
         <div className="income-card built">
+          <Mark kind="dest" size={52} className="income-thumb" />
           <div className="income-label">Your earnings built this</div>
           <div className="income-value">{formatUsd(built.verifiedAtomic)}</div>
           <div className="income-sub">
@@ -36,11 +38,12 @@ export default function IncomePortfolio({ portfolio }) {
           </div>
           <div className="split-legend">
             <span><span className="dot" style={{ background: 'var(--equity)' }} />Public stocks {formatUsd(pub.toString())}</span>
-            <span><span className="dot" style={{ background: '#7a5bb0' }} />Private markets {formatUsd(priv.toString())}</span>
+            <span><span className="dot" style={{ background: 'var(--primary)' }} />Private markets {formatUsd(priv.toString())}</span>
           </div>
         </div>
 
         <div className="income-card retained">
+          <Mark kind="shield" size={52} className="income-thumb" />
           <div className="income-label">Earnings retained</div>
           <div className="income-value">{formatUsd(retained.totalAtomic)}</div>
           <div className="income-sub">
@@ -48,7 +51,7 @@ export default function IncomePortfolio({ portfolio }) {
           </div>
           <div className="hint" style={{ marginTop: 10 }}>
             Every dollar here traces to a stored decision. Blocks caused by missing data or an outage
-            are recorded but not counted — only a judgement about price is.
+            are recorded but not counted - only a judgement about price is.
           </div>
           <div className="income-sub" style={{ marginTop: 8 }}>
             {firewall.decisions} decisions · {firewall.passed} passed · {firewall.blocked} blocked

@@ -117,19 +117,19 @@ export default function ReadyPanel({ rule, evaluation, connection, onExecuted })
           <Meta k="Expected receive" v={`${formatRaw(quote.outAmount, rule.destinationDecimals ?? 8, 8)} ${rule.destinationSymbol}`} equity />
           <Meta k="Price impact" v={pctFromDecimalString(quote.priceImpactPct)} />
           <Meta k="Max slippage" v={`${rule.maxSlippageBps} bps`} />
-          <Meta k="Route" v={(quote.routePlan || []).map((r) => r.label).join(' → ') || '—'} />
+          <Meta k="Route" v={(quote.routePlan || []).map((r) => r.label).join(' → ') || '-'} />
         </div>
       )}
 
       {prepared?.stage === 'WITHDRAW' && (
         <div className="notice warn">
-          Step 1 of 2 — withdraw {formatUsd(prepared.context?.harvestableAtomic)} of earnings from Kamino.
+          Step 1 of 2 - withdraw {formatUsd(prepared.context?.harvestableAtomic)} of earnings from Kamino.
           The swap is a separate signature once this confirms. Your principal floor does not move.
         </div>
       )}
       {withdrawSignature && prepared?.stage !== 'WITHDRAW' && (
         <div className="notice ok">
-          Step 1 confirmed — earnings are out of the vault and recorded. Step 2 of 2: swap to {rule.destinationSymbol}.
+          Step 1 confirmed - earnings are out of the vault and recorded. Step 2 of 2: swap to {rule.destinationSymbol}.
         </div>
       )}
       {prepared?.simulation && !prepared.simulation.ok && (
@@ -139,7 +139,7 @@ export default function ReadyPanel({ rule, evaluation, connection, onExecuted })
 
       {blocked && (
         <div className="blocked-hero">
-          <div className="blocked-title">EXECUTION BLOCKED — CAPITAL FIREWALL</div>
+          <div className="blocked-title">EXECUTION BLOCKED - CAPITAL FIREWALL</div>
           <div style={{ fontSize: 13, marginTop: 6 }}>{blocked.reason}</div>
           <PremiumGauge premiumBps={blocked.premiumBps} maxPremiumBps={blocked.maxPremiumBps}
                         minPremiumBps={blocked.minPremiumBps} decision="BLOCK" />

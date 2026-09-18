@@ -1,0 +1,52 @@
+- generic [ref=e2]:
+  - link "Skip to content" [ref=e3] [cursor=pointer]:
+    - /url: "#main"
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - img "Kult Games" [ref=e8]
+        - generic [ref=e9]:
+          - generic [ref=e10]: Overflow
+          - generic [ref=e11]: Kult Games
+      - generic [ref=e13]:
+        - text: Phantom not detected
+        - link "Install" [ref=e17] [cursor=pointer]:
+          - /url: https://phantom.app/download
+  - generic [ref=e55]:
+    - status [ref=e56]: "Backend unreachable: Failed to fetch"
+    - navigation "Primary" [ref=e57]:
+      - button "Earnings rules" [ref=e58] [cursor=pointer]
+      - button "Earnings built" [ref=e63] [cursor=pointer]
+      - button "Capital Firewall" [active] [ref=e66] [cursor=pointer]
+      - button "Receipts" [ref=e70] [cursor=pointer]
+      - button "Replay" [ref=e74] [cursor=pointer]
+    - generic [ref=e101]:
+      - heading "How the Capital Firewall decides" [level=2] [ref=e102]
+      - generic [ref=e103]:
+        - article [ref=e104]:
+          - heading "Read the quote" [level=3] [ref=e105]
+        - article [ref=e106]:
+          - heading "Apply the band" [level=3] [ref=e107]
+        - article [ref=e108]:
+          - heading "Pass or retain" [level=3] [ref=e109]
+    - generic [ref=e111]:
+      - generic [ref=e112]:
+        - generic [ref=e113]: Illustrative
+        - generic [ref=e115]: Quote vs policy band
+        - generic [ref=e116]:
+          - generic [ref=e117]: Band
+          - generic [ref=e118]: Quote
+        - generic [ref=e119]: +87 bps
+      - img "Quote vs policy band" [ref=e120]
+    - generic [ref=e125]:
+      - generic [ref=e126]: Capital Firewall decisions
+      - paragraph [ref=e127]: Every price-policy call is stored with its evidence. Blocks from missing data are logged, not counted as retained.
+    - generic [ref=e129]:
+      - generic [ref=e130]: Sign in to see firewall decisions
+      - generic [ref=e131]: Passed and blocked calls appear here once a rule with a market-price policy reaches execution.
+    - contentinfo [ref=e95]:
+      - generic [ref=e96]:
+        - generic [ref=e98]: Overflow
+        - generic [ref=e99]: Kult Games
+      - strong [ref=e100]: Overflow preserves a source position and routes only the value it newly generates.
+      - text: For an xStocks dividend that means isolating exactly the raw Token-2022 quantity the multiplier change created; for Kamino it means spending only value above a stored principal floor.“Preserved” is an accounting and allocation rule, not a capital guarantee. USDC, Kamino, smart contracts, liquidity and tokenized-equity issuers all carry risk, and these xStocks mints carry Token-2022 transfer-hook, permanent-delegate and pausable extensions. Tokenized equities are not available in every jurisdiction; eligibility is your responsibility and is separate from technical routing. V1 is non-custodial and every execution is user-signed. Overflow never holds a key and never trades unattended. Not investment advice.

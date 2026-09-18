@@ -8,7 +8,7 @@ export default function PreviewPanel({ preview, rule, onClose }) {
   const blocked = preview.outcome === 'WOULD_BE_BLOCKED';
   return (
     <div className="card tight" style={{ marginTop: 12, borderStyle: 'dashed' }}>
-      <div className="replay-banner" style={{ marginBottom: 10 }}>PREVIEW — NOTHING HAS BEEN PREPARED, SIGNED OR MOVED</div>
+      <div className="replay-banner" style={{ marginBottom: 10 }}>PREVIEW - NOTHING HAS BEEN PREPARED, SIGNED OR MOVED</div>
 
       {!preview.wouldExecute && !fw && (
         <div className="notice">{preview.reason}</div>
