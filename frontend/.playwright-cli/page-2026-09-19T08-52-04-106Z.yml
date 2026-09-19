@@ -1,0 +1,75 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - link "Skip to content" [ref=e3] [cursor=pointer]:
+      - /url: "#main"
+    - banner [ref=e4]:
+      - generic [ref=e5]:
+        - generic [ref=e6]:
+          - img "Overflow" [ref=e8]
+          - generic [ref=e9]:
+            - generic [ref=e10]: Overflow
+            - generic [ref=e11]: Keep the source
+        - button "Connect Phantom" [active] [ref=e13] [cursor=pointer]
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - generic [ref=e19]: Live on mainnet-beta
+        - heading [level=1] [ref=e21]:
+          - text: Keep the source.
+          - emphasis [ref=e22]: Program the earnings.
+        - paragraph [ref=e23]: Keep xStocks equity or Kamino USDC. Route only the dividend, or yield above the floor.
+      - generic [ref=e24]:
+        - img "Source stays locked. Earnings run through the Capital Firewall to the destination." [ref=e25]:
+          - generic [ref=e26]:
+            - generic [ref=e27]: Source
+            - generic [ref=e28]: stays locked
+          - generic [ref=e30]:
+            - generic [ref=e31]: Firewall
+            - generic [ref=e32]: price gate
+          - generic [ref=e38]:
+            - generic [ref=e39]: Destination
+            - generic [ref=e40]: earnings only
+        - generic [ref=e41]:
+          - generic [ref=e42]:
+            - generic [ref=e43]: Illustrative
+            - generic [ref=e45]: Yield above the floor
+            - generic [ref=e46]:
+              - generic [ref=e47]: Floor
+              - generic [ref=e48]: Yield
+              - generic [ref=e49]: Harvest
+            - generic [ref=e50]: "11.8"
+          - img "Yield above the floor" [ref=e51]
+    - generic [ref=e55]:
+      - generic [ref=e56]:
+        - generic [ref=e57]:
+          - heading "How a rule works" [level=2] [ref=e58]
+          - generic [ref=e59]:
+            - button "What stays" [ref=e60] [cursor=pointer]
+            - button "The gate" [ref=e63] [cursor=pointer]
+            - button "What moves" [ref=e66] [cursor=pointer]
+        - generic [ref=e70]:
+          - generic [ref=e71]: Your earnings rules
+          - paragraph [ref=e72]: Each rule watches one source and names one destination. Nothing moves until you review and sign.
+        - generic [ref=e74]:
+          - generic [ref=e75]: Connect Phantom to begin
+          - generic [ref=e76]: Connecting only shares an address. A later signature proves you control it, and still moves no funds.
+          - button "Connect Phantom" [ref=e77] [cursor=pointer]
+      - contentinfo [ref=e78]:
+        - generic [ref=e81]:
+          - generic [ref=e82]: Overflow
+          - generic [ref=e83]: Keep the source
+        - generic [ref=e84]:
+          - paragraph [ref=e85]: Overflow preserves a source position and routes only the value it newly generates. For an xStocks dividend that means isolating exactly the raw Token-2022 quantity the multiplier change created; for Kamino it means spending only value above a stored principal floor.
+          - paragraph [ref=e86]: “Preserved” is an accounting and allocation rule, not a capital guarantee. USDC, Kamino, smart contracts, liquidity and tokenized-equity issuers all carry risk, and these xStocks mints carry Token-2022 transfer-hook, permanent-delegate and pausable extensions. Tokenized equities are not available in every jurisdiction; eligibility is your responsibility and is separate from technical routing. V1 is non-custodial and every execution is user-signed. Overflow never holds a key and never trades unattended. Not investment advice.
+  - dialog "Phantom could not connect":
+    - button "Close" [ref=e90] [cursor=pointer]
+    - generic [ref=e91]:
+      - heading "Phantom could not connect" [level=2] [ref=e92]
+      - paragraph [ref=e93]: This failed in Phantom, before any API call (wallet-connect).
+      - paragraph [ref=e94]: Phantom returned an internal error (code -32603). Overflow never reached the API.
+      - paragraph [ref=e95]: Unlock Phantom and enable Solana. Then open Settings → Trusted Apps, disconnect this site, reload the page, and try again. Cloudflare workers.dev hosts sometimes trip Phantom; Open in Phantom or localhost usually works when the extension popup will not.
+      - generic [ref=e96]: "{ \"name\": \"Error\", \"message\": \"Unexpected error\", \"code\": -32603, \"stage\": \"wallet-connect\", \"source\": \"phantom\", \"stack\": \"Error: Unexpected error\\n at eval (eval at <anonymous> (eval at evaluate (:311:30)), <anonymous>:1:37)\\n at eval (eval at <anonymous> (eval at evaluate (:311:30)), <anonymous>:1:348)\\n at eval (eval at evaluate (:311:30), <anonymous>:2:29)\\n at UtilityScript.evaluate (<anonymous>:313:16)\\n at UtilityScript.<anonymous> (<anonymous>:1:44)\", \"keys\": [ \"stack\", \"message\", \"code\", \"stage\", \"source\" ], \"json\": { \"stack\": \"Error: Unexpected error\\n at eval (eval at <anonymous> (eval at evaluate (:311:30)), <anonymous>:1:37)\\n at eval (eval at <anonymous> (eval at evaluate (:311:30)), <anonymous>:1:348)\\n at eval (eval at evaluate (:311:30), <anonymous>:2:29)\\n at UtilityScript.evaluate (<anonymous>:313:16)\\n at UtilityScript.<anonymous> (<anonymous>:1:44)\", \"message\": \"Unexpected error\", \"code\": -32603, \"stage\": \"wallet-connect\", \"source\": \"phantom\" } }"
+      - generic [ref=e97]:
+        - button "Try again" [ref=e98] [cursor=pointer]
+        - link "Open in Phantom" [ref=e99] [cursor=pointer]:
+          - /url: https://phantom.app/ul/browse/http%3A%2F%2Flocalhost%3A5174%2F
+        - button "Close" [ref=e100] [cursor=pointer]

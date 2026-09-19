@@ -60,5 +60,12 @@ export function pctFromDecimalString(s, places = 4) {
   return `${n.toFixed(places)}%`;
 }
 
-export const explorerUrl = (signature) =>
-  `${import.meta.env.VITE_EXPLORER_BASE || 'https://solscan.io/tx'}/${signature}`;
+export const explorerUrl = (signature) => {
+  if (!signature) return '';
+  const base = (import.meta.env.VITE_EXPLORER_BASE || 'https://solscan.io/tx').replace(/\/$/, '');
+  const url = `${base}/${signature}`;
+  if (import.meta.env.VITE_SOLANA_CLUSTER === 'devnet' && url.includes('solscan.io')) {
+    return `${url}?cluster=devnet`;
+  }
+  return url;
+};

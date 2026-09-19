@@ -59,6 +59,9 @@ export default function Receipt({ receipt }) {
       ) : (
         <Row k="Solana tx" v="- none -" />
       )}
+      {receipt.onchainSignature && (
+        <Row k="Registry tx" v={<a href={explorerUrl(receipt.onchainSignature)} target="_blank" rel="noreferrer">{shortAddress(receipt.onchainSignature, 8)}</a>} />
+      )}
       <Row k="Timestamp" v={formatDateTime(receipt.createdAt)} />
       {receipt.error && <div className="notice bad" style={{ marginTop: 10 }}>{receipt.error}</div>}
       {status === 'PARTIAL' && (

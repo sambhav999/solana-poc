@@ -175,16 +175,25 @@ guarantee.
 │   adapters/ ─┬─ xstocks/  assets · multiplier · corporateActions                     │
 │              ├─ jupiter/  order → sign → execute   (API key stays here)              │
 │              ├─ kamino/   klend-sdk, dynamically loaded, degrades gracefully         │
-│              └─ solana/   dependency-free JSON-RPC reads                             │
+│              ├─ solana/   dependency-free JSON-RPC reads                             │
+│              └─ registry/ Overflow Receipt Registry encoder + PDA                    │
 │                                                                                       │
 │   db/  rules · snapshots · receipts · stranded_funds     (node:sqlite, no native deps)│
 │   poller/  corporate-action detection — never signs                                  │
+└──────────────────────────────────────────────────────────────────────────────────────┘
+                                        │
+┌───────────────────────────────────────▼──────────────────────────────────────────────┐
+│  programs/overflow-registry  create_rule + post_receipt PDAs  (holds no tokens)       │
 └──────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
 **The rule engine contains no protocol SDK calls.** Adapters return normalized data; the
 engine decides eligibility and emits an immutable execution intent. That boundary is what
 lets a new earnings source be added without touching the invariant.
+
+The Receipt Registry is a small Solana program. After a harvest confirms, the same wallet
+posts a one-time receipt PDA so the execution key cannot be recorded twice on chain.
+Until `OVERFLOW_REGISTRY_PROGRAM_ID` is set, the API skips those transactions.
 
 ---
 

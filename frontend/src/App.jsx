@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { api, onSessionLost } from './lib/api.js';
+import { requestPhantomConnect } from './lib/wallet.js';
 import WalletBar from './components/WalletBar.jsx';
 import RuleCard from './components/RuleCard.jsx';
 import CreateRule from './components/CreateRule.jsx';
 import ReplayPanel from './components/ReplayPanel.jsx';
 import Receipt from './components/Receipt.jsx';
+import TransactionLog from './components/TransactionLog.jsx';
 import Portfolio from './components/Portfolio.jsx';
 import IncomePortfolio from './components/IncomePortfolio.jsx';
 import FirewallDecisions from './components/FirewallDecisions.jsx';
@@ -129,6 +131,7 @@ export default function App() {
   const [destinations, setDestinations] = useState([]);
   const [rules, setRules] = useState([]);
   const [receipts, setReceipts] = useState([]);
+  const [transactions, setTransactions] = useState([]);
   const [tab, setTab] = useState('rules');
   const [creating, setCreating] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -149,15 +152,17 @@ export default function App() {
   }), []);
 
   const refresh = useCallback(async () => {
-    if (!connection || !signedIn) { setRules([]); setReceipts([]); setPortfolio(null); setDecisions([]); return; }
+    if (!connection || !signedIn) { setRules([]); setReceipts([]); setTransactions([]); setPortfolio(null); setDecisions([]); return; }
     setLoading(true);
     try {
-      const [r, rec] = await Promise.all([
+      const [r, rec, txs] = await Promise.all([
         api.listRules(),
         api.receipts().catch(() => ({ receipts: [] })),
+        api.transactions().catch(() => ({ transactions: [] })),
       ]);
       setRules(r.rules || []);
       setReceipts(rec.receipts || []);
+      setTransactions(txs.transactions || []);
       const [pf, dec] = await Promise.all([
         api.portfolio().catch(() => null),
         api.decisions().catch(() => ({ decisions: [] })),
@@ -302,7 +307,11 @@ export default function App() {
               mark="wallet"
               title="Connect Phantom to begin"
               sub="Connecting only shares an address. A later signature proves you control it, and still moves no funds."
-            />
+            >
+              <button type="button" className="btn primary" onClick={requestPhantomConnect}>
+                Connect Phantom
+              </button>
+            </EmptyState>
           )}
 
           {connection && !signedIn && (
@@ -391,18 +400,29 @@ export default function App() {
           <Stage title="How an execution is proven" items={GUIDES.receipts} variant="steps" />
           <div className="section-head">
             <div>
-              <div className="section-title">Execution receipts</div>
-              <p className="page-lead">A receipt is the audit trail: source survived, destination credited, signature yours.</p>
+              <div className="section-title">Transactions</div>
+              <p className="page-lead">Every signature from this wallet. Click a row to open Solscan.</p>
             </div>
           </div>
-          {!receipts.length ? (
-            <EmptyState
-              mark="receipt"
-              title="No executions yet"
-              sub="A receipt appears here once a transaction confirms on Solana."
-            />
-          ) : (
-            receipts.map((r) => <Receipt key={r.id} receipt={r} />)
+          {signedIn
+            ? <TransactionLog transactions={transactions} loading={loading} />
+            : (
+              <EmptyState
+                mark="receipt"
+                title="Sign in to see transactions"
+                sub="Harvests, rule registrations, and other signatures from this wallet open in the explorer on click."
+              />
+            )}
+          {signedIn && receipts.length > 0 && (
+            <>
+              <div className="section-head" style={{ marginTop: 28 }}>
+                <div>
+                  <div className="section-title">Execution receipts</div>
+                  <p className="page-lead">The audit trail for each harvest: source survived, destination credited, signature yours.</p>
+                </div>
+              </div>
+              {receipts.map((r) => <Receipt key={r.id} receipt={r} />)}
+            </>
           )}
         </>
       )}

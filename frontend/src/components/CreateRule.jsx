@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { api } from '../lib/api.js';
+import { settleCreateRuleOnchain } from '../lib/onchain.js';
 
 /**
  * The rule reads like an email filter. That framing is the product: the user is
@@ -50,7 +51,7 @@ export default function CreateRule({ connection, destinations, defaultKaminoVaul
     try {
       const [destinationProvider, destinationSymbol] = destinationKey.split(':');
       const source = check?.asset;
-      await api.createRule({
+      const created = await api.createRule({
         sourceType,
         sourceId: isDividend ? sourceSymbol : (kaminoVault || undefined),
         sourceSymbol: isDividend ? sourceSymbol : 'USDC',
@@ -68,6 +69,19 @@ export default function CreateRule({ connection, destinations, defaultKaminoVaul
         principalFloorSource: isDividend ? null : 'USER_CONFIRMED',
         kaminoVault: isDividend ? null : kaminoVault,
       });
+      try {
+        if (created.onchain?.available && created.onchain.transaction) {
+          await settleCreateRuleOnchain({
+            connection,
+            ruleId: created.rule.id,
+            prepared: created.onchain,
+          });
+        }
+      } catch (err) {
+        setError(`Rule saved. On-chain registry needs a retry: ${err.message}`);
+        onCreated();
+        return;
+      }
       onCreated();
     } catch (err) {
       setError(err.message);

@@ -1,0 +1,18 @@
+[package]
+name = "overflow-registry"
+version = "0.1.0"
+edition = "2021"
+description = "On-chain rule and receipt registry for Overflow. Holds no tokens."
+license = "MIT"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "overflow_registry"
+
+[features]
+no-entrypoint = []
+
+[dependencies]
+borsh = "1.5.7"
+solana-program = "1.18.26"
+thiserror = "1.0"

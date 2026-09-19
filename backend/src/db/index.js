@@ -229,6 +229,10 @@ function addColumns(d) {
     ['receipts', 'destination_category TEXT'],
     ['receipts', 'destination_symbol TEXT'],
     ['receipts', 'earnings_usd_atomic TEXT'],
+    ['rules', 'onchain_pda TEXT'],
+    ['rules', 'onchain_signature TEXT'],
+    ['receipts', 'onchain_pda TEXT'],
+    ['receipts', 'onchain_signature TEXT'],
   ];
   for (const [table, definition] of columns) {
     try { d.exec(`ALTER TABLE ${table} ADD COLUMN ${definition};`); } catch { /* already present */ }

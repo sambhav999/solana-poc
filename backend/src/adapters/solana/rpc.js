@@ -201,6 +201,17 @@ export async function simulateTransactionBase64(base64) {
   };
 }
 
+export async function getSignaturesForAddress(address, { limit = 40 } = {}) {
+  const rows = await rpc('getSignaturesForAddress', [address, { limit }]);
+  return (rows || []).map((r) => ({
+    signature: r.signature,
+    slot: r.slot ?? null,
+    err: r.err ?? null,
+    blockTime: r.blockTime ?? null,
+    confirmationStatus: r.confirmationStatus ?? null,
+  }));
+}
+
 export async function sendRawTransactionBase64(base64, { skipPreflight = false, maxRetries = 3 } = {}) {
   return rpc('sendTransaction', [
     base64,

@@ -11,6 +11,7 @@
     "dev": "node --watch src/index.js",
     "start": "node src/index.js",
     "test": "node --test test/*.test.js",
+    "test:registry": "cargo test --manifest-path ../programs/overflow-registry/Cargo.toml",
     "poll": "node -e \"import('./src/poller/poll.js').then(m=>m.pollOnce()).then(r=>console.log(JSON.stringify(r,null,2)))\"",
     "verify:xstocks": "node scripts/verify-xstocks.mjs",
     "verify:kamino": "node scripts/verify-kamino.mjs",
@@ -22,6 +23,7 @@
   "dependencies": {
     "@kamino-finance/farms-sdk": "^3.2.24",
     "@solana-program/compute-budget": "^0.8.0",
+    "@solana/kit": "^2.3.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0"

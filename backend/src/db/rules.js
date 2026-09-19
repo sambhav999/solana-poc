@@ -7,14 +7,15 @@ const COLUMNS = `id, wallet, source_type, source_id, source_mint, source_symbol,
   principal_floor_atomic, principal_floor_source, safety_buffer_atomic, kamino_vault,
   kamino_share_mint, created_at, updated_at,
   source_raw_baseline, vault_shares_baseline, baseline_updated_at, pause_reason,
-  destination_provider, destination_category, market_guard_mode, max_premium_bps, min_premium_bps`;
+  destination_provider, destination_category, market_guard_mode, max_premium_bps, min_premium_bps,
+  onchain_pda, onchain_signature`;
 
 export function createRule(input) {
   const db = getDb();
   const id = randomUUID();
   const ts = nowIso();
   db.prepare(`INSERT INTO rules (${COLUMNS}) VALUES (
-    ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?
+    ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?
   )`).run(
     id, input.wallet, input.sourceType, input.sourceId, input.sourceMint ?? null,
     input.sourceSymbol ?? null, input.sourceDecimals ?? null, input.earningsType,
@@ -30,6 +31,7 @@ export function createRule(input) {
     input.destinationProvider ?? 'XSTOCKS', input.destinationCategory ?? 'PUBLIC_STOCK',
     input.marketGuardMode ?? 'NONE',
     input.maxPremiumBps ?? null, input.minPremiumBps ?? null,
+    null, null,
   );
   return getRule(id);
 }
@@ -72,6 +74,8 @@ export function updateRule(id, patch) {
     marketGuardMode: 'market_guard_mode',
     maxPremiumBps: 'max_premium_bps',
     minPremiumBps: 'min_premium_bps',
+    onchainPda: 'onchain_pda',
+    onchainSignature: 'onchain_signature',
   };
   const sets = [];
   const values = [];
@@ -127,5 +131,7 @@ function hydrate(row) {
     marketGuardMode: row.market_guard_mode ?? 'NONE',
     maxPremiumBps: row.max_premium_bps,
     minPremiumBps: row.min_premium_bps,
+    onchainPda: row.onchain_pda ?? null,
+    onchainSignature: row.onchain_signature ?? null,
   };
 }

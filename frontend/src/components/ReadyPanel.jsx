@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { api } from '../lib/api.js';
 import { signTransactionBase64 } from '../lib/wallet.js';
+import { settleReceiptOnchain } from '../lib/onchain.js';
 import { formatRaw, formatUsd, pctFromDecimalString } from '../lib/format.js';
 import ExposureBar from './ExposureBar.jsx';
 import PremiumGauge from './PremiumGauge.jsx';
@@ -76,6 +77,19 @@ export default function ReadyPanel({ rule, evaluation, connection, onExecuted })
         intentId: prepared.intentId,
         context: { ...context, sweptEntries: prepared.evaluation?.sweptEntries ?? [] },
       });
+      if (result.onchain?.available && result.onchain.transaction && result.receipt?.id) {
+        try {
+          setPhase('signing');
+          await settleReceiptOnchain({
+            connection,
+            ruleId: rule.id,
+            receiptId: result.receipt.id,
+            prepared: result.onchain,
+          });
+        } catch (err) {
+          setError(`Harvest confirmed. On-chain receipt needs a retry: ${err.body?.detail || err.message}`);
+        }
+      }
       setPhase('done');
       onExecuted?.(result);
     } catch (err) {

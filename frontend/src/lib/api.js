@@ -1,3 +1,5 @@
+import { tagError, trace, traceError } from './trace.js';
+
 /**
  * Backend client. The browser never talks to Jupiter, xStocks or an RPC
  * directly: every call goes through the Overflow API, which holds the keys.
@@ -15,6 +17,7 @@ function resolveApiBase() {
 }
 
 const BASE = resolveApiBase();
+trace('api:base', { BASE });
 
 /*
  * Session token from wallet sign-in. Kept in sessionStorage so a reload keeps
@@ -52,18 +55,28 @@ export function currentSession() { return session; }
 export function onSessionLost(fn) { onAuthLost.add(fn); return () => onAuthLost.delete(fn); }
 
 async function request(path, options = {}) {
-  const res = await fetch(`${BASE}${path}`, {
-    headers: {
-      'content-type': 'application/json',
-      ...(session?.token ? { authorization: `Bearer ${session.token}` } : {}),
-      ...(options.headers || {}),
-    },
-    ...options,
-    body: options.body ? JSON.stringify(options.body) : undefined,
-  });
+  const url = `${BASE}${path}`;
+  const method = options.method || 'GET';
+  trace('api:request', { method, url, path, hasSession: Boolean(session?.token) });
+  let res;
+  try {
+    res = await fetch(url, {
+      headers: {
+        'content-type': 'application/json',
+        ...(session?.token ? { authorization: `Bearer ${session.token}` } : {}),
+        ...(options.headers || {}),
+      },
+      ...options,
+      body: options.body ? JSON.stringify(options.body) : undefined,
+    });
+  } catch (err) {
+    traceError('api:network-fail', err);
+    throw tagError(err, { stage: `api:${path}`, source: 'api' });
+  }
   const text = await res.text();
   let body;
   try { body = text ? JSON.parse(text) : {}; } catch { body = { error: text.slice(0, 300) }; }
+  trace('api:response', { method, path, status: res.status, ok: res.ok, body });
   // An expired or rejected session: drop it and let the app ask to sign in again.
   if (res.status === 401 && session && !path.startsWith('/auth/')) {
     const lost = session.wallet;
@@ -74,7 +87,8 @@ async function request(path, options = {}) {
     const err = new Error(body.error || body.detail || `Request failed (${res.status})`);
     err.status = res.status;
     err.body = body;
-    throw err;
+    traceError('api:http-fail', err);
+    throw tagError(err, { stage: `api:${path}`, source: 'api' });
   }
   return body;
 }
@@ -92,6 +106,8 @@ export const api = {
   // Scoped to the signed-in wallet by the server; no wallet is ever sent.
   listRules: () => request('/rules'),
   createRule: (rule) => request('/rules', { method: 'POST', body: rule }),
+  submitRuleOnchain: (id, payload) => request(`/rules/${id}/onchain/submit`, { method: 'POST', body: payload }),
+  prepareRuleOnchain: (id) => request(`/rules/${id}/onchain/prepare`, { method: 'POST', body: {} }),
   getRule: (id) => request(`/rules/${id}`),
   updateRule: (id, patch) => request(`/rules/${id}`, { method: 'PATCH', body: patch }),
   deleteRule: (id) => request(`/rules/${id}`, { method: 'DELETE' }),
@@ -99,6 +115,8 @@ export const api = {
 
   prepare: (id) => request(`/rules/${id}/prepare`, { method: 'POST', body: {} }),
   submit: (id, payload) => request(`/rules/${id}/submit`, { method: 'POST', body: payload }),
+  submitReceiptOnchain: (id, receiptId, payload) => request(`/rules/${id}/receipts/${receiptId}/onchain/submit`, { method: 'POST', body: payload }),
+  prepareReceiptOnchain: (id, receiptId) => request(`/rules/${id}/receipts/${receiptId}/onchain/prepare`, { method: 'POST', body: {} }),
 
   // Kamino money movement. Each is prepare -> wallet signs -> submit.
   deposit: (id, usdcAtomic) => request(`/rules/${id}/deposit`, { method: 'POST', body: { usdcAtomic } }),
@@ -110,6 +128,7 @@ export const api = {
   reconfirmBaseline: (id) => request(`/rules/${id}/reconfirm-baseline`, { method: 'POST', body: {} }),
 
   receipts: () => request('/receipts'),
+  transactions: () => request('/transactions'),
   decisions: () => request('/decisions'),
   portfolio: () => request('/portfolio'),
   preview: (id) => request(`/rules/${id}/preview`, { method: 'POST', body: {} }),

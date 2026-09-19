@@ -1,0 +1,60 @@
+[    1328ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://localhost:5174/node_modules/.vite/deps/chunk-KVMAXHTM.js?v=6167bee1:21608
+[    1329ms] [INFO] [overflow] api:base {BASE: https://solana-poc.onrender.com/api} @ http://localhost:5174/src/lib/trace.js:33
+[    1631ms] [INFO] [overflow] api:request {method: GET, url: https://solana-poc.onrender.com/api/health, path: /health, hasSession: false} @ http://localhost:5174/src/lib/trace.js:33
+[    1632ms] [INFO] [overflow] api:request {method: GET, url: https://solana-poc.onrender.com/api/assets/destinations, path: /assets/destinations, hasSession: false} @ http://localhost:5174/src/lib/trace.js:33
+[    1672ms] [INFO] [overflow] api:request {method: GET, url: https://solana-poc.onrender.com/api/health, path: /health, hasSession: false} @ http://localhost:5174/src/lib/trace.js:33
+[    1673ms] [INFO] [overflow] api:request {method: GET, url: https://solana-poc.onrender.com/api/assets/destinations, path: /assets/destinations, hasSession: false} @ http://localhost:5174/src/lib/trace.js:33
+[    3527ms] [INFO] [overflow] api:response {method: GET, path: /health, status: 200, ok: true, body: Object} @ http://localhost:5174/src/lib/trace.js:33
+[    3757ms] [INFO] [overflow] api:response {method: GET, path: /assets/destinations, status: 200, ok: true, body: Object} @ http://localhost:5174/src/lib/trace.js:33
+[    4098ms] [INFO] [overflow] api:response {method: GET, path: /assets/destinations, status: 200, ok: true, body: Object} @ http://localhost:5174/src/lib/trace.js:33
+[    4370ms] [INFO] [overflow] api:response {method: GET, path: /health, status: 200, ok: true, body: Object} @ http://localhost:5174/src/lib/trace.js:33
+[   20187ms] [INFO] [overflow] connect:click @ http://localhost:5174/src/lib/trace.js:30
+[   20187ms] [INFO] [overflow] phantom:detect {injected: Array(1), injectedPublicKey: null, standardCount: 0, standardNames: Array(0), accountCount: Array(0)} @ http://localhost:5174/src/lib/trace.js:33
+[   20188ms] [INFO] [overflow] phantom:injected:attempt {label: phantom.solana, name: connect()} @ http://localhost:5174/src/lib/trace.js:33
+[   20188ms] [ERROR] [overflow] phantom:injected:fail:phantom.solana:connect() {name: Error, message: Unexpected error, code: -32603, status: undefined, stage: undefined} Error: Unexpected error
+    at eval (eval at <anonymous> (eval at evaluate (:311:30)), <anonymous>:1:37)
+    at eval (eval at <anonymous> (eval at evaluate (:311:30)), <anonymous>:1:348)
+    at eval (eval at evaluate (:311:30), <anonymous>:2:29)
+    at UtilityScript.evaluate (<anonymous>:313:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44) @ http://localhost:5174/src/lib/trace.js:38
+[   20189ms] [INFO] [overflow] phantom:injected:attempt {label: phantom.solana, name: request(connect)} @ http://localhost:5174/src/lib/trace.js:33
+[   20190ms] [ERROR] [overflow] phantom:injected:fail:phantom.solana:request(connect) {name: Error, message: Unexpected error, code: -32603, status: undefined, stage: undefined} Error: Unexpected error
+    at eval (eval at <anonymous> (eval at evaluate (:311:30)), <anonymous>:1:37)
+    at eval (eval at <anonymous> (eval at evaluate (:311:30)), <anonymous>:1:348)
+    at eval (eval at evaluate (:311:30), <anonymous>:2:29)
+    at UtilityScript.evaluate (<anonymous>:313:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44) @ http://localhost:5174/src/lib/trace.js:38
+[   20190ms] [INFO] [overflow] phantom:injected:attempt {label: phantom.solana, name: connect(onlyIfTrusted:false)} @ http://localhost:5174/src/lib/trace.js:33
+[   20190ms] [ERROR] [overflow] phantom:injected:fail:phantom.solana:connect(onlyIfTrusted:false) {name: Error, message: Unexpected error, code: -32603, status: undefined, stage: undefined} Error: Unexpected error
+    at eval (eval at <anonymous> (eval at evaluate (:311:30)), <anonymous>:1:37)
+    at eval (eval at <anonymous> (eval at evaluate (:311:30)), <anonymous>:1:348)
+    at eval (eval at evaluate (:311:30), <anonymous>:2:29)
+    at UtilityScript.evaluate (<anonymous>:313:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44) @ http://localhost:5174/src/lib/trace.js:38
+[   20190ms] [INFO] [overflow] phantom:injected:reset-and-retry {label: phantom.solana} @ http://localhost:5174/src/lib/trace.js:33
+[   20191ms] [ERROR] [overflow] connect:fail {name: Error, message: Unexpected error, code: -32603, status: undefined, stage: wallet-connect} Error: Unexpected error
+    at eval (eval at <anonymous> (eval at evaluate (:311:30)), <anonymous>:1:37)
+    at eval (eval at <anonymous> (eval at evaluate (:311:30)), <anonymous>:1:348)
+    at eval (eval at evaluate (:311:30), <anonymous>:2:29)
+    at UtilityScript.evaluate (<anonymous>:313:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44) @ http://localhost:5174/src/lib/trace.js:38
+[   36507ms] [INFO] [overflow] connect:click @ http://localhost:5174/src/lib/trace.js:30
+[   36507ms] [INFO] [overflow] phantom:detect {injected: Array(1), injectedPublicKey: Demo111111111111111111111111111111111111111, standardCount: 0, standardNames: Array(0), accountCount: Array(0)} @ http://localhost:5174/src/lib/trace.js:33
+[   36507ms] [INFO] [overflow] phantom:reuse-injected {label: phantom.solana, address: Demo111111111111111111111111111111111111111, isConnected: true} @ http://localhost:5174/src/lib/trace.js:33
+[   36508ms] [INFO] [overflow] connect:wallet-ok {address: Demo111111111111111111111111111111111111111, walletName: Phantom} @ http://localhost:5174/src/lib/trace.js:33
+[   36509ms] [INFO] [overflow] signin:prove:start {address: Demo111111111111111111111111111111111111111} @ http://localhost:5174/src/lib/trace.js:33
+[   36509ms] [INFO] [overflow] api:request {method: POST, url: https://solana-poc.onrender.com/api/auth/nonce, path: /auth/nonce, hasSession: false} @ http://localhost:5174/src/lib/trace.js:33
+[   37591ms] [INFO] [overflow] api:response {method: POST, path: /auth/nonce, status: 200, ok: true, body: Object} @ http://localhost:5174/src/lib/trace.js:33
+[   37592ms] [INFO] [overflow] signin:nonce:ok {nonce: fba8198906987cb95bde54b7cdd26114e6d3, messageChars: 318} @ http://localhost:5174/src/lib/trace.js:33
+[   37592ms] [INFO] [overflow] signin:signature:ok {signatureChars: 88} @ http://localhost:5174/src/lib/trace.js:33
+[   37592ms] [INFO] [overflow] api:request {method: POST, url: https://solana-poc.onrender.com/api/auth/verify, path: /auth/verify, hasSession: false} @ http://localhost:5174/src/lib/trace.js:33
+[   38206ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://solana-poc.onrender.com/api/auth/verify:0
+[   38207ms] [INFO] [overflow] api:response {method: POST, path: /auth/verify, status: 401, ok: false, body: Object} @ http://localhost:5174/src/lib/trace.js:33
+[   38207ms] [ERROR] [overflow] api:http-fail {name: Error, message: Signature does not match this wallet., code: undefined, status: 401, stage: undefined} Error: Signature does not match this wallet.
+    at request (http://localhost:5174/src/lib/api.js:87:17)
+    at async prove (http://localhost:5174/src/components/WalletBar.jsx:69:23)
+    at async handleConnect (http://localhost:5174/src/components/WalletBar.jsx:106:7) @ http://localhost:5174/src/lib/trace.js:38
+[   38207ms] [ERROR] [overflow] connect:fail {name: Error, message: Signature does not match this wallet., code: undefined, status: 401, stage: api:/auth/verify} Error: Signature does not match this wallet.
+    at request (http://localhost:5174/src/lib/api.js:87:17)
+    at async prove (http://localhost:5174/src/components/WalletBar.jsx:69:23)
+    at async handleConnect (http://localhost:5174/src/components/WalletBar.jsx:106:7) @ http://localhost:5174/src/lib/trace.js:38

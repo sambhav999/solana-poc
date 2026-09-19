@@ -76,7 +76,29 @@ function hydrate(row) {
     destinationSymbol: row.destination_symbol,
     earningsUsdAtomic: row.earnings_usd_atomic,
     explorerUrl: row.signature ? `https://solscan.io/tx/${row.signature}` : null,
+    onchainPda: row.onchain_pda ?? null,
+    onchainSignature: row.onchain_signature ?? null,
   };
+}
+
+export function updateReceipt(id, patch) {
+  const db = getDb();
+  const allowed = {
+    onchainPda: 'onchain_pda',
+    onchainSignature: 'onchain_signature',
+  };
+  const sets = [];
+  const values = [];
+  for (const [key, column] of Object.entries(allowed)) {
+    if (patch[key] !== undefined) {
+      sets.push(`${column} = ?`);
+      values.push(patch[key]);
+    }
+  }
+  if (!sets.length) return getReceipt(id);
+  values.push(id);
+  db.prepare(`UPDATE receipts SET ${sets.join(', ')} WHERE id = ?`).run(...values);
+  return getReceipt(id);
 }
 
 function safeParse(s) { try { return JSON.parse(s); } catch { return {}; } }

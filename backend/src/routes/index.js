@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { randomUUID } from 'node:crypto';
 import { createRule, getRule, listRules, updateRule, deleteRule } from '../db/rules.js';
-import { listReceipts, listReceiptsForRule } from '../db/receipts.js';
+import { listReceipts, listReceiptsForRule, getReceipt, updateReceipt } from '../db/receipts.js';
 import { listSnapshots, getOpenSnapshotForRule } from '../db/snapshots.js';
 import { listStranded } from '../db/stranded.js';
 import { listDestinations, getAssetDetail, checkSourceRoutable, getAsset } from '../services/assets.js';
@@ -9,7 +9,7 @@ import { evaluateRule } from '../services/evaluate.js';
 import { prepareExecution, submitExecution } from '../services/execute.js';
 import { listReplayEvents, replayEvent } from '../services/replay.js';
 import { sdkStatus } from '../adapters/kamino/vault.js';
-import { getSlot, getSolBalanceLamports, getTokenBalance, getMintInfo, getAccountOwnerProgram, SYSTEM_PROGRAM, USDC_MINT } from '../adapters/solana/rpc.js';
+import { getSlot, getSolBalanceLamports, getTokenBalance, getMintInfo, getAccountOwnerProgram, SYSTEM_PROGRAM, USDC_MINT, getSignaturesForAddress } from '../adapters/solana/rpc.js';
 import { refreshBaselines } from '../services/drift.js';
 import { createNonce, verifySignIn, requireSession, SESSION_TTL_MS } from '../auth/session.js';
 import { listAllDestinations, getDestination, PROVIDERS } from '../services/destinations.js';
@@ -18,7 +18,9 @@ import { listDecisions, earningsRetained } from '../db/decisions.js';
 import { incomePortfolio } from '../services/portfolio.js';
 import { previewRule } from '../services/preview.js';
 import { pollOnce } from '../poller/poll.js';
-import { limiterConfig } from '../adapters/jupiter/client.js';
+import { mergeTransactionLog } from '../services/transactions.js';
+import { prepareCreateRuleTx, preparePostReceiptTx, submitRegistryTx, registryStatus } from '../adapters/registry/service.js';
+import { rulePda, receiptPda } from '../adapters/registry/encoder.js';
 import {
   prepareDeposit, submitDeposit,
   submitHarvestWithdrawal,
@@ -65,6 +67,7 @@ router.get('/health', asyncRoute(async (_req, res) => {
     // Surfaced so the UI can prefill rather than asking a user to paste a vault
     // address. A rule may still override it per-rule.
     defaultKaminoVault: process.env.KAMINO_USDC_VAULT || null,
+    registry: registryStatus(),
     mode: 'LIVE',
   });
 }));
@@ -226,7 +229,12 @@ router.post('/rules', asyncRoute(async (req, res) => {
   });
   // Record what the position looks like now, so later drift is detectable.
   const baselined = await refreshBaselines(rule).catch(() => rule);
-  res.status(201).json({ rule: baselined });
+  const onchain = await prepareCreateRuleTx({ rule: baselined }).catch((err) => ({
+    available: false,
+    reason: 'PREPARE_FAILED',
+    detail: err.message,
+  }));
+  res.status(201).json({ rule: baselined, onchain });
 }));
 
 /**
@@ -287,7 +295,78 @@ router.post('/rules/:id/submit', asyncRoute(async (req, res) => {
   const result = await submitExecution({
     rule, signedTransactionBase64: signedTransaction, requestId, executionKey, context, intentId,
   });
+  if (result.ok && result.receipt) {
+    const onchain = await preparePostReceiptTx({ rule, receipt: result.receipt }).catch((err) => ({
+      available: false,
+      reason: 'PREPARE_FAILED',
+      detail: err.message,
+    }));
+    res.status(200).json({ ...result, onchain });
+    return;
+  }
   res.status(result.ok ? 200 : 409).json(result);
+}));
+
+router.post('/rules/:id/onchain/submit', asyncRoute(async (req, res) => {
+  const rule = ownedRule(req, res); if (!rule) return;
+  const { signedTransaction } = req.body || {};
+  if (!signedTransaction) return res.status(400).json({ error: 'signedTransaction is required' });
+  const submitted = await submitRegistryTx({ signedTransaction });
+  if (!submitted.confirmation?.confirmed) {
+    return res.status(409).json({
+      ok: false,
+      reason: 'NOT_CONFIRMED',
+      detail: submitted.confirmation?.reason || 'registry transaction did not confirm',
+      signature: submitted.signature,
+    });
+  }
+  const derived = rulePda({ owner: rule.wallet, ruleId: rule.id });
+  const updated = updateRule(rule.id, {
+    onchainPda: req.body.rulePda || derived.address,
+    onchainSignature: submitted.signature,
+  });
+  res.json({ ok: true, rule: updated, signature: submitted.signature, rulePda: derived.address });
+}));
+
+router.post('/rules/:id/receipts/:receiptId/onchain/submit', asyncRoute(async (req, res) => {
+  const rule = ownedRule(req, res); if (!rule) return;
+  const receipt = getReceipt(req.params.receiptId);
+  if (!receipt || receipt.ruleId !== rule.id || receipt.wallet !== rule.wallet) {
+    return res.status(404).json({ error: 'receipt not found' });
+  }
+  const { signedTransaction } = req.body || {};
+  if (!signedTransaction) return res.status(400).json({ error: 'signedTransaction is required' });
+  const submitted = await submitRegistryTx({ signedTransaction });
+  if (!submitted.confirmation?.confirmed) {
+    return res.status(409).json({
+      ok: false,
+      reason: 'NOT_CONFIRMED',
+      detail: submitted.confirmation?.reason || 'registry transaction did not confirm',
+      signature: submitted.signature,
+    });
+  }
+  const derived = receiptPda({ owner: rule.wallet, executionKey: receipt.executionKey });
+  const updated = updateReceipt(receipt.id, {
+    onchainPda: req.body.receiptPda || derived.address,
+    onchainSignature: submitted.signature,
+  });
+  res.json({ ok: true, receipt: updated, signature: submitted.signature, receiptPda: derived.address });
+}));
+
+router.post('/rules/:id/onchain/prepare', asyncRoute(async (req, res) => {
+  const rule = ownedRule(req, res); if (!rule) return;
+  const onchain = await prepareCreateRuleTx({ rule });
+  res.json({ rule, onchain });
+}));
+
+router.post('/rules/:id/receipts/:receiptId/onchain/prepare', asyncRoute(async (req, res) => {
+  const rule = ownedRule(req, res); if (!rule) return;
+  const receipt = getReceipt(req.params.receiptId);
+  if (!receipt || receipt.ruleId !== rule.id || receipt.wallet !== rule.wallet) {
+    return res.status(404).json({ error: 'receipt not found' });
+  }
+  const onchain = await preparePostReceiptTx({ rule, receipt });
+  res.json({ receipt, onchain });
 }));
 
 /* --------------------------------------------------- kamino: deposit -- */
@@ -382,6 +461,18 @@ router.post('/rules/:id/preview', asyncRoute(async (req, res) => {
 router.get('/receipts', asyncRoute(async (req, res) => {
   const wallet = requireWallet(req, res); if (!wallet) return;
   res.json({ receipts: listReceipts(wallet) });
+}));
+
+router.get('/transactions', asyncRoute(async (req, res) => {
+  const wallet = requireWallet(req, res); if (!wallet) return;
+  const receipts = listReceipts(wallet, 100);
+  const rules = listRules(wallet);
+  const chain = await getSignaturesForAddress(wallet, { limit: 40 }).catch(() => []);
+  res.json({
+    wallet,
+    network: process.env.NETWORK || 'mainnet-beta',
+    transactions: mergeTransactionLog({ chain, receipts, rules }),
+  });
 }));
 
 /* ---------------------------------------------------------------- replay -- */
