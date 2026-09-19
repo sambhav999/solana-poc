@@ -189,7 +189,7 @@ a { color: var(--flow); }
   display: flex; align-items: center; justify-content: center;
   overflow: hidden;
 }
-.brand-mark img { width: 36px; height: 36px; display: block; object-fit: contain; }
+.brand-mark img { width: 34px; height: 34px; display: block; object-fit: contain; padding: 1px; }
 .brand-text { display: flex; flex-direction: column; line-height: 1.2; min-width: 0; }
 .brand {
   font-size: 16px; font-weight: 650; letter-spacing: -.03em; color: var(--ink);
@@ -983,7 +983,7 @@ input[type=checkbox] { accent-color: var(--flow); width: 15px; height: 15px; }
 .footer-brand .brand-mark img { width: 30px; height: 30px; }
 .footer-brand-text { display: flex; flex-direction: column; line-height: 1.15; gap: 2px; }
 .footer-brand b { color: var(--ink); font-weight: 650; letter-spacing: -.02em; font-size: 14px; }
-.footer-kult {
+.footer-tag {
   font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
   color: var(--equity);
 }

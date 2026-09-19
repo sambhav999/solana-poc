@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Overflow">
+  <circle cx="28" cy="34.5" r="16.2" fill="#6D4AFF"/>
+  <path d="M42.2 20.6a20.4 20.4 0 1 0 2.6 7.1" fill="none" stroke="#7AB8FF" stroke-width="6.6" stroke-linecap="round"/>
+  <path d="M41.8 19.6c4.8-.4 10.6 1.6 12.8 6.7 2 4.5-.3 8.7-4.4 9.4 3.1 3.7 7.7 2.3 7.1-2.7 1.9 7.1-4.4 12.1-10.3 9.1 5.1.3 8.3-4.4 6.9-9.1-1.1-3.8-5.1-6.1-10.1-4.4z" fill="#F5C518"/>
+</svg>

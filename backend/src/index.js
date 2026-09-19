@@ -10,7 +10,32 @@ import { refreshAssets } from './services/assets.js';
 const app = express();
 const PORT = Number(process.env.PORT || 8787);
 
-app.use(cors({ origin: process.env.CORS_ORIGIN || true }));
+function parseOrigins(value) {
+  return String(value || '')
+    .split(',')
+    .map((s) => s.trim().replace(/\/$/, ''))
+    .filter(Boolean);
+}
+
+const CORS_ORIGINS = new Set([
+  'http://localhost:5173',
+  'http://localhost:5174',
+  'https://noisy-sky-fa9c.rj838486.workers.dev',
+  ...parseOrigins(process.env.CORS_ORIGIN),
+]);
+
+app.use(cors({
+  origin(origin, callback) {
+    const normalized = origin ? origin.replace(/\/$/, '') : '';
+    // Reflect ONE origin. A comma-separated Access-Control-Allow-Origin
+    // header is invalid and browsers treat it as a CORS failure.
+    if (!origin || CORS_ORIGINS.has(normalized)) {
+      callback(null, true);
+      return;
+    }
+    callback(null, false);
+  },
+}));
 app.use(express.json({ limit: '2mb' }));
 
 app.use((req, _res, next) => {

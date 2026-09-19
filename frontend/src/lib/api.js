@@ -1,8 +1,20 @@
 /**
  * Backend client. The browser never talks to Jupiter, xStocks or an RPC
  * directly: every call goes through the Overflow API, which holds the keys.
+ *
+ * VITE_API_BASE is inlined from frontend/.env at Vite startup. Editing .env
+ * requires restarting `npm run dev` or rebuilding.
  */
-const BASE = import.meta.env.VITE_API_BASE || 'http://localhost:8787/api';
+function resolveApiBase() {
+  const raw = String(import.meta.env.VITE_API_BASE || '')
+    .trim()
+    .replace(/^['"]|['"]$/g, '')
+    .replace(/\/$/, '');
+  if (raw) return raw;
+  return 'https://solana-poc.onrender.com/api';
+}
+
+const BASE = resolveApiBase();
 
 /*
  * Session token from wallet sign-in. Kept in sessionStorage so a reload keeps

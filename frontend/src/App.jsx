@@ -216,11 +216,11 @@ export default function App() {
         <div className={`header-inner ${signedIn ? 'is-in' : ''}`}>
           <div className="brand-block">
             <div className="brand-mark">
-              <img src="/brand/kult-logo.webp" alt="Kult Games" />
+              <img src="/brand/overflow-mark.png" alt="Overflow" />
             </div>
             <div className="brand-text">
               <span className="brand">Overflow</span>
-              <span className="tag">Kult Games</span>
+              <span className="tag">Keep the source</span>
             </div>
           </div>
           {signedIn && (
@@ -424,11 +424,11 @@ export default function App() {
         <footer className="footer">
           <div className="footer-brand">
             <span className="brand-mark">
-              <img src="/brand/kult-logo.webp" alt="" />
+              <img src="/brand/overflow-mark.png" alt="" />
             </span>
             <div className="footer-brand-text">
               <b>Overflow</b>
-              <span className="footer-kult">Kult Games</span>
+              <span className="footer-tag">Keep the source</span>
             </div>
           </div>
           {signedIn && (
